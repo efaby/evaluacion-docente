@@ -1,0 +1,17 @@
+ErrorDocument 403 /mantenimiento/public/views/Seguridad/index.php?action=error403
+ErrorDocument 404 /mantenimiento/public/views/Seguridad/index.php?action=error404
+ErrorDocument 500 /mantenimiento/public/views/Seguridad/index.php?action=error500
+
+Options +FollowSymlinks
+DirectoryIndex index.php
+RewriteEngine On
+RewriteBase /mantenimiento
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteRule ^public/views/(.*)$ public/views/Seguridad/index.php?action=error404 [L]
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteRule ^(.*)/(.*)/(.*)$ public/views/$1/index.php?action=$2&id=$3 [QSA,L]
+
