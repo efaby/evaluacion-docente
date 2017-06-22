@@ -13,6 +13,7 @@ if(!isset($app)){
 	$redirect = "login";
 }
 
+/*
 
 $urls = unserialize(PUBLIC_URLS);
 if (!isset($_SESSION['SESSION_USER'])){	
@@ -20,15 +21,8 @@ if (!isset($_SESSION['SESSION_USER'])){
 		header("location: ".URL_BASE);
 		exit();
 	}	
-} /* else {	
-	$urls = unserialize(PRIVATE_URLS);
-	if((!in_array($app, $urls[$_SESSION['SESSION_USER']->clave]))&&(!in_array($app.$redirect, $urls[$_SESSION['SESSION_USER']->clave]))){
-		$app = 'Seguridad';
-		$redirect = "error403";
-	}
-}
-	*/
-
+} 
+*/
 require_once(PATH_CONTROLLERS."/".$app."Controller.php");
 $controllerName = $app."Controller";
 $controller = new $controllerName();

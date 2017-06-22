@@ -1,11 +1,11 @@
-ErrorDocument 403 /mantenimiento/public/views/Seguridad/index.php?action=error403
-ErrorDocument 404 /mantenimiento/public/views/Seguridad/index.php?action=error404
-ErrorDocument 500 /mantenimiento/public/views/Seguridad/index.php?action=error500
+ErrorDocument 403 /evaluacion-docente/public/views/Seguridad/index.php?action=error403
+ErrorDocument 404 /evaluacion-docente/public/views/Seguridad/index.php?action=error404
+ErrorDocument 500 /evaluacion-docente/public/views/Seguridad/index.php?action=error500
 
 Options +FollowSymlinks
 DirectoryIndex index.php
 RewriteEngine On
-RewriteBase /mantenimiento
+RewriteBase /evaluacion-docente
 
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
