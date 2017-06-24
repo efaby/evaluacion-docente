@@ -29,6 +29,23 @@
 	</div>
 	<div class="row rowForm">
 	<div class="form-group col-sm-6">
+		<label class="control-label">Dirección</label> <input type='text'
+			name='direccion' class='form-control' 
+			value="<?php echo $item->direccion; ?>" id="direccion">
+	</div>
+	<div class="form-group col-sm-6">
+		<label class="control-label">Teléfono</label> <input type='text'
+			name='telefono' class='form-control' 
+			value="<?php echo $item->telefono; ?>" id="telefono">
+	</div>
+	</div>
+	<div class="form-group col-sm-12">
+		<label class="control-label">Email</label> <input type='text'
+			name='email' class='form-control'
+			value="<?php echo $item->email; ?>" id="email">
+	</div>	
+	<div class="row rowForm">
+	<div class="form-group col-sm-6">
 		<label class="control-label">Contraseña</label>
 		<input type="password"
 			name='password' class='form-control'
@@ -43,11 +60,7 @@
 
 	</div>
 	</div>
-		<div class="form-group col-sm-12">
-		<label class="control-label">Email</label> <input type='text'
-			name='email' class='form-control'
-			value="<?php echo $item->email; ?>" id="email">
-	</div>	
+		
 	<div class="form-group">
 		<input type='hidden' name='id' class='form-control' value="<?php echo $item->id; ?>">		
 		<button type="submit" class="btn btn-success boton" id="boton">Guardar</button>
@@ -192,6 +205,31 @@ $(document).ready(function() {
 						message: 'Ingrese un email válido.'
 					}
 				}
+			},
+			direccion: {
+				message: 'LaDirección no es válida',
+				validators: {
+					notEmpty: {
+						message: 'La Dirección no puede ser vacía.'
+					},					
+					regexp: {
+						regexp: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\.\,\s\_\-]+$/,						
+						message: 'Ingrese una Dirección válido.'
+					}
+				}
+			},
+			telefono: {
+				message: 'El Número de Teléfono no es válido',
+				validators: {
+					notEmpty: {
+						message: 'El Número de Teléfono no puede ser vacío.'
+					},					
+							regexp: {
+								regexp: /^(?:\+)?\d{9}$/,
+								message: 'Ingrese un Número de Teléfono válido.'
+							}
+						}
+				
 			},
 			
 		}

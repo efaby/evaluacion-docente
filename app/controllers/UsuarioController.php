@@ -15,8 +15,7 @@ class UsuarioController {
 	public function editar(){
 		$model = new UsuarioModel();
 		$item = $model->getUsuario();	
-		$where=	" where id <> 4";
-		$tipos = $model->getCatalogo('tipo_usuario', $where);		
+		$tipos = $model->getCatalogo('tipo_usuario');		
 		$message = "";
 		require_once PATH_VIEWS."/Usuario/view.form.php";
 	}
@@ -28,18 +27,15 @@ class UsuarioController {
 		$usuario ['nombres'] = $_POST ['nombres'];
 		$usuario ['apellidos'] = $_POST ['apellidos'];
 		$usuario ['password'] = $_POST ['password'];		
-		$usuario ['email'] = $_POST ['email'];		
+		$usuario ['email'] = $_POST ['email'];	
+		$usuario ['direccion'] = $_POST ['direccion'];
+		$usuario ['telefono'] = $_POST ['telefono'];
 		
 		$model = new UsuarioModel();
 		try {
 			$datos = $model->saveUsuario( $usuario );
 			$_SESSION ['message'] = "Datos almacenados correctamente.";
-			if($_POST ['id']){
-				require_once (PATH_MODELS . "/AuditoriaModel.php");
-				// registro Auditoria
-				$log = new AuditoriaModel();
-				$log->saveAuditoria($_SESSION['SESSION_USER']->nombres." ".$_SESSION['SESSION_USER']->apellidos, $_SESSION['SESSION_USER']->tipo_nombre,'Ingreso de nuevo Usuario"'.$_POST ['identificacion'].'"');
-			}
+			
 		} catch ( Exception $e ) {
 			$_SESSION ['message'] = $e->getMessage ();
 		}

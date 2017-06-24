@@ -9,7 +9,7 @@ class UsuarioModel {
 		$model = new BaseModel();	
 		$sql = "select u.*, t.nombre as tipo_usuario_nombre from usuario as u
 				inner join tipo_usuario t on u.tipo_usuario_id= t.id		
-				where u.estado = 0 and tipo_usuario_id !=4";		
+				where u.estado = 1";		
 		return $model->execSql($sql, array(),true);
 	}	
 	
@@ -25,7 +25,7 @@ class UsuarioModel {
 			$result->password = $result->password1 = $this->pattern;
 			$result->identificacion = $result->cedula;
 		} else {
-			$result = (object) array('id'=>0,'password'=>'', 'password1'=>'','identificacion' =>'','nombres'=>'','apellidos'=>'','tipo_usuario_id'=>0,'email'=>'');			
+			$result = (object) array('id'=>0,'password'=>'', 'password1'=>'','identificacion' =>'','nombres'=>'','apellidos'=>'','tipo_usuario_id'=>0,'email'=>'','direccion'=>'','telefono'=>'');			
 		}
 		
 		return $result;
@@ -43,7 +43,7 @@ class UsuarioModel {
 	
 	public function delUsuario(){
 		$usuario = $_GET['id'];
-		$sql = "update usuario set eliminado = 1 where id = ?";
+		$sql = "update usuario set estado = 0 where id = ?";
 		$model = new BaseModel();
 		$result = $model->execSql($sql, array($usuario),false,true);
 	}
@@ -55,7 +55,7 @@ class UsuarioModel {
 	
 	public function getUsuarioPorCedula($cedula,$id){
 		$model =  new BaseModel();
-		$sql = "select * from usuario where cedula = ? and id <> ? and eliminado=0";
+		$sql = "select * from usuario where cedula = ? and id <> ? and estado = 1";
 		return $model->execSql($sql, array($cedula,$id));
 	}
 }
