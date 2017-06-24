@@ -4,16 +4,16 @@
 <!-- Main row -->
 <div class="card">
 <div class="card-header">
-    	<h3>Usuarios</h3>
+    	<h3>Período</h3>
 </div>
 <div class="card-block">
-<?php if (isset($_SESSION['message'])&& ($_SESSION['message'] != '')):?>
+	<?php if (isset($_SESSION['message'])&& ($_SESSION['message'] != '')):?>
 		<div class="alert alert-success alert-dismissable">
 				<button type="button" class="close" data-dismiss="alert"
 					aria-hidden="true">&times;</button>
-								  <?php echo $_SESSION['message'];$_SESSION['message'] = ''?>
-								</div>
-		<?php endif;?>
+				  <?php echo $_SESSION['message'];$_SESSION['message'] = ''?>
+		</div>
+	<?php endif;?>
 
 	<div class="col-lg-12">	
 		<button type="button" data-id="0" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
@@ -23,19 +23,13 @@
 	<table class="table table-striped" id="dataTables-example" >
     <thead>
 	    <tr>
-	    	<th>Nombre</th>
-	    	<th>Usuario</th>
-		    <th>Tipo</th>
-		    <th>Email</th>		   
-		    <th style="text-align: center;">Acciones</th>
+	    	<th>Nombre</th>	    			   
+		    <th style="text-align: center; width: 20%">Acciones</th>
 	    </tr>
     </thead>
     <tbody>
     	<?php foreach ($datos as $item) {
-    		echo "<tr><td>".$item->nombres." ".$item->apellidos."</td>";
-    		echo "<td>".$item->cedula."</td>";
-    		echo "<td>".$item->tipo_usuario_nombre."</td>";
-    		echo "<td>".$item->email." </td>";    		
+    		echo "<tr><td>".$item->nombre."</td>"; 		
     		echo "<td align='center'><a href='#' class='btn btn-warning btn-sm' data-id='".$item->id."' data-toggle='modal' data-target='#myModal' title='Editar' ><i class='fa fa-pencil'></i></a>
 					  <a href='javascript:if(confirm(\"Est\u00e1 seguro que desea eliminar el elemento seleccionado?\")){redirect(".$item->id.");}' class='btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash'></i></a></td>";
     	}?>
@@ -46,10 +40,10 @@
 </div>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true" >
-	<div class="modal-dialog modal-lg" >
+	<div class="modal-dialog" >
 		<div class="modal-content">
 			<div class="modal-header">				
-				<h4 class="modal-title">Usuario</h4>
+				<h4 class="modal-title">Periodo</h4>
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                  </button>

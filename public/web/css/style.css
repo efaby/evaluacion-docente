@@ -1575,7 +1575,7 @@ pre {
   margin-bottom: 1rem; }
   .table th,
   .table td {
-    padding: 0.75rem;
+    padding: 0.50rem;
     vertical-align: top;
     border-top: 1px solid #E3E8EC; }
   .table thead th {
@@ -1945,6 +1945,7 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   vertical-align: middle;
   user-select: none;
   border: 1px solid transparent;
+  border-radius: 4px;
   padding: 0.5rem 1rem;
   font-size: 0.875rem;
   transition: all 0.2s ease-in-out; }
@@ -2229,7 +2230,7 @@ fieldset[disabled] a.btn {
   font-size: 1.25rem; }
 
 .btn-sm, .btn-group-sm > .btn, .fc .btn-group-sm > button {
-  padding: 0.25rem 0.5rem;
+  padding: 0.15rem 0.4rem;
   font-size: 0.875rem; }
 
 .btn-block {
@@ -14144,4 +14145,7 @@ hr.transparent {
 .form-group.has-error .form-control {
   border-color: #f56954 !important;
   box-shadow: none;
+}
+table.table-bordered.dataTable {
+    border-collapse: collapse !important;
 }
