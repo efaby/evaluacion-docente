@@ -1,150 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="<?php echo PATH_IMAGES.'/favicon.ico'?>" />
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,AngularJS,Angular,Angular2,Angular 2,Angular4,Angular 4,jQuery,CSS,HTML,RWD,Dashboard,React,React.js,Vue,Vue.js">
+    <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>SAM-W&L</title>
+    <title>CoreUI - Open Source Bootstrap Admin Template</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="<?php echo PATH_CSS; ?>/bootstrap.min.css" rel="stylesheet">
+    <!-- Icons -->
+    <link href="<?php echo PATH_CSS; ?>/font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo PATH_CSS; ?>/simple-line-icons.css" rel="stylesheet">
 
-    <!-- MetisMenu CSS -->
-    <link href="<?php echo PATH_CSS; ?>/metisMenu.min.css" rel="stylesheet">
+    <!-- Main styles for this application -->
+   
 
-    <!-- Timeline CSS -->
-    <link href="<?php echo PATH_CSS; ?>/timeline.css" rel="stylesheet">
+     <link href="<?php echo PATH_CSS; ?>/style.css" rel="stylesheet">
+     <link href="<?php echo PATH_CSS; ?>/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="<?php echo PATH_CSS; ?>/startmin.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="<?php echo PATH_CSS; ?>/morris.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="<?php echo PATH_CSS; ?>/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo PATH_CSS; ?>/jquery-ui.min.css" rel="stylesheet" type="text/css" />
-    <style type="text/css">
-    body,html{
-		height:100%; /*Siempre es necesario cuando trabajamos con alturas*/
-	}
-	 #inferior{
-				
-		position:absolute; 
-		left:0px; 
-		right:0px; 
-		bottom:10px; 
-		width: 250px;
-		z-index:0;
-	 }
-    </style>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
-<body>
 
-<div id="wrapper">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">SAM-W&L</a>
-            <div id="logo"><img src="<?php echo PATH_IMAGES; ?>/logo1.png" height="50px"></div>
-        </div>
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+    <header class="app-header navbar">
+        <button class="navbar-toggler mobile-sidebar-toggler d-lg-none" type="button">☰</button>
+        <a class="navbar-brand" href="#"></a>
+        <ul class="nav navbar-nav d-md-down-none">
+            <li class="nav-item">
+                <a class="nav-link navbar-toggler sidebar-toggler" href="#">☰</a>
+            </li>
 
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-
-        <!-- Top Navigation: Left Menu -->
-       
-
-        <!-- Top Navigation: Right Menu -->
-        <ul class="nav navbar-right navbar-top-links">
-            
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i> <?php echo $_SESSION['SESSION_USER']->nombres; ?> <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                   
-                    <li><a href="../../Seguridad/cambiarContrasena/"><i class="fa fa-gear fa-fw"></i> Contraseña</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li><a href="../../Seguridad/cerrarSesion/"><i class="fa fa-sign-out fa-fw"></i> Salir</a>
-                    </li>
-                </ul>
+            <li class="nav-item px-3">
+                <a class="nav-link" href="#">Dashboard</a>
+            </li>
+            <li class="nav-item px-3">
+                <a class="nav-link" href="#">Users</a>
+            </li>
+            <li class="nav-item px-3">
+                <a class="nav-link" href="#">Settings</a>
             </li>
         </ul>
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item d-md-down-none">
+                <a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>
+            </li>
+            <li class="nav-item d-md-down-none">
+                <a class="nav-link" href="#"><i class="icon-list"></i></a>
+            </li>
+            <li class="nav-item d-md-down-none">
+                <a class="nav-link" href="#"><i class="icon-location-pin"></i></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img src="<?php echo PATH_IMAGES; ?>/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                    <span class="d-md-down-none">admin</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
 
-        <!-- Sidebar -->
-        <div class="navbar-default sidebar" role="navigation">
-            <div class="sidebar-nav navbar-collapse">
-				<?php $url = $_SERVER["REQUEST_URI"];?>
-				
-                <ul class="nav" id="side-menu">
-                    <li class="sidebar-search">
-                        <div class="input-group custom-search-form">
-                            
-                        </div>
+                    <div class="dropdown-header text-center">
+                        <strong>Account</strong>
+                    </div>
+
+                    <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Updates<span class="badge badge-info">42</span></a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span class="badge badge-success">42</span></a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Tasks<span class="badge badge-danger">42</span></a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comments<span class="badge badge-warning">42</span></a>
+
+                    <div class="dropdown-header text-center">
+                        <strong>Settings</strong>
+                    </div>
+
+                    <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Settings</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span class="badge badge-default">42</span></a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="badge badge-primary">42</span></a>
+                    <div class="divider"></div>
+                    <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock Account</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
+                </div>
+            </li>
+           
+
+        </ul>
+    </header>
+
+    <div class="app-body">
+        <div class="sidebar">
+            <nav class="sidebar-nav">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="icon-speedometer"></i> Dashboard <span class="badge badge-info">NEW</span></a>
                     </li>
-                   
-                    <li>
-                        <a href="../../Seguridad/inicio/" class="<?php echo (strpos($url, 'Seguridad/inicio/'))?'active':'';?>"><i class="fa fa-dashboard fa-fw"></i>Inicio</a>
+
+                    <li class="nav-title">
+                        UI Elements
                     </li>
-                    <?php foreach ($_SESSION['SESSION_USER']->links as $item1):?>
-                    <?php if($item1->menu >= 1):?>
-	                    <li>
-	                        <a href="../../<?php echo $item1->accion;?>" class="<?php echo (strpos($url, $item1->accion))?'active':'';?>"><i class="fa <?php echo $item1->icono;?> fa-fw"></i><?php echo $item1->titulo;?></a>
-	                    </li>  
-	                    <?php if($item1->menu == 2):?>
-			                     </ul>
-		                    </li>
-	                     <?php endif;?>  
-	                <?php else:?>
-	                <li>
-	                	<a href="#" class="<?php echo (strpos($url, $item1->accion))?'active':'';?>"><i class="fa <?php echo $item1->icono;?> fa-fw"></i> <?php echo $item1->titulo;?><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">                                   
-	                <?php endif;?>                  
-                    <?php endforeach;?>
-                    
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Components</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> Buttons</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> Social Buttons</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="components-cards.html"><i class="icon-puzzle"></i> Cards</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="components-forms.html"><i class="icon-puzzle"></i> Forms</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="components-modals.html"><i class="icon-puzzle"></i> Modals</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="components-switches.html"><i class="icon-puzzle"></i> Switches</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="components-tables.html"><i class="icon-puzzle"></i> Tables</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="components-tabs.html"><i class="icon-puzzle"></i> Tabs</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> Icons</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="icons-font-awesome.html"><i class="icon-star"></i> Font Awesome</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="icons-simple-line-icons.html"><i class="icon-star"></i> Simple Line Icons</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="widgets.html"><i class="icon-calculator"></i> Widgets <span class="badge badge-info">NEW</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="charts.html"><i class="icon-pie-chart"></i> Charts</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="nav-title">
+                        Extras
+                    </li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> Pages</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages-404.html" target="_top"><i class="icon-star"></i> Error 404</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages-500.html" target="_top"><i class="icon-star"></i> Error 500</a>
+                            </li>
+                        </ul>
+                    </li>
+
                 </ul>
-
-            </div>
+            </nav>
         </div>
-    </nav>
 
-	<?php if($_SESSION['SESSION_USER']->tipo < 3): ?>
-	<div id="inferior">
-		<ul class="nav" id="side-menu">
-			<?php if($_SESSION['SESSION_USER']->tipo == 1): ?>
-			<li >
-                <a href="../../Respaldo/crear/" style="background: #eee"><i class="fa fa-database fa-fw"></i>Respaldar Datos</a>
-            </li>
-            <?php else:?>
-            <li >
-                <a href="../../Novedades/ingreso/" style="background: #eee"><i class="fa fa-pencil fa-fw"></i>Ingreso Novedad</a>
-            </li>
-            <?php endif;?>
-		</ul>
-	</div>
-	<?php endif;?>
-    <!-- Page Content -->
-    <div id="page-wrapper">
-        <div class="container-fluid">
+        <!-- Main content -->
+        <main class="main">
+        
+         <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Home</li>
+                <li class="breadcrumb-item"><a href="#">Admin</a>
+                </li>
+                <li class="breadcrumb-item active">Dashboard</li>
 
-            <div class="row">
+                <!-- Breadcrumb Menu-->
+                <li class="breadcrumb-menu d-md-down-none">
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <a class="btn btn-secondary" href="#"><i class="icon-speech"></i></a>
+                        <a class="btn btn-secondary" href="./"><i class="icon-graph"></i> &nbsp;Dashboard</a>
+                        <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
+                    </div>
+                </li>
+            </ol>
 
-
+        
+        
+        
+        
+        

@@ -19,6 +19,10 @@
 		<button class="btn btn-primary" id="modalOpen">
 			<i class="glyphicon glyphicon-plus"></i> Nuevo
 		</button>
+		
+		<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">
+                                        Launch demo modal
+                                    </button>
 	</div>
 	<table class="table table-striped table-bordered table-hover" id="dataTables-example">
     <thead>
@@ -55,6 +59,32 @@
 		</div>
 	</div>
 </div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Modal title</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>One fine body…</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+
+
+
 <?php include_once PATH_TEMPLATE.'/footer.php';?>   
 <link href="<?php echo PATH_CSS; ?>/dataTables.bootstrap.css" rel="stylesheet">
 <script src="<?php echo PATH_JS; ?>/jquery.dataTables.min.js"></script>

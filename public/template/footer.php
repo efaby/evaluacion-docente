@@ -1,24 +1,29 @@
-            </div>
-
-            <!-- ... Your content goes here ... -->
-
-        </div>
-    </div>
-
+</main>
 </div>
 
-<!-- jQuery -->
-<script src="<?php echo PATH_JS; ?>/jquery.min.js"></script>
- <script src="<?php echo PATH_JS; ?>/jquery-ui.min.js" type="text/javascript"></script>
+    <footer class="app-footer">
+        <a href="http://coreui.io">CoreUI</a> © 2017 creativeLabs.
+        <span class="float-right">Powered by <a href="http://coreui.io">CoreUI</a>
+        </span>
+    </footer>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="<?php echo PATH_JS; ?>/bootstrap.min.js"></script>
+    <!-- Bootstrap and necessary plugins -->
+    <script src="<?php echo PATH_JS; ?>/jquery.min.js"></script>
+    <script src="<?php echo PATH_JS; ?>/tether.min.js"></script>
+    <script src="<?php echo PATH_JS; ?>/bootstrap.min.js"></script>
+    <script src="<?php echo PATH_JS; ?>/pace.min.js"></script>
 
-<!-- Metis Menu Plugin JavaScript -->
-<script src="<?php echo PATH_JS; ?>/metisMenu.min.js"></script>
 
-<!-- Custom Theme JavaScript -->
-<script src="<?php echo PATH_JS; ?>/startmin.js"></script>
+    <!-- Plugins and scripts required by all views -->
+    <script src="<?php echo PATH_JS; ?>/Chart.min.js"></script>
+
+
+    <!-- GenesisUI main scripts -->
+
+    <script src="<?php echo PATH_JS; ?>/app.js"></script>
+
+
 
 </body>
+
 </html>
