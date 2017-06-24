@@ -21,7 +21,7 @@
    
 
      <link href="<?php echo PATH_CSS; ?>/style.css" rel="stylesheet">
-     <link href="<?php echo PATH_CSS; ?>/bootstrap.min.css" rel="stylesheet">
+
 
 </head>
 
@@ -191,7 +191,7 @@
                     </div>
                 </li>
             </ol>
-
+			<div class="container-fluid">
         
         
         

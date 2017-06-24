@@ -1,5 +1,5 @@
 <form id="frmUsuario" method="post" action="../guardar/">
-<div style="overflow: auto;">
+<div class="row rowForm">
 	<div class="form-group  col-sm-6">
 		<label class="control-label">Tipo Usuario</label>
 		<select class='form-control' name="tipo_usuario_id">
@@ -14,7 +14,8 @@
 			name='identificacion' class='form-control'
 			value="<?php echo $item->identificacion; ?>" id="identificacion">
 	</div>	
-	</div>
+</div>
+<div class="row rowForm">
 	<div class="form-group col-sm-6">
 		<label class="control-label">Nombres</label> <input type='text'
 			name='nombres' class='form-control' 
@@ -25,6 +26,8 @@
 			name='apellidos' class='form-control' 
 			value="<?php echo $item->apellidos; ?>" id="apellidos">
 	</div>
+	</div>
+	<div class="row rowForm">
 	<div class="form-group col-sm-6">
 		<label class="control-label">Contraseña</label>
 		<input type="password"
@@ -38,6 +41,7 @@
 			name='password1' class='form-control'
 			value="<?php echo $item->password1; ?>">
 
+	</div>
 	</div>
 		<div class="form-group col-sm-12">
 		<label class="control-label">Email</label> <input type='text'
@@ -55,11 +59,6 @@
 $(document).ready(function() {
     $('#frmUsuario').formValidation({
     	message: 'This value is not valid',
-		feedbackIcons: {
-			valid: 'glyphicon glyphicon-ok',
-			invalid: 'glyphicon glyphicon-remove',
-			validating: 'glyphicon glyphicon-refresh'
-		},
 		fields: {			
 			identificacion: {
 				message: 'El Número de Identificación no es válido',
