@@ -1,20 +1,20 @@
 <?php
-require_once (PATH_MODELS . "/PeriodoModel.php");
+require_once (PATH_MODELS . "/SeccionModel.php");
 
-class PeriodoController {
+class SeccionController {
 	
 	public function listar() {
-		$model = new PeriodoModel();
-		$datos = $model->getlistadoPeriodo();
+		$model = new SeccionModel();
+		$datos = $model->getlistadoSeccion();
 		$message = "";
-		require_once PATH_VIEWS."/Periodo/view.list.php";
+		require_once PATH_VIEWS."/Seccion/view.list.php";
 	}
 	
 	public function editar(){
-		$model = new PeriodoModel();
-		$item = $model->getPeriodo();			
+		$model = new SeccionModel();
+		$item = $model->getSeccion();			
 		$message = "";
-		require_once PATH_VIEWS."/Periodo/view.form.php";
+		require_once PATH_VIEWS."/Seccion/view.form.php";
 	}
 	
 	public function guardar() {		
@@ -22,9 +22,9 @@ class PeriodoController {
 		$item ['nombre'] = $_POST ['nombre'];	
 		$item ['descripcion'] = $_POST ['descripcion'];
 		
-		$model = new PeriodoModel();
+		$model = new SeccionModel();
 		try {
-			$datos = $model->savePeriodo( $item );
+			$datos = $model->saveSeccion( $item );
 			$_SESSION ['message'] = "Datos almacenados correctamente.";		
 		} catch ( Exception $e ) {
 			$_SESSION ['message'] = $e->getMessage ();
@@ -33,17 +33,16 @@ class PeriodoController {
 	}
 	
 	public function eliminar() {
-		$model = new PeriodoModel();
+		$model = new SeccionModel();
 		try {
 			$item = $_GET['id'];
 			$id_sesion = $_SESSION['SESSION_USER']->id;
-			$datos = $model->delPeriodo();
+			$datos = $model->delSeccion();
 			$_SESSION ['message'] = "Datos eliminados correctamente.";
 			
 		} catch ( Exception $e ) {
 			$_SESSION ['message'] = $e->getMessage ();
 		}
 		header ( "Location: ../listar/" );
-	}
-	
+	}	
 }

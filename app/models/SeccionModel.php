@@ -1,21 +1,21 @@
 <?php
 require_once(PATH_MODELS."/BaseModel.php");
 
-class PeriodoModel {
+class SeccionModel {
 
-	public function getlistadoPeriodo(){		
+	public function getlistadoSeccion(){		
 		$model = new BaseModel();	
-		$sql = "select * from periodo		
+		$sql = "select * from seccion		
 				where estado = 1";		
 		return $model->execSql($sql, array(),true);
 	}	
 	
-	public function getPeriodo()
+	public function getSeccion()
 	{
 		$itemId = $_GET['id'];
 		$model = new BaseModel();		
 		if($itemId > 0){
-			$sql = "select * from periodo where id = ?";
+			$sql = "select * from seccion where id = ?";
 			$result = $model->execSql($sql, array($itemId));
 		} else {
 			$result = (object) array('id'=>0,'nombre'=>'','descripcion'=>'');			
@@ -23,14 +23,14 @@ class PeriodoModel {
 		return $result;
 	}
 	
-	public function savePeriodo($item){
+	public function saveSeccion($item){
 		$model = new BaseModel();
-		return $model->saveDatos($item,'periodo');
+		return $model->saveDatos($item,'seccion');
 	}
 	
-	public function delPeriodo(){
+	public function delSeccion(){
 		$itemId = $_GET['id'];
-		$sql = "update periodo set estado = 0 where id = ?";
+		$sql = "update seccion set estado = 0 where id = ?";
 		$model = new BaseModel();
 		$result = $model->execSql($sql, array($itemId),false,true);
 	}

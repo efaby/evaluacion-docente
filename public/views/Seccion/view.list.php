@@ -1,10 +1,10 @@
-<?php $title = "Usuarios";?>
+<?php $title = "Seccion";?>
 <?php include_once PATH_TEMPLATE.'/header.php';?>
 
 <!-- Main row -->
 <div class="card">
 <div class="card-header">
-    	<h3>Período</h3>
+    	<h3>Sección</h3>
 </div>
 <div class="card-block">
 	<?php if (isset($_SESSION['message'])&& ($_SESSION['message'] != '')):?>
@@ -47,7 +47,7 @@
 	<div class="modal-dialog" >
 		<div class="modal-content">
 			<div class="modal-header">				
-				<h4 class="modal-title">Periodo</h4>
+				<h4 class="modal-title">Sección</h4>
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                  </button>
