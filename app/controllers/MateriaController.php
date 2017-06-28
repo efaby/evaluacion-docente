@@ -39,7 +39,7 @@ class EspecialidadController {
 		try {
 			$item = $_GET['id'];
 			$id_sesion = $_SESSION['SESSION_USER']->id;
-			$datos = $model->delEspecialidad();
+			$datos = $model->delSeccion();
 			$_SESSION ['message'] = "Datos eliminados correctamente.";
 			
 		} catch ( Exception $e ) {
