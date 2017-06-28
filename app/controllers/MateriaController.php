@@ -1,32 +1,32 @@
 <?php
-require_once (PATH_MODELS . "/EspecialidadModel.php");
+require_once (PATH_MODELS . "/MateriaModel.php");
 
-class EspecialidadController {
+class MateriaController {
 	
 	public function listar() {
-		$model = new EspecialidadModel();
-		$datos = $model->getlistadoEspecialidad();
+		$model = new MateriaModel();
+		$datos = $model->getlistadoMateria();
 		$message = "";
-		require_once PATH_VIEWS."/Especialidad/view.list.php";
+		require_once PATH_VIEWS."/Materia/view.list.php";
 	}
 	
 	public function editar(){
-		$model = new EspecialidadModel();
-		$item = $model->getEspecialidad();		
-		$secciones = $model->getSecciones();
+		$model = new MateriaModel();
+		$item = $model->getMateria();		
+		$cursos = $model->getCursos();
 		$message = "";
-		require_once PATH_VIEWS."/Especialidad/view.form.php";
+		require_once PATH_VIEWS."/Materia/view.form.php";
 	}
 	
 	public function guardar() {		
 		$item ['id'] = $_POST ['id'];
 		$item ['nombre'] = $_POST ['nombre'];	
-		$item ['seccion_id'] = $_POST ['seccion_id'];
+		$item ['curso_id'] = $_POST ['curso_id'];
 		$item ['descripcion'] = $_POST ['descripcion'];
 		
-		$model = new EspecialidadModel();
+		$model = new MateriaModel();
 		try {
-			$datos = $model->saveEspecialidad( $item );
+			$datos = $model->saveMateria( $item );
 			$_SESSION ['message'] = "Datos almacenados correctamente.";		
 		} catch ( Exception $e ) {
 			$_SESSION ['message'] = $e->getMessage ();
@@ -35,11 +35,11 @@ class EspecialidadController {
 	}
 	
 	public function eliminar() {
-		$model = new EspecialidadModel();
+		$model = new MateriaModel();
 		try {
 			$item = $_GET['id'];
 			$id_sesion = $_SESSION['SESSION_USER']->id;
-			$datos = $model->delSeccion();
+			$datos = $model->delMateria();
 			$_SESSION ['message'] = "Datos eliminados correctamente.";
 			
 		} catch ( Exception $e ) {

@@ -6,11 +6,11 @@
 			value="<?php echo $item->nombre; ?>" id="nombre">
 	</div>
 	<div class="form-group col-sm-12">
-		<label class="control-label">Sección</label> 
-		<select class='form-control' name="seccion_id">
+		<label class="control-label">Curso</label> 
+		<select class='form-control' name="curso_id">
 			<option value="" >Seleccione</option>
-		<?php foreach ($secciones as $dato) { ?>
-			<option value="<?php echo $dato->id;?>"  <?php if($item->seccion_id==$dato->id):echo "selected"; endif;?>><?php echo $dato->nombre;?></option>
+		<?php foreach ($cursos as $dato) { ?>
+			<option value="<?php echo $dato->id;?>"  <?php if($item->curso_id==$dato->id):echo "selected"; endif;?>><?php echo $dato->nombre;?></option>
 		<?php }?>
 		</select>
 	</div>	
