@@ -1,10 +1,4 @@
 <form id="frmItem" method="post" action="../guardar/">
-
-	<div class="form-group col-sm-12">
-		<label class="control-label">Nombre</label> <input type='text'
-			name='nombre' class='form-control'
-			value="<?php echo $item->nombre; ?>" id="nombre">
-	</div>
 	<div class="form-group col-sm-12">
 		<label class="control-label">Especialidad</label> 
 		<select class='form-control' name="especialidad_id">
@@ -13,7 +7,12 @@
 			<option value="<?php echo $dato->id;?>"  <?php if($item->especialidad_id==$dato->id):echo "selected"; endif;?>><?php echo $dato->nombre;?></option>
 		<?php }?>
 		</select>
-	</div>	
+	</div>
+	<div class="form-group col-sm-12">
+		<label class="control-label">Nombre</label> <input type='text'
+			name='nombre' class='form-control'
+			value="<?php echo $item->nombre; ?>" id="nombre">
+	</div>
 	<div class="form-group col-sm-12">
 		<label class="control-label">Descripción</label> <input type='text'
 			name='descripcion' class='form-control'
@@ -53,6 +52,13 @@ $(document).ready(function() {
 								}
 							}
 				},
+				especialidad_id: {
+	                validators: {
+		                    notEmpty: {
+		                        message: 'Seleccione una especialidad.'
+		                    }
+	                	}
+	        	}
 		}
 	});
 });

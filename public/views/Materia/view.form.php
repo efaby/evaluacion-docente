@@ -1,10 +1,4 @@
 <form id="frmItem" method="post" action="../guardar/">
-
-	<div class="form-group col-sm-12">
-		<label class="control-label">Nombre</label> <input type='text'
-			name='nombre' class='form-control'
-			value="<?php echo $item->nombre; ?>" id="nombre">
-	</div>
 	<div class="form-group col-sm-12">
 		<label class="control-label">Curso</label> 
 		<select class='form-control' name="curso_id">
@@ -14,6 +8,11 @@
 		<?php }?>
 		</select>
 	</div>	
+	<div class="form-group col-sm-12">
+		<label class="control-label">Nombre</label> <input type='text'
+			name='nombre' class='form-control'
+			value="<?php echo $item->nombre; ?>" id="nombre">
+	</div>
 	<div class="form-group col-sm-12">
 		<label class="control-label">Descripción</label> <input type='text'
 			name='descripcion' class='form-control'
@@ -53,6 +52,13 @@ $(document).ready(function() {
 								}
 							}
 				},
+				curso_id: {
+	                validators: {
+		                    notEmpty: {
+		                        message: 'Seleccione un curso.'
+		                    }
+	                	}
+	        	}
 		}
 	});
 });
