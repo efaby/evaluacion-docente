@@ -5,8 +5,9 @@ class EspecialidadModel {
 
 	public function getlistadoEspecialidad(){		
 		$model = new BaseModel();	
-		$sql = "select especialidad.*, seccion.nombre as seccion from especialidad		
-				inner join seccion on especialidad.seccion_id = seccion.id
+		$sql = "select especialidad.*, especialidad.especialidad_id as id,seccion.nombre as seccion 
+				from especialidad		
+				inner join seccion on especialidad.seccion_id = seccion.seccion_id
 				where especialidad.estado = 1";		
 		return $model->execSql($sql, array(),true);
 	}	
@@ -16,9 +17,9 @@ class EspecialidadModel {
 		$itemId = $_GET['id'];
 		$model = new BaseModel();		
 		if($itemId > 0){
-			$sql = "select especialidad.*,seccion.id as seccion_id from especialidad 
-					inner join seccion on especialidad.seccion_id = seccion.id
-					where especialidad.id = ?";
+			$sql = "select especialidad.*,especialidad.especialidad_id as id, seccion.seccion_id from especialidad 
+					inner join seccion on especialidad.seccion_id = seccion.seccion_id
+					where especialidad.especialidad_id = ?";
 			$result = $model->execSql($sql, array($itemId));
 		} else {
 			$result = (object) array('id'=>0,'nombre'=>'','seccion_id'=>'','descripcion'=>'');			
@@ -28,7 +29,7 @@ class EspecialidadModel {
 	
 	public function getSecciones(){
 		$model = new BaseModel();
-		$sql = "select * from seccion where estado=1";
+		$sql = "select *, seccion_id as id from seccion where estado=1";
 		return $model->execSql($sql, array(),true);
 	}
 	
@@ -39,7 +40,7 @@ class EspecialidadModel {
 	
 	public function delEspecialidad(){
 		$itemId = $_GET['id'];
-		$sql = "update especialidad set estado = 0 where id = ?";
+		$sql = "update especialidad set estado = 0 where especialidad_id = ?";
 		$model = new BaseModel();
 		$result = $model->execSql($sql, array($itemId),false,true);
 	}

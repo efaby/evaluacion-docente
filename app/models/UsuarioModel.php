@@ -7,8 +7,8 @@ class UsuarioModel {
 	
 	public function getlistadoUsuario(){		
 		$model = new BaseModel();	
-		$sql = "select u.*, t.nombre as tipo_usuario_nombre from usuario as u
-				inner join tipo_usuario t on u.tipo_usuario_id= t.id		
+		$sql = "select u.*, u.usuario_id as id,t.nombre as tipo_usuario_nombre from usuario as u
+				inner join tipo_usuario t on u.tipo_usuario_id= t.tipo_usuario_id		
 				where u.estado = 1";		
 		return $model->execSql($sql, array(),true);
 	}	
@@ -18,9 +18,9 @@ class UsuarioModel {
 		$usuario = $_GET['id'];
 		$model = new BaseModel();		
 		if($usuario > 0){
-			$sql = "select u.*, t.nombre as tipo_usuario_nombre from usuario as u
-					inner join tipo_usuario t on u.tipo_usuario_id= t.id
-					where u.id = ?";
+			$sql = "select u.usuario_id as id, u.*, t.nombre as tipo_usuario_nombre from usuario as u
+					inner join tipo_usuario t on u.tipo_usuario_id= t.tipo_usuario_id
+					where u.usuario_id = ?";
 			$result = $model->execSql($sql, array($usuario));
 			$result->password = $result->password1 = $this->pattern;
 			$result->identificacion = $result->cedula;
@@ -43,19 +43,20 @@ class UsuarioModel {
 	
 	public function delUsuario(){
 		$usuario = $_GET['id'];
-		$sql = "update usuario set estado = 0 where id = ?";
+		$sql = "update usuario set estado = 0 where usuario_id = ?";
 		$model = new BaseModel();
 		$result = $model->execSql($sql, array($usuario),false,true);
 	}
 
 	public function getCatalogo($tabla, $where=null){
-		$model = new BaseModel();	
-		return $model->getCatalogo($tabla, $where);
+		$model = new BaseModel();
+		$tipo = $model->getCatalogo($tabla, $where);
+		return $tipo;
 	}	
 	
 	public function getUsuarioPorCedula($cedula,$id){
 		$model =  new BaseModel();
-		$sql = "select * from usuario where cedula = ? and id <> ? and estado = 1";
+		$sql = "select *, usuario_id as id from usuario where cedula = ? and usuario_id <> ? and estado = 1";
 		return $model->execSql($sql, array($cedula,$id));
 	}
 }

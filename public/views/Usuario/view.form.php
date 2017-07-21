@@ -90,9 +90,7 @@ $(document).ready(function() {
 		                            return {
 		                                id: validator.getFieldElements('id').val()
 		                            };
-		                        },
-
-		                        
+		                        },		                        
 		                        type: 'POST'
 		                    },									
 							callback: {

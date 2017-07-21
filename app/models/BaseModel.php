@@ -33,7 +33,7 @@ class BaseModel {
 		return $result;
 	}
 	public function getCatalogo($tabla, $where = null) {
-		$sql = "Select * from " . $tabla . $where;
+		$sql = "Select * , ".$tabla."_id as id from ". $tabla . $where;
 		return $this->execSql ( $sql, array (), true );
 	}
 	public function saveDatos($objeto, $tabla) {
@@ -55,7 +55,7 @@ class BaseModel {
 		if ($id == 0) {
 			$sql = ' Insert into ' . $tabla . ' (' . $keys . ') values (' . $values . ')';
 		} else {
-			$sql = 'Update ' . $tabla . ' set ' . $values . ' where id = ?';
+			$sql = 'Update ' . $tabla . ' set ' . $values . ' where '.$tabla.'_id = ?';
 			$usuarioData [] = $id;
 		}
 		return $this->execSql ( $sql, $usuarioData, false, true );

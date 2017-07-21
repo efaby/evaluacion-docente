@@ -5,7 +5,7 @@ class PeriodoModel {
 
 	public function getlistadoPeriodo(){		
 		$model = new BaseModel();	
-		$sql = "select * from periodo		
+		$sql = "select *, periodo_id as id from periodo		
 				where estado = 1";		
 		return $model->execSql($sql, array(),true);
 	}	
@@ -15,7 +15,7 @@ class PeriodoModel {
 		$itemId = $_GET['id'];
 		$model = new BaseModel();		
 		if($itemId > 0){
-			$sql = "select * from periodo where id = ?";
+			$sql = "select *, periodo_id as id from periodo where periodo_id = ?";
 			$result = $model->execSql($sql, array($itemId));
 		} else {
 			$result = (object) array('id'=>0,'nombre'=>'','descripcion'=>'');			
@@ -30,7 +30,7 @@ class PeriodoModel {
 	
 	public function delPeriodo(){
 		$itemId = $_GET['id'];
-		$sql = "update periodo set estado = 0 where id = ?";
+		$sql = "update periodo set estado = 0 where periodo_id = ?";
 		$model = new BaseModel();
 		$result = $model->execSql($sql, array($itemId),false,true);
 	}

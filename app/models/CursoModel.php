@@ -5,8 +5,8 @@ class CursoModel {
 
 	public function getlistadoCurso(){		
 		$model = new BaseModel();	
-		$sql = "select curso.*, especialidad.nombre as especialidad from curso		
-				inner join especialidad on curso.especialidad_id = especialidad.id
+		$sql = "select curso.*, curso.curso_id as id,especialidad.nombre as especialidad from curso		
+				inner join especialidad on curso.especialidad_id = especialidad.especialidad_id
 				where curso.estado = 1";		
 		return $model->execSql($sql, array(),true);
 	}	
@@ -16,9 +16,9 @@ class CursoModel {
 		$itemId = $_GET['id'];
 		$model = new BaseModel();		
 		if($itemId > 0){
-			$sql = "select curso.*, especialidad.nombre as especialidad from curso 
-					inner join especialidad on curso.especialidad_id = especialidad.id
-					where especialidad.id = ?";
+			$sql = "select curso.*, curso_id as id,especialidad.nombre as especialidad from curso 
+					inner join especialidad on curso.especialidad_id = especialidad.especialidad_id
+					where curso.curso_id = ?";
 			$result = $model->execSql($sql, array($itemId));
 		} else {
 			$result = (object) array('id'=>0,'nombre'=>'','especialidad_id'=>'','descripcion'=>'');			
@@ -28,7 +28,7 @@ class CursoModel {
 	
 	public function getEspecialidades(){
 		$model = new BaseModel();
-		$sql = "select * from especialidad where estado=1";
+		$sql = "select *, especialidad_id as id from especialidad where estado=1";
 		return $model->execSql($sql, array(),true);
 	}
 	
@@ -39,7 +39,7 @@ class CursoModel {
 	
 	public function delCurso(){
 		$itemId = $_GET['id'];
-		$sql = "update curso set estado = 0 where id = ?";
+		$sql = "update curso set estado = 0 where curso_id = ?";
 		$model = new BaseModel();
 		$result = $model->execSql($sql, array($itemId),false,true);
 	}
