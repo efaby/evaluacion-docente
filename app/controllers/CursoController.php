@@ -12,8 +12,11 @@ class CursoController {
 	
 	public function editar(){
 		$model = new CursoModel();
-		$item = $model->getCurso();		
-		$especialidades = $model->getEspecialidades();
+		$item = $model->getCurso();
+		$secciones = $model->getSecciones();
+		if($item->especialidad_id != null){
+			$especialidades = $model->getEspecialidades($item->especialidad_id);
+		}
 		$message = "";
 		require_once PATH_VIEWS."/Curso/view.form.php";
 	}
@@ -46,5 +49,15 @@ class CursoController {
 			$_SESSION ['message'] = $e->getMessage ();
 		}
 		header ( "Location: ../listar/" );
-	}	
+	}
+	
+	public function getEspecialidadesSelect(){
+		$model = new CursoModel();
+		$id = $_POST['id'];
+		$opciones = $model->getEspecialidades($id);
+		echo '<option value="0">Seleccionar</option>';
+		foreach ($opciones as $opcion) {
+			echo '<option value="'.$opcion->id.'">'.$opcion->nombre.'</option>';
+		}		
+	}
 }

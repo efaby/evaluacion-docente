@@ -16,19 +16,28 @@ class CursoModel {
 		$itemId = $_GET['id'];
 		$model = new BaseModel();		
 		if($itemId > 0){
-			$sql = "select curso.*, curso_id as id,especialidad.nombre as especialidad from curso 
+			$sql = "select curso.*, curso_id as id,especialidad.especialidad_id,
+					especialidad.nombre as especialidad, seccion.seccion_id
+					from curso 
 					inner join especialidad on curso.especialidad_id = especialidad.especialidad_id
+					inner join seccion on especialidad.seccion_id = seccion.seccion_id
 					where curso.curso_id = ?";
 			$result = $model->execSql($sql, array($itemId));
 		} else {
-			$result = (object) array('id'=>0,'nombre'=>'','especialidad_id'=>'','descripcion'=>'');			
+			$result = (object) array('id'=>0,'nombre'=>'','especialidad_id'=>'','seccion_id'=>'','descripcion'=>'');			
 		}		
 		return $result;
 	}
 	
-	public function getEspecialidades(){
+	public function getSecciones(){
 		$model = new BaseModel();
-		$sql = "select *, especialidad_id as id from especialidad where estado=1";
+		$sql = "select *, seccion_id as id from seccion where estado=1";
+		return $model->execSql($sql, array(),true);
+	}
+	
+	public function getEspecialidades($id){
+		$model = new BaseModel();
+		$sql = "select *, especialidad_id as id from especialidad where estado=1 and especialidad_id= ".$id;
 		return $model->execSql($sql, array(),true);
 	}
 	

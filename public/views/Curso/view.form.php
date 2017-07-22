@@ -1,7 +1,16 @@
 <form id="frmItem" method="post" action="../guardar/">
 	<div class="form-group col-sm-12">
+		<label class="control-label">Sección</label> 
+		<select class='form-control' id="seccion_id" name="seccion_id">
+			<option value="" >Seleccione</option>
+		<?php foreach ($secciones as $dato) { ?>
+			<option value="<?php echo $dato->id;?>"  <?php if($item->seccion_id==$dato->id):echo "selected"; endif;?>><?php echo $dato->nombre;?></option>
+		<?php }?>
+		</select>
+	</div>
+	<div class="form-group col-sm-12">
 		<label class="control-label">Especialidad</label> 
-		<select class='form-control' name="especialidad_id">
+		<select class='form-control' id="especialidad_id" name="especialidad_id" <?php echo $dato->id==0? "disabled=disabled ": ''; ?>>
 			<option value="" >Seleccione</option>
 		<?php foreach ($especialidades as $dato) { ?>
 			<option value="<?php echo $dato->id;?>"  <?php if($item->especialidad_id==$dato->id):echo "selected"; endif;?>><?php echo $dato->nombre;?></option>
@@ -58,8 +67,31 @@ $(document).ready(function() {
 		                        message: 'Seleccione una especialidad.'
 		                    }
 	                	}
+	        	},
+				seccion_id: {
+	                validators: {
+		                    notEmpty: {
+		                        message: 'Seleccione una sección.'
+		                    }
+	                	}
 	        	}
 		}
+	});
+
+    $('#seccion_id').change(function(){
+	    var seccion_id = jQuery("#seccion_id").val();
+	    jQuery.ajax({
+		        type: "POST",
+		        url: '../getEspecialidadesSelect/',
+		        data: {
+		        	"id": seccion_id		        	
+		        },
+		        success:function(response) {			        
+			      $('#especialidad_id').html(response);
+    	          $("#especialidad_id").prop('disabled', false);			        		        				    			           	
+		        }
+		        
+		});	    
 	});
 });
 </script>
