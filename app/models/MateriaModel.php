@@ -16,12 +16,16 @@ class MateriaModel {
 		$itemId = $_GET['id'];
 		$model = new BaseModel();		
 		if($itemId > 0){
-			$sql = "select materia.*, materia.materia_id as id, curso.nombre as curso from materia 
+			$sql = "select materia.*, materia.materia_id as id, curso.nombre as curso,
+					especialidad.especialidad_id,seccion.seccion_id
+					from materia 
 					inner join curso on materia.curso_id = curso.curso_id
+					inner join especialidad on curso.especialidad_id = especialidad.especialidad_id
+					inner join seccion on especialidad.seccion_id = seccion.seccion_id
 					where materia.materia_id = ?";
 			$result = $model->execSql($sql, array($itemId));
 		} else {
-			$result = (object) array('id'=>0,'nombre'=>'','curso_id'=>'','descripcion'=>'');			
+			$result = (object) array('id'=>0,'nombre'=>'','curso_id'=>'','descripcion'=>'','especialidad_id'=>'','seccion_id'=>'');			
 		}		
 		return $result;
 	}

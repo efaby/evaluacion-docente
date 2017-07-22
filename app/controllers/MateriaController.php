@@ -1,5 +1,6 @@
 <?php
 require_once (PATH_MODELS . "/MateriaModel.php");
+require_once (PATH_MODELS . "/CursoModel.php");
 
 class MateriaController {
 	
@@ -11,9 +12,16 @@ class MateriaController {
 	}
 	
 	public function editar(){
-		$model = new MateriaModel();
-		$item = $model->getMateria();		
-		$cursos = $model->getCursos();
+		$modelCurso = new CursoModel();
+		$model = new MateriaModel();		
+		$item = $model->getMateria();
+		$secciones = $modelCurso->getSecciones();
+		if($item->especialidad_id != null){
+			$especialidades = $modelCurso->getEspecialidades($item->especialidad_id);
+		}
+		if($item->curso_id != null){
+			$cursos = $model->getCursos($item->curso_id);
+		}
 		$message = "";
 		require_once PATH_VIEWS."/Materia/view.form.php";
 	}
@@ -47,4 +55,24 @@ class MateriaController {
 		}
 		header ( "Location: ../listar/" );
 	}	
+	
+	
+	public function getEspecialidadesSelect(){
+		$model = new CursoModel();
+		$id = $_POST['id'];
+		$opciones = $model->getEspecialidades($id);
+		echo '<option value="0">Seleccionar</option>';
+		foreach ($opciones as $opcion) {
+			echo '<option value="'.$opcion->id.'">'.$opcion->nombre.'</option>';
+		}
+	}
+	public function getCursosSelect(){
+		$model = new MateriaModel();
+		$id = $_POST['id'];
+		$opciones = $model->getCursos($id);
+		echo '<option value="0">Seleccionar</option>';
+		foreach ($opciones as $opcion) {
+			echo '<option value="'.$opcion->id.'">'.$opcion->nombre.'</option>';
+		}
+	}
 }
