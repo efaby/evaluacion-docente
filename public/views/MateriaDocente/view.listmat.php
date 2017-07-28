@@ -7,6 +7,13 @@
 </div>
 <form id="frmItem" method="post" action="../guardar/">
 	<br>
+	<?php if (isset($_SESSION['message'])&& ($_SESSION['message'] != '')):?>
+		<div class="alert alert-success alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-hidden="true">&times;</button>
+				  <?php echo $_SESSION['message'];$_SESSION['message'] = ''?>
+		</div>
+	<?php endif;?>
 	<div class="col-lg-12">
 		 <button type="button" data-id="<?php echo $docente->id;?>" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
           	Añadir
@@ -18,8 +25,8 @@
 			<thead>		
 				<tr>
 					<th>Código</th>
-					<th>Curso</th>
 					<th>Materia</th>
+					<th>Curso</th>
 					<th>Opción</th>
 				<tr>
 			</thead>
@@ -40,6 +47,9 @@
 					<?php }?>
 			</tbody>		
 		</table>		
+	</div>
+	<div class="form-group col-sm-12">
+		<a href="../listar/" class="btn btn-default boton">Regresar</a>
 	</div>	
 </form>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"

@@ -7,14 +7,6 @@
     	<h3>Docentes</h3>
 </div>
 <div class="card-block">
-	<?php if (isset($_SESSION['message'])&& ($_SESSION['message'] != '')):?>
-		<div class="alert alert-success alert-dismissable">
-				<button type="button" class="close" data-dismiss="alert"
-					aria-hidden="true">&times;</button>
-				  <?php echo $_SESSION['message'];$_SESSION['message'] = ''?>
-		</div>
-	<?php endif;?>
-
 	<table class="table table-striped" id="dataTables-example" >
     <thead>
 	    <tr>
