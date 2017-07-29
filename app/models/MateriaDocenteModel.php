@@ -19,7 +19,7 @@ class MateriaDocenteModel {
 					from materia_periodo as mp
         			inner join materia as m ON m.materia_id = mp.materia_id
         			inner join curso as c ON c.curso_id = m.curso_id
-					where mp.estado=1 and mp.docente_id=".$item." and mp.periodo_id=".$periodo;
+					where mp.docente_id=".$item." and mp.periodo_id=".$periodo;
 			$result = $model->execSql($sql, array(), true);
 		}		
 		return $result;
@@ -32,7 +32,7 @@ class MateriaDocenteModel {
 	
 	public function delMateriaDocente(){
 		$itemId = $_GET['id'];
-		$sql = "update materia_periodo set estado = 0 where materia_periodo_id = ?";
+		$sql = "delete from materia_periodo where materia_periodo_id = ?";
 		$model = new BaseModel();
 		$result = $model->execSql($sql, array($itemId),false,true);
 	}
@@ -68,7 +68,7 @@ class MateriaDocenteModel {
 	
 	public function getMateriasValidas($docente, $periodo){
 		$model = new BaseModel();
-		$sql = "select materia_id as id from materia_periodo where estado=1 and periodo_id=".$periodo." and  docente_id=".$docente;
+		$sql = "select materia_id as id from materia_periodo where periodo_id=".$periodo." and  docente_id=".$docente;
 		return $model->execSql($sql, array(),true);
 	}
 }

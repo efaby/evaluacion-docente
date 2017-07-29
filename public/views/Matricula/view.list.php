@@ -1,16 +1,17 @@
-<?php $title = "Materia/Docente";?>
+<?php $title = "Matricula Docente";?>
 <?php include_once PATH_TEMPLATE.'/header.php';?>
 
 <!-- Main row -->
 <div class="card">
 <div class="card-header">
-    	<h3>Docentes</h3>
+    	<h3>Estudiantes</h3>
 </div>
 <div class="card-block">
 	<table class="table table-striped" id="dataTables-example" >
     <thead>
 	    <tr>
 	    	<th>Código</th>
+	    	<th>Cédula</th>
 	    	<th>Nombres</th>			   
 	    	<th>Apellidos</th>
 	    	<th style="text-align: center; width: 20%">Acciones</th>
@@ -19,12 +20,13 @@
     <tbody>
     	<?php foreach ($datos as $item) {
     		echo "<td>".$item->id."</td>";
+    		echo "<td>".$item->cedula."</td>";
     		echo "<td>".$item->nombres."</td>";
     		echo "<td>".$item->apellidos."</td>";
     		echo "<td align='center'>
 						<a class='btn btn-warning btn-sm' href='../listarMaterias/".$item->id."' title='Editar'>
 							<i class='fa fa-pencil'></i>
-						</a>					  
+						</a>					  	
 		 		</td>";
     	}?>
     </tbody>
