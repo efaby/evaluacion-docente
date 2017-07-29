@@ -34,12 +34,12 @@
 		    		<?php 
 						if(count($items)>0){
 							foreach ($items as $item){
-							$id = $item->materia_periodo_id.'-'.$docente->id;
+							$id = $item->materia_periodo_id.'-'.$docente->id;							
 								?>							
 					<tr><td><?php echo $item->id;?></td>
 						<td><?php echo $item->materia_nombre;?></td>
 						<td><?php echo $item->curso_nombre;?></td>
-						<td><?php echo "<a href='javascript:if(confirm(\"Est\u00e1 seguro que desea eliminar el elemento seleccionado?\")){redirect(\"$id\");}' class='btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash'></i></a>"?>
+						<td><?php if($item->estudiante){echo "<a href='javascript:if(confirm(\"Est\u00e1 seguro que desea eliminar el elemento seleccionado?\")){redirect(\"$id\");}' class='btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash'></i></a>";}?>
 						</td>
 					<?php 	}
 						}else{?>

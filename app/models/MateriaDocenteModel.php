@@ -15,10 +15,12 @@ class MateriaDocenteModel {
 		$item = $_GET['id'];
 		$model = new BaseModel();		
 		if($item > 0){
-			$sql = "select distinct(mp.materia_id) as id,mp.materia_periodo_id,m.nombre as materia_nombre, c.nombre as curso_nombre
+			$sql = "select distinct(mp.materia_id) as id,mp.materia_periodo_id,m.nombre as materia_nombre, 
+					c.nombre as curso_nombre, m1.usuario_id as estudiante
 					from materia_periodo as mp
         			inner join materia as m ON m.materia_id = mp.materia_id
         			inner join curso as c ON c.curso_id = m.curso_id
+					left join matricula as m1 on m1.materia_periodo_id = mp.materia_periodo_id
 					where mp.docente_id=".$item." and mp.periodo_id=".$periodo;
 			$result = $model->execSql($sql, array(), true);
 		}		

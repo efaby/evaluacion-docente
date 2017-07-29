@@ -36,7 +36,7 @@ class MatriculaModel {
 		$itemId = $_GET['id'];
 		$sql = "delete from matricula where matricula_id = ?";
 		$model = new BaseModel();
-		$result = $model->execSql($sql, array($itemId),false,true);
+		$result = $model->execSql($sql, array($itemId),false,true);		
 	}
 	
 	

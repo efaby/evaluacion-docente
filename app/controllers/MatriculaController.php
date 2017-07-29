@@ -72,7 +72,8 @@ class MatriculaController {
 			$_SESSION ['message'] = "Datos eliminados correctamente.";
 			
 		} catch ( Exception $e ) {
-			$_SESSION ['message'] = $e->getMessage ();
+			$_SESSION ['message'] =  "Existen datos relacionados."; 
+			//$e->getMessage ();
 		}
 		header ( "Location: ../listarMaterias/".$arrayval[1] );
 	}	
