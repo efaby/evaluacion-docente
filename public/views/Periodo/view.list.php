@@ -26,14 +26,17 @@
 	    	<th>Código</th>
 	    	<th>Nombre</th>	    			   
 	    	<th>Descripción</th>
+	    	<th>Estado</th>
 		    <th style="text-align: center; width: 20%">Acciones</th>
 	    </tr>
     </thead>
     <tbody>
     	<?php foreach ($datos as $item) {
+    		
     		echo "<tr><td>".$item->id."</td>";
     		echo "<td>".$item->nombre."</td>"; 		
-    		echo "<td>".$item->descripcion."</td>";
+    		echo "<td>".$item->descripcion."</td><td>";
+    		if($item->estado ==1 )echo "Activo";else echo "Inactivo</td>";
     		echo "<td align='center'><a href='#' class='btn btn-warning btn-sm' data-id='".$item->id."' data-toggle='modal' data-target='#myModal' title='Editar' ><i class='fa fa-pencil'></i></a>
 					  <a href='javascript:if(confirm(\"Est\u00e1 seguro que desea eliminar el elemento seleccionado?\")){redirect(".$item->id.");}' class='btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash'></i></a></td>";
     	}?>

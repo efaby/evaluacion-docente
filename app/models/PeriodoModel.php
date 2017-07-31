@@ -5,8 +5,7 @@ class PeriodoModel {
 
 	public function getlistadoPeriodo(){		
 		$model = new BaseModel();	
-		$sql = "select *, periodo_id as id from periodo		
-				where estado = 1";		
+		$sql = "select *, periodo_id as id from periodo";		
 		return $model->execSql($sql, array(),true);
 	}	
 	
@@ -25,6 +24,10 @@ class PeriodoModel {
 	
 	public function savePeriodo($item){
 		$model = new BaseModel();
+		if ($item['id'] == 0){
+			$sql = "update periodo set estado = 0";
+			$model->execSql($sql, array(),false,true);
+		}
 		return $model->saveDatos($item,'periodo');
 	}
 	
