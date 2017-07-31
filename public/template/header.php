@@ -35,15 +35,7 @@
                 <a class="nav-link navbar-toggler sidebar-toggler" href="#">☰</a>
             </li>
 
-            <li class="nav-item px-3">
-                <a class="nav-link" href="#">Dashboard</a>
-            </li>
-            <li class="nav-item px-3">
-                <a class="nav-link" href="#">Users</a>
-            </li>
-            <li class="nav-item px-3">
-                <a class="nav-link" href="#">Settings</a>
-            </li>
+            
         </ul>
         <ul class="nav navbar-nav ml-auto">
             <li class="nav-item d-md-down-none">
@@ -101,45 +93,52 @@
                         UI Elements
                     </li>
                     <li class="nav-item nav-dropdown">
-                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Components</a>
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Administraci&oacute;n</a>
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
-                                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> Buttons</a>
+                                <a class="nav-link" href="../../Usuario/listar/"><i class="icon-puzzle"></i>Usuarios</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> Social Buttons</a>
+                                <a class="nav-link" href="../../Seccion/listar/"><i class="icon-puzzle"></i> Secci&oacute;n</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="components-cards.html"><i class="icon-puzzle"></i> Cards</a>
+                                <a class="nav-link" href="../../Especialidad/listar/"><i class="icon-puzzle"></i> Especialidad</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="components-forms.html"><i class="icon-puzzle"></i> Forms</a>
+                                <a class="nav-link" href="../../Curso/listar/"><i class="icon-puzzle"></i> Curso</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="components-modals.html"><i class="icon-puzzle"></i> Modals</a>
+                                <a class="nav-link" href="../../Materia/listar/"><i class="icon-puzzle"></i> Materia</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="components-switches.html"><i class="icon-puzzle"></i> Switches</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="components-tables.html"><i class="icon-puzzle"></i> Tables</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="components-tabs.html"><i class="icon-puzzle"></i> Tabs</a>
+                                <a class="nav-link" href="../../Periodo/listar/"><i class="icon-puzzle"></i> Per&iacute;odo</a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item nav-dropdown">
-                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> Icons</a>
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-notebook"></i> Matr&iacute;cula</a>
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
-                                <a class="nav-link" href="icons-font-awesome.html"><i class="icon-star"></i> Font Awesome</a>
+                                <a class="nav-link" href="../../MateriaDocente/listar/"><i class="icon-notebook"></i> Docentes</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="icons-simple-line-icons.html"><i class="icon-star"></i> Simple Line Icons</a>
+                                <a class="nav-link" href="../../Matricula/listar/"><i class="icon-notebook "></i> Estudiantes</a>
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-book-open"></i>Evaluci&oacute;n</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-book-open"></i>Evaluaciones</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-book-open "></i>Preguntas</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    <!--  
                     <li class="nav-item">
                         <a class="nav-link" href="widgets.html"><i class="icon-calculator"></i> Widgets <span class="badge badge-info">NEW</span></a>
                     </li>
@@ -150,24 +149,8 @@
                     <li class="nav-title">
                         Extras
                     </li>
-                    <li class="nav-item nav-dropdown">
-                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> Pages</a>
-                        <ul class="nav-dropdown-items">
-                            <li class="nav-item">
-                                <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> Register</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="pages-404.html" target="_top"><i class="icon-star"></i> Error 404</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="pages-500.html" target="_top"><i class="icon-star"></i> Error 500</a>
-                            </li>
-                        </ul>
-                    </li>
-
+                    
+					-->
                 </ul>
             </nav>
         </div>
