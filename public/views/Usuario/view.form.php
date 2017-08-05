@@ -64,6 +64,7 @@
 	<div class="form-group">
 		<input type='hidden' name='id' class='form-control' value="<?php echo $item->id; ?>">		
 		<button type="submit" class="btn btn-success boton" id="boton">Guardar</button>
+		<button type="button" class="btn btn-default boton" id="boton" data-dismiss="modal">Cancelar</button>
 	</div>
 
 </form>

@@ -37,7 +37,7 @@ class CursoModel {
 	
 	public function getEspecialidades($id){
 		$model = new BaseModel();
-		$sql = "select *, especialidad_id as id from especialidad where estado=1 and especialidad_id= ".$id;
+		$sql = "select *, especialidad_id as id from especialidad where estado=1 and seccion_id= ".$id;
 		return $model->execSql($sql, array(),true);
 	}
 	

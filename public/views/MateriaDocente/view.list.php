@@ -18,14 +18,14 @@
     </thead>
     <tbody>
     	<?php foreach ($datos as $item) {
-    		echo "<td>".$item->id."</td>";
+    		echo "<tr><td>".$item->id."</td>";
     		echo "<td>".$item->nombres."</td>";
     		echo "<td>".$item->apellidos."</td>";
     		echo "<td align='center'>
 						<a class='btn btn-warning btn-sm' href='../listarMaterias/".$item->id."' title='Editar'>
 							<i class='fa fa-pencil'></i>
 						</a>					  
-		 		</td>";
+		 		</td></tr>";
     	}?>
     </tbody>
     </table>
