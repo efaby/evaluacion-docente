@@ -30,6 +30,7 @@ class UsuarioController {
 		$usuario ['email'] = $_POST ['email'];	
 		$usuario ['direccion'] = $_POST ['direccion'];
 		$usuario ['telefono'] = $_POST ['telefono'];
+		$usuario ['celular'] = $_POST ['celular'];
 		
 		$model = new UsuarioModel();
 		try {

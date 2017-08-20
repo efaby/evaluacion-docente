@@ -10,7 +10,7 @@
 		</select>
 	</div>
 	<div class="form-group col-sm-6">
-		<label class="control-label">Identificación</label> <input type='text'
+		<label class="control-label">Cedúla </label> <input type='text'
 			name='identificacion' class='form-control'
 			value="<?php echo $item->identificacion; ?>" id="identificacion">
 	</div>	
@@ -26,47 +26,52 @@
 			name='apellidos' class='form-control' 
 			value="<?php echo $item->apellidos; ?>" id="apellidos">
 	</div>
-	</div>
-	<div class="row rowForm">
-	<div class="form-group col-sm-6">
-		<label class="control-label">Dirección</label> <input type='text'
-			name='direccion' class='form-control' 
-			value="<?php echo $item->direccion; ?>" id="direccion">
-	</div>
+</div>
+<div class="row rowForm">
 	<div class="form-group col-sm-6">
 		<label class="control-label">Teléfono</label> <input type='text'
 			name='telefono' class='form-control' 
 			value="<?php echo $item->telefono; ?>" id="telefono">
 	</div>
+	<div class="form-group col-sm-6">
+		<label class="control-label">Celular</label> <input type='text'
+			name='celular' class='form-control' 
+			value="<?php echo $item->celular; ?>" id="celular">
 	</div>
+</div>
+<div class="row rowForm">
+	<div class="form-group col-sm-12">
+		<label class="control-label">Dirección</label> <input type='text'
+			name='direccion' class='form-control' 
+			value="<?php echo $item->direccion; ?>" id="direccion">
+	</div>
+</div>
+<div class="row rowForm">
 	<div class="form-group col-sm-12">
 		<label class="control-label">Email</label> <input type='text'
 			name='email' class='form-control'
 			value="<?php echo $item->email; ?>" id="email">
-	</div>	
-	<div class="row rowForm">
+	</div>
+</div>			
+<div class="row rowForm">
 	<div class="form-group col-sm-6">
 		<label class="control-label">Contraseña</label>
 		<input type="password"
 			name='password' class='form-control'
 			value="<?php echo $item->password; ?>">
-
 	</div>
 	<div class="form-group col-sm-6">
 		<label class="control-label">Repetir Contraseña</label>
 		<input type="password"
 			name='password1' class='form-control'
 			value="<?php echo $item->password1; ?>">
-
 	</div>
-	</div>
-		
-	<div class="form-group">
-		<input type='hidden' name='id' class='form-control' value="<?php echo $item->id; ?>">		
-		<button type="submit" class="btn btn-success boton" id="boton">Guardar</button>
-		<button type="button" class="btn btn-default boton" id="boton" data-dismiss="modal">Cancelar</button>
-	</div>
-
+</div>
+<div class="form-group">
+	<input type='hidden' name='id' class='form-control' value="<?php echo $item->id; ?>">		
+	<button type="submit" class="btn btn-success boton" id="boton">Guardar</button>
+	<button type="button" class="btn btn-default boton" id="boton" data-dismiss="modal">Cancelar</button>
+</div>
 </form>
 
 <script type="text/javascript">
@@ -230,6 +235,19 @@ $(document).ready(function() {
 						}
 				
 			},
+			celular: {
+				message: 'El Número de Celular no es válido',
+				validators: {
+					notEmpty: {
+						message: 'El Número de Celular no puede ser vacío.'
+					},					
+							regexp: {
+								regexp: /^(?:\+)?\d{10}$/,
+								message: 'Ingrese un Número de Celular válido.'
+							}
+						}
+				
+			}
 			
 		}
 	});
