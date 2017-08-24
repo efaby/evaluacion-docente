@@ -67,7 +67,7 @@ class MatriculaModel {
 		$sql = "select distinct(materia_periodo_id) as id, m.nombre,m.materia_id
 				from materia_periodo as mp
         		inner join materia m ON m.materia_id = mp.materia_id
-				where m.curso_id=".$id;
+				where mp.estado=1 and m.curso_id=".$id;
 		return $model->execSql($sql, array(),true);
 	}	
 	
@@ -76,7 +76,7 @@ class MatriculaModel {
 		$sql = "select m.materia_periodo_id as id 
 				from materia_periodo mp
 				inner join matricula m on m.materia_periodo_id=mp.materia_periodo_id
-				where periodo_id=".$periodo." and  m.usuario_id=".$estudiante;
+				where mp.estado=1 and periodo_id=".$periodo." and  m.usuario_id=".$estudiante;
 		return $model->execSql($sql, array(),true);
 	}
 }

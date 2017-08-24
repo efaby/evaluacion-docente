@@ -38,7 +38,6 @@ class MatriculaController {
 		
 		$model = new MatriculaModel();
 		$materias_periodo = $this->validarMaterias($item ['usuario_id'], $periodo_id,$materias_periodo);
-		
 		try {
 			foreach ($materias_periodo as $mp){
 				$item ['materia_periodo_id'] = $mp;

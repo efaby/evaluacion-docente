@@ -36,5 +36,9 @@ class PeriodoModel {
 		$sql = "update periodo set estado = 0 where periodo_id = ?";
 		$model = new BaseModel();
 		$result = $model->execSql($sql, array($itemId),false,true);
+		
+		$sql = "update materia_periodo set estado = 0 where periodo_id = ?";
+		$model = new BaseModel();
+		$result = $model->execSql($sql, array($itemId),false,true);
 	}
 }
