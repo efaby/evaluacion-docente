@@ -130,10 +130,10 @@
                         <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-book-open"></i>Evaluci&oacute;n</a>
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
-                                <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-book-open"></i>Evaluaciones</a>
+                                <a class="nav-link" href="../../Evaluacion/listar/" target="_top"><i class="icon-book-open"></i>Evaluaciones</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-book-open "></i>Preguntas</a>
+                                <a class="nav-link" href="../../Pregunta/listar/" target="_top"><i class="icon-book-open "></i>Preguntas</a>
                             </li>
                             
                         </ul>
