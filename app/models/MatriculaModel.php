@@ -32,8 +32,17 @@ class MatriculaModel {
 		return $model->saveDatos($item,'matricula');
 	}
 	
+	public function saveMatriculaEvaluacion($item){
+		$model = new BaseModel();
+		return $model->saveDatos($item,'matricula_evaluacion');
+	}
+	
 	public function delMateriaEstudiante(){
 		$itemId = $_GET['id'];
+		$sql = "delete from matricula_evaluacion where matricula_id = ?";
+		$model = new BaseModel();
+		$result = $model->execSql($sql, array($itemId),false,true);
+		
 		$sql = "delete from matricula where matricula_id = ?";
 		$model = new BaseModel();
 		$result = $model->execSql($sql, array($itemId),false,true);		

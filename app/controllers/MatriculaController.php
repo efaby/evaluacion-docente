@@ -1,6 +1,7 @@
 <?php
 require_once (PATH_MODELS . "/MatriculaModel.php");
 require_once (PATH_MODELS . "/CursoModel.php");
+require_once (PATH_MODELS . "/EvaluacionModel.php");
 
 class MatriculaController {
 	
@@ -25,6 +26,8 @@ class MatriculaController {
 		$estudiante = $model->getEstudianteById();
 		$modelCurso = new CursoModel();
 		$secciones = $modelCurso->getSecciones();
+		$modelEvaluacion = new EvaluacionModel();
+		$evaluaciones = $modelEvaluacion->getlistadoEvaluaciones();
 		$message = "";
 		require_once PATH_VIEWS."/Matricula/view.form.php";
 	}
@@ -33,16 +36,22 @@ class MatriculaController {
 		$model = new MatriculaModel();
 		$materias_periodo = $_POST ['materia_id'];
 		$item ['usuario_id'] = $_POST ['estudiante_id'];		
-		$item['fecha_registro'] = date("Y-m-d");		
+		$item['fecha_registro'] = date("Y-m-d");
 		$periodo_id = $model->getPeriodoActivo()->periodo_id;
+		
+		$matricula['evaluacion_id'] = $_POST ['evaluacion_id'];
 		
 		$model = new MatriculaModel();
 		$materias_periodo = $this->validarMaterias($item ['usuario_id'], $periodo_id,$materias_periodo);
 		try {
 			foreach ($materias_periodo as $mp){
 				$item ['materia_periodo_id'] = $mp;
-				$datos = $model->saveMateriaEstudiante( $item );
-			}			
+				$datos[] = $model->saveMateriaEstudiante($item);				
+			}
+			foreach ($datos as $dato){
+				$matricula['matricula_id'] = $dato;				
+				$model->saveMatriculaEvaluacion($matricula);
+			}
 			$_SESSION ['message'] = "Datos almacenados correctamente.";		
 		} catch ( Exception $e ) {
 			$_SESSION ['message'] = $e->getMessage ();
@@ -115,11 +124,11 @@ class MatriculaController {
 					echo"</tr>";
 				}
 				$count++;
-			}							
+			}			
 		}
 		else{
 			echo "<tr><td colspan=3 align=center>No existe materias en este curso</td></tr>";
 		}
-		echo"<table>";
+		echo"<table>";		
 	}
 }
