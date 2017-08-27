@@ -90,4 +90,20 @@ class EvaluacionController {
 		$preguntas_evaluacion = array_diff($preguntas, $preguntas_evaluacion);
 		return $preguntas_evaluacion;
 	}
+	
+	public function eliminarPreguntaEval() {
+		$model = new EvaluacionModel();
+		$item = $_GET['id'];
+		$arrayval = explode('-', $item);		
+		try {
+			$datos = $model->delPreguntaEvaluacion($arrayval[0]);
+			$_SESSION ['message'] = "Datos eliminados correctamente.";
+				
+		} catch ( Exception $e ) {
+			$_SESSION ['message'] =  "Existen datos relacionados.";
+			//$e->getMessage ();
+		}
+		header ( "Location: ../listarEvalPreg/".$arrayval[1] );
+	}
+	
 }

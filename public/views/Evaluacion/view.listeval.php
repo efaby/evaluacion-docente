@@ -32,12 +32,13 @@
     		<tbody>
 		    		<?php 
 						if($items != null){
-							foreach ($items as $item){														
+							foreach ($items as $item){	
+								$id = $item->id.'-'.$evaluacion->evaluacion_id;
 							?>							
 					<tr><td><?php echo $item->id;?></td>
 						<td><?php echo $item->pregunta_nombre;?></td>
 						<td>
-							<?php if($item->id == null){echo "<a href='javascript:if(confirm(\"Est\u00e1 seguro que desea eliminar el elemento seleccionado?\")){redirect(\"$id\");}' class='btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash'></i></a>";}?>
+							<?php echo "<a href='javascript:if(confirm(\"Est\u00e1 seguro que desea eliminar el elemento seleccionado?\")){redirect1(\"$id\");}' class='btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash'></i></a>"?>
 						</td>
 					</tr>
 					<?php 	}

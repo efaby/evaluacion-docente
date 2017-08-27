@@ -54,4 +54,10 @@ class EvaluacionModel {
 		$sql = "select e.pregunta_id as id FROM evaluacion_pregunta e WHERE evaluacion_id=".$evaluacion;
 		return $model->execSql($sql, array(),true);
 	}
+	
+	public function delPreguntaEvaluacion($itemId){
+		$sql = "delete from evaluacion_pregunta where evaluacion_pregunta_id = ?";
+		$model = new BaseModel();
+		$result = $model->execSql($sql, array($itemId),false,true);
+	}
 }

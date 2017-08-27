@@ -26,3 +26,9 @@
 		$('.modal-body').load('../listarPreguntas/' + id  ,function(result){	    
 		});
 	});
+	
+	function redirect1(id){
+		var url = '../eliminarPreguntaEval/' + id;
+		location.href = url;
+	}
+	
