@@ -1,5 +1,6 @@
 <?php
 require_once (PATH_MODELS . "/EvaluacionModel.php");
+require_once (PATH_MODELS . "/PreguntaModel.php");
 
 class EvaluacionController {
 	
@@ -44,5 +45,49 @@ class EvaluacionController {
 			$_SESSION ['message'] = $e->getMessage ();
 		}
 		header ( "Location: ../listar/" );
+	}
+	
+	public function listarEvalPreg(){
+		$model = new EvaluacionModel();
+		$evaluacion = $model->getEvaluacion();
+		$items = $model->getlistaEvalPreguntas();
+		$message = "";
+		require_once PATH_VIEWS."/Evaluacion/view.listeval.php";
+	}
+	
+	public function listarPreguntas(){
+		$eval_id= $_GET['id'];
+		$model = new PreguntaModel();
+		$preguntas = $model->getlistadoPreguntas();
+		$message = "";
+		require_once PATH_VIEWS."/Evaluacion/view.listpreguntas.php";
+	}
+	
+	public function guardareval() {
+		$item ['evaluacion_id'] = $_POST ['eval_id'];
+		$preguntas_id  = $_POST ['pregunta_id'];
+		$model = new EvaluacionModel();
+		$preguntas_eval = $this->validarPreguntas($item ['evaluacion_id'], $preguntas_id);
+		try {
+			foreach ($preguntas_eval as $preg){
+				$item ['pregunta_id'] = $preg;
+				$datos = $model->saveEvaluacionPreg($item);
+			}
+			$_SESSION ['message'] = "Datos almacenados correctamente.";
+		} catch ( Exception $e ) {
+			$_SESSION ['message'] = $e->getMessage ();
+		}
+		header ( "Location: ../listarEvalPreg/".$item ['evaluacion_id']);
+	}
+	
+	public function validarPreguntas($evaluacion, $preguntas){
+		$model = new EvaluacionModel();
+		$preguntas_evaluacion = [];
+		$array = $model->getPreguntasVal($evaluacion);		
+		foreach ($array as $preg){
+			$preguntas_evaluacion[] = $preg->id;
+		}
+		$preguntas_evaluacion = array_diff($preguntas, $preguntas_evaluacion);
+		return $preguntas_evaluacion;
 	}
 }

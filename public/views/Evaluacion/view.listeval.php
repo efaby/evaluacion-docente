@@ -3,7 +3,7 @@
 <!-- Main row -->
 <div class="card">
 <div class="card-header">
-    	<h3>Evaluación <?php echo $periodo->nombre;?></h3>
+    	<h3>Evaluación <?php echo $evaluacion->nombre;?></h3>
 </div>
 <form id="frmItem" method="post" action="../guardar/">
 	<br>
@@ -15,32 +15,31 @@
 		</div>
 	<?php endif;?>
 	<div class="col-lg-12">
-		 <button type="button" data-id="<?php echo $docente->id;?>" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+		 <button type="button" data-id="<?php echo $evaluacion->evaluacion_id;?>" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
           	Añadir
          </button>
 	</div>
 	<br>
 	<div class="form-group col-sm-12">
-		<table class="table table-striped">
+		<table class="table table-striped" id="dataTables-example">
 			<thead>		
 				<tr>
 					<th>Código</th>
 					<th>Pregunta</th>
-					<th>Evaluación</th>
-					<th>Opción</th>
+					<th></th>					
 				<tr>
 			</thead>
     		<tbody>
 		    		<?php 
-						if(count($items)>0){
-							foreach ($items as $item){
-							$id = $item->materia_periodo_id.'-'.$docente->id;							
-								?>							
+						if($items != null){
+							foreach ($items as $item){														
+							?>							
 					<tr><td><?php echo $item->id;?></td>
-						<td><?php echo $item->materia_nombre;?></td>
-						<td><?php echo $item->curso_nombre;?></td>
-						<td><?php if($item->estudiante == null){echo "<a href='javascript:if(confirm(\"Est\u00e1 seguro que desea eliminar el elemento seleccionado?\")){redirect(\"$id\");}' class='btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash'></i></a>";}?>
+						<td><?php echo $item->pregunta_nombre;?></td>
+						<td>
+							<?php if($item->id == null){echo "<a href='javascript:if(confirm(\"Est\u00e1 seguro que desea eliminar el elemento seleccionado?\")){redirect(\"$id\");}' class='btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash'></i></a>";}?>
 						</td>
+					</tr>
 					<?php 	}
 						}else{?>
 					<tr><td colspan="4" align="center">No existe Preguntas asignadas a esta Evaluación</td></tr>
@@ -52,7 +51,7 @@
 		<a href="../listar/" class="btn btn-default boton">Regresar</a>
 	</div>	
 </form>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+<div class="modal modal1 fade" id="myModal" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true" >
 	<div class="modal-dialog" >
 		<div class="modal-content">
@@ -74,7 +73,6 @@
 <script src="<?php echo PATH_JS; ?>/dataTables.bootstrap.min.js"></script>
 <script src="<?php echo PATH_JS; ?>/table.js"></script>
 <script src="<?php echo PATH_JS; ?>/formValidation.js"></script>
-<script src="<?php echo PATH_JS; ?>/bootstrap.js"></script>
 <script src="<?php echo PATH_JS; ?>/currentList.js"></script>
 <link href="<?php echo PATH_CSS; ?>/bootstrapValidator.min.css" rel="stylesheet">
 

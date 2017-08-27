@@ -35,7 +35,11 @@
     		echo "<td>".$item->nombre."</td>"; 		
     		echo "<td>".$item->descripcion."</td>";
     		echo "<td align='center'><a href='#' class='btn btn-warning btn-sm' data-id='".$item->id."' data-toggle='modal' data-target='#myModal' title='Editar' ><i class='fa fa-pencil'></i></a>
-					  <a href='javascript:if(confirm(\"Est\u00e1 seguro que desea eliminar el elemento seleccionado?\")){redirect(".$item->id.");}' class='btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash'></i></a></td>";
+					  <a href='javascript:if(confirm(\"Est\u00e1 seguro que desea eliminar el elemento seleccionado?\")){redirect(".$item->id.");}' class='btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash'></i></a>
+   			  		  <a class='btn btn-info btn-sm' href='../listarEvalPreg/".$item->id."' title='Preguntas'>
+						<i class='fa fa-list-alt'></i>
+					  </a>
+  		  		  </td>";
     	}?>
     </tbody>
     </table>

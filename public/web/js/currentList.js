@@ -19,3 +19,10 @@
 		    $('#atenderNovedad').modal({show:true});
 		});
 	}
+	
+	$(document).on('show.bs.modal', '.modal1', function (event) {
+		 var button = $(event.relatedTarget) // Button that triggered the modal
+		 var id = button.data('id') 
+		$('.modal-body').load('../listarPreguntas/' + id  ,function(result){	    
+		});
+	});
