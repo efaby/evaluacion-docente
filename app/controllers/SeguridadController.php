@@ -1,6 +1,5 @@
 <?php
 require_once(PATH_MODELS."/SeguridadModel.php");
-require_once (PATH_HELPERS. "/Email.php");
 
 /**
  * Controlador de Usuarios
@@ -10,38 +9,26 @@ class SeguridadController {
 	
 	public function login(){
 		$model = new SeguridadModel();
-		$tipos = $model->getTipos();
 		require_once PATH_VIEWS."/Seguridad/view.login.php";
 	}
 	
 	public function validar(){
 
 		$model = new SeguridadModel();
-		$login = $this->cleanVariables($_POST['username']);
 		$password = $this->cleanVariables($_POST['password']);
 		$login = $this->cleanVariables($_POST['username']);
-		$tipo = $this->cleanVariables($_POST['tipousuario']);
-		
-		$result= $model->validarUsuario($login, $password,$tipo);
+
+		$result= $model->validarUsuario($login, $password);
 		$response['band'] = 0;
 		if($result)
 		{
-			session_regenerate_id();	
-			$acceso = $model->getAcceso($result->tipo);
+			session_regenerate_id();		
 			$resultArray = array();		
 			
-			foreach ($acceso as $item){
-				$resultArray[] = $item->accion;
-			}			
-			$result->urls = $resultArray;
-			$result->links = $acceso;
 			$_SESSION['SESSION_USER'] = $result;		
 			session_write_close();
-			$url = $_SERVER["REQUEST_URI"];			
-			$response['data'] = (strpos($url, '/Seguridad/mostrar/'))?'../':'Seguridad/'.'inicio/';
-			if($result->tipo == 2){				
-				$this->validarMantenimiento();
-			}			
+			$url = $_SERVER["REQUEST_URI"];		
+			$response['data'] = (strpos($url, '/Seguridad/'))?$url.'../inicio/':$url.'Seguridad/inicio/';		
 				
 		} else {
 			$response['data'] = 'Credenciales Inválidas.';

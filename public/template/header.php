@@ -11,7 +11,7 @@
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,AngularJS,Angular,Angular2,Angular 2,Angular4,Angular 4,jQuery,CSS,HTML,RWD,Dashboard,React,React.js,Vue,Vue.js">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>CoreUI - Open Source Bootstrap Admin Template</title>
+    <title>Sistema de Evaluaci&oacute;n Docente</title>
 
     <!-- Icons -->
     <link href="<?php echo PATH_CSS; ?>/font-awesome.min.css" rel="stylesheet">
@@ -38,42 +38,19 @@
             
         </ul>
         <ul class="nav navbar-nav ml-auto">
-            <li class="nav-item d-md-down-none">
-                <a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>
-            </li>
-            <li class="nav-item d-md-down-none">
-                <a class="nav-link" href="#"><i class="icon-list"></i></a>
-            </li>
-            <li class="nav-item d-md-down-none">
-                <a class="nav-link" href="#"><i class="icon-location-pin"></i></a>
-            </li>
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <img src="<?php echo PATH_IMAGES; ?>/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                    <span class="d-md-down-none">admin</span>
+                    <span class="d-md-down-none"><?php echo $_SESSION['SESSION_USER']->nombres." ".$_SESSION['SESSION_USER']->apellidos; ?></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
 
                     <div class="dropdown-header text-center">
                         <strong>Account</strong>
                     </div>
-
-                    <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Updates<span class="badge badge-info">42</span></a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span class="badge badge-success">42</span></a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Tasks<span class="badge badge-danger">42</span></a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comments<span class="badge badge-warning">42</span></a>
-
-                    <div class="dropdown-header text-center">
-                        <strong>Settings</strong>
-                    </div>
-
-                    <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Settings</a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span class="badge badge-default">42</span></a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="badge badge-primary">42</span></a>
-                    <div class="divider"></div>
-                    <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock Account</a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
+                    <!-- <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock Account</a> -->
+                    <a class="dropdown-item" href="../../Seguridad/cerrarSesion/"><i class="fa fa-lock"></i> Logout</a>
                 </div>
             </li>
            
@@ -86,32 +63,29 @@
             <nav class="sidebar-nav">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html"><i class="icon-speedometer"></i> Dashboard <span class="badge badge-info">NEW</span></a>
+                        <a class="nav-link" href="../../Seguridad/inicio/"><i class="icon-speedometer"></i> Inicio </a>
                     </li>
-
-                    <li class="nav-title">
-                        UI Elements
-                    </li>
+                     <?php if($_SESSION['SESSION_USER']->tipo_usuario_id ==1):?>
                     <li class="nav-item nav-dropdown">
                         <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Administraci&oacute;n</a>
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
-                                <a class="nav-link" href="../../Usuario/listar/"><i class="icon-puzzle"></i>Usuarios</a>
+                                <a class="nav-link tab-link" href="../../Usuario/listar/"><i class="icon-puzzle"></i>Usuarios</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="../../Seccion/listar/"><i class="icon-puzzle"></i> Secci&oacute;n</a>
+                                <a class="nav-link tab-link" href="../../Seccion/listar/"><i class="icon-puzzle"></i> Secci&oacute;n</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="../../Especialidad/listar/"><i class="icon-puzzle"></i> Especialidad</a>
+                                <a class="nav-link tab-link" href="../../Especialidad/listar/"><i class="icon-puzzle"></i> Especialidad</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="../../Curso/listar/"><i class="icon-puzzle"></i> Curso</a>
+                                <a class="nav-link tab-link" href="../../Curso/listar/"><i class="icon-puzzle"></i> Curso</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="../../Materia/listar/"><i class="icon-puzzle"></i> Materia</a>
+                                <a class="nav-link tab-link" href="../../Materia/listar/"><i class="icon-puzzle"></i> Materia</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="../../Periodo/listar/"><i class="icon-puzzle"></i> Per&iacute;odo</a>
+                                <a class="nav-link tab-link" href="../../Periodo/listar/"><i class="icon-puzzle"></i> Per&iacute;odo</a>
                             </li>
                         </ul>
                     </li>
@@ -119,10 +93,10 @@
                         <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-notebook"></i> Matr&iacute;cula</a>
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
-                                <a class="nav-link" href="../../MateriaDocente/listar/"><i class="icon-notebook"></i> Docentes</a>
+                                <a class="nav-link tab-link" href="../../MateriaDocente/listar/"><i class="icon-notebook"></i> Docentes</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="../../Matricula/listar/"><i class="icon-notebook "></i> Estudiantes</a>
+                                <a class="nav-link tab-link" href="../../Matricula/listar/"><i class="icon-notebook "></i> Estudiantes</a>
                             </li>
                         </ul>
                     </li>
@@ -130,28 +104,22 @@
                         <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-book-open"></i>Evaluci&oacute;n</a>
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
-                                <a class="nav-link" href="../../Evaluacion/listar/" target="_top"><i class="icon-book-open"></i>Evaluaciones</a>
+                                <a class="nav-link tab-link" href="../../Evaluacion/listar/" target="_top"><i class="icon-book-open"></i>Evaluaciones</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="../../Pregunta/listar/" target="_top"><i class="icon-book-open "></i>Preguntas</a>
+                                <a class="nav-link tab-link" href="../../Pregunta/listar/" target="_top"><i class="icon-book-open "></i>Preguntas</a>
                             </li>
                             
                         </ul>
                     </li>
-                    <!--  
+                <?php endif; ?>
+                <?php if($_SESSION['SESSION_USER']->tipo_usuario_id ==3):?>
                     <li class="nav-item">
-                        <a class="nav-link" href="widgets.html"><i class="icon-calculator"></i> Widgets <span class="badge badge-info">NEW</span></a>
+                        <a class="nav-link" href="../../Evaluacion/estudiante/"><i class="icon-speedometer"></i> Evaluar </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="charts.html"><i class="icon-pie-chart"></i> Charts</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li class="nav-title">
-                        Extras
-                    </li>
-                    
-					-->
+                <?php endif; ?>   
                 </ul>
+
             </nav>
         </div>
 
@@ -163,16 +131,10 @@
                 <li class="breadcrumb-item">Home</li>
                 <li class="breadcrumb-item"><a href="#">Admin</a>
                 </li>
-                <li class="breadcrumb-item active">Dashboard</li>
+                <li class="breadcrumb-item active"><?php echo $title; ?></li>
 
                 <!-- Breadcrumb Menu-->
-                <li class="breadcrumb-menu d-md-down-none">
-                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                        <a class="btn btn-secondary" href="#"><i class="icon-speech"></i></a>
-                        <a class="btn btn-secondary" href="./"><i class="icon-graph"></i> &nbsp;Dashboard</a>
-                        <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
-                    </div>
-                </li>
+
             </ol>
 			<div class="container-fluid">
         

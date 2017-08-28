@@ -14163,3 +14163,6 @@ hr.transparent {
 table.table-bordered.dataTable {
     border-collapse: collapse !important;
 }
+.tab-link {
+  padding-left: 40px !important;
+}

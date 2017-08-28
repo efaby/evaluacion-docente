@@ -5,113 +5,84 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
- <link rel="shortcut icon" type="image/x-icon" href="<?php echo PATH_IMAGES.'/favicon.ico'?>" />
-    <title>SAM-W&L</title>
-    <link href="<?php echo PATH_CSS; ?>/bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo PATH_CSS; ?>/login.css" rel="stylesheet">
-	<link href="<?php echo PATH_CSS; ?>/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="CoreUI Bootstrap 4 Admin Template">
+    <meta name="author" content="Lukasz Holeczek">
+    <meta name="keyword" content="CoreUI Bootstrap 4 Admin Template">
+    <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
+
+    <title>Sistema de Evaluaci&oacute;n Docente</title>
+
+    <!-- Icons -->
+    <link href="<?php echo PATH_CSS; ?>/font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo PATH_CSS; ?>/simple-line-icons.css" rel="stylesheet">
+
+    <!-- Main styles for this application -->
+    <link href="<?php echo PATH_CSS; ?>/style.css" rel="stylesheet">
+
 </head>
 
-<body>
-
-<div id="contenedor">
-
-<div id="temafondo">
-		<div id="logoindex">
-		<div id="logoEspoch"><img src="<?php echo PATH_IMAGES; ?>/espoch-verde.svg" height="150px"></div>
-		<div class="titulo">SAM-W&L</div>
-		<div id="logo"><img src="<?php echo PATH_IMAGES; ?>/logo.png" height="50px"></div>
-		
-		</div>
-        <div id="logosombra">
-		</div>
-        <div id="formsombra">
+<body class="app flex-row align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card-group mb-0">
+                    <div class="card p-4">
+                    <?php $url = $_SERVER["REQUEST_URI"];?>
+						<form  id="frmLogin" name="frmLogin" class="login-form form-signin" action="<?php echo (strpos($url, '/Seguridad/'))?'../validar/':'Seguridad/validar/';?>" method="POST">
+                        <div class="card-block">
+                            <h1>Login</h1>
+                            <p class="text-muted">Ingrese las credenciales.</p>
+                            <div class="form-group input-group mb-3">
+                                <span class="input-group-addon"><i class="icon-user"></i>
+                                </span>
+                                <input type="text" class="form-control" placeholder="Username" name="username" id="username" class=" input username">
+                            </div>
+                            <div class="form-group input-group mb-4">
+                                <span class="input-group-addon"><i class="icon-lock"></i>
+                                </span>
+                                <input type="password" class="form-control" placeholder="Password" name="password" id="password" class=" input password">
+                            </div>
+                            <div class="alert alert-danger alert-dismissable" style="display: none; padding: 6px; " id="mensaje">
+								<span id="mensajeValidacion"></span>
+							</div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="submit" class="btn btn-primary px-4">Inicias Sesi&oacute;n</button>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <!-- <button type="button" class="btn btn-link px-0">Forgot password?</button> -->
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                    <div class="card card-inverse card-primary py-5 d-md-down-none" style="width:44%">
+                        <div class="card-block text-center">
+                            <div>
+                                <img src="<?php echo PATH_IMAGES; ?>/san_gabriel.jpg" height="200px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-	</div>
-	
-	<!--WRAPPER-->
-	<div id="wrapper">
-		<!--SLIDE-IN ICONS-->
-    	<div class="user-icon"></div>
-    	<div class="pass-icon"></div>
-    	<!--END SLIDE-IN ICONS-->
-<!--LOGIN FORM-->
-<?php $url = $_SERVER["REQUEST_URI"];?>
-<form  id="frmLogin" name="frmLogin" class="login-form form-signin" action="<?php echo (strpos($url, '/Seguridad/listar/'))?'../validar/':'Seguridad/validar/';?>" method="POST">
-
-
-	<!--HEADER-->
-    <div class="header">
-    <!--TITLE--><h1>Autentificaci&oacute;n</h1><!--END TITLE-->
-    <!--DESCRIPTION--><span>Ingrese su usuario, contrase&ntilde;a y tipo de usuario en el siguiente formulario.</span><!--END DESCRIPTION-->
-   
-	</div>
-    <!--END HEADER-->
-	<!--CONTENT-->
-    <div class="content">
-    
-    <div class="form-group"> 
-		<input name="username" id="username" type="text" placeholder="NOMBRE DE USUARIO" class=" input username"/>
-	</div>
-	<div class="form-group">
-    	<input name="password" id="password" type="password" placeholder="CONTRASE&Ntilde;A" class="input password"/>
-	</div>
-	<div class="form-group">
-		<select class="input selectTipo"  style="width:240px;" name="tipousuario" required>
-		<option value=NULL>TIPO DE USUARIO</option>
-		<?php foreach ($tipos as $item):?>
-		<option value="<?php echo $item->id; ?>"><?php echo $item->nombre; ?></option>
-		<?php endforeach;?>
-		</select>
-	</div>
     </div>
-    <!--END CONTENT-->    
-    <!--FOOTER-->
-    <div class="alert alert-danger fade in alert-dismissable" style="display: none; padding: 6px; margin-left: 10px; margin-right: 10px;" id="mensaje">
-				<span id="mensajeValidacion"></span>
-			</div> 
-    <div class="footer">
-    <!--LOGIN BUTTON--><input type="submit" name="submit" value="INGRESAR" class="btn-primary btn" style="float: right" /><!--END LOGIN BUTTON-->
-    </div>
-    <!--END FOOTER-->
 
-</form>
-<!--END LOGIN FORM-->
-
-</div>
-<!--END WRAPPER-->
+    <!-- Bootstrap and necessary plugins -->
 
 
-</div>
-
-       
-    
     <script src="<?php echo PATH_JS; ?>/jquery.min.js" type="text/javascript"></script>
-    
+    <script src="<?php echo PATH_JS; ?>/tether.min.js"></script>
 	<script src="<?php echo PATH_JS; ?>/formValidation.js"></script>
 	<script src="<?php echo PATH_JS; ?>/bootstrap.js"></script>
 	<script src="<?php echo PATH_JS; ?>/currentList.js"></script>
-	<link href="<?php echo PATH_CSS; ?>/bootstrapValidator.min.css" rel="stylesheet"> 
+	<link href="<?php echo PATH_CSS; ?>/bootstrapValidator.min.css" rel="stylesheet">
+   
+
     <script type="text/javascript">
 
 						$(document).ready(function(){
-
-							$(".username").focus(function() {
-					    		$(".user-icon").css("left","-48px");
-					    	});
-					    	$(".username").blur(function() {
-					    		$(".user-icon").css("left","0px");
-					    	});
-					    	
-					    	$(".password").focus(function() {
-					    		$(".pass-icon").css("left","-48px");
-					    	});
-					    	$(".password").blur(function() {
-					    		$(".pass-icon").css("left","0px");
-					    	});
 							
 							$('#frmLogin').formValidation({
 						    	message: 'This value is not valid',
@@ -120,26 +91,26 @@
 								},
 								fields: {			
 									username: {
-										message: 'El Usuario no es vÃ¡lido',
+										message: 'El Usuario no es válido',
 										validators: {
 													notEmpty: {
-														message: 'El Usuario no puede ser vacÃ­o.'
+														message: 'El Usuario no puede ser vacío.'
 													},					
 													regexp: {
-														regexp: /^[a-zA-ZÃ¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“ÃšÃ±Ã‘0-9-_ \.]+$/,
-														message: 'Ingrese un Usuario vÃ¡lido.'
+														regexp: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9-_ \.]+$/,
+														message: 'Ingrese un Usuario válido.'
 													}
 												}
 											},	
 									password: {
-										message: 'La ContraseÃ±a no es vÃ¡lida',
+										message: 'La Contraseña no es válida',
 										validators: {
 											notEmpty: {
-												message: 'La ContraseÃ±a no puede ser vacÃ­a.'
+												message: 'La Contraseña no puede ser vacía.'
 											},					
 											regexp: {
-												regexp: /^[a-zA-ZÃ¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“ÃšÃ±Ã‘0-9-_ \.]+$/,
-												message: 'Ingrese una ContraseÃ±a vÃ¡lida.'
+												regexp: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9-_ \.]+$/,
+												message: 'Ingrese una ContraseÃ±a válida.'
 											}
 										}
 									},
@@ -171,7 +142,11 @@
 										 }
 					                }
 					            });
-					        });
+					        }).on('err.field.fv', function(e, data) {
+				            data.element
+				                .data('fv.messages')
+				                .find('.help-block[data-fv-for="' + data.field + '"]').hide();
+				        });
 
 
 						
