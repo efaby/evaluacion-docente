@@ -112,10 +112,27 @@
                             
                         </ul>
                     </li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-book-open"></i>Reportes</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link tab-link" href="../../Reporte/listar/" target="_top"><i class="icon-book-open"></i>Reporte 1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-link" href="../../Reporte/listar/" target="_top"><i class="icon-book-open "></i>Reporte 2</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
                 <?php endif; ?>
+                <?php if($_SESSION['SESSION_USER']->tipo_usuario_id ==2):?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../Reporte/docente/"><i class="icon-speedometer"></i> Mis Evaluaciones </a>
+                    </li>
+                <?php endif; ?>  
                 <?php if($_SESSION['SESSION_USER']->tipo_usuario_id ==3):?>
                     <li class="nav-item">
-                        <a class="nav-link" href="../../Evaluacion/estudiante/"><i class="icon-speedometer"></i> Evaluar </a>
+                        <a class="nav-link" href="../../EvaluacionEstudiante/listar/"><i class="icon-speedometer"></i> Evaluar </a>
                     </li>
                 <?php endif; ?>   
                 </ul>
