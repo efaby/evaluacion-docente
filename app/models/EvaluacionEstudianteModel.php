@@ -15,25 +15,61 @@ class EvaluacionEstudianteModel {
 				where p.estado = 1 and m.usuario_id = ".$estudianteId;		
 		return $model->execSql($sql, array(),true);
 	}	
+
+	public function getlistadoPreguntasEvaluacion($itemId){	
+
+		$model = new BaseModel();	
+		$sql = "SELECT  p.*, ep.evaluacion_pregunta_id FROM evaluacion.matricula_evaluacion as me 
+				inner join evaluacion_pregunta as ep on ep.evaluacion_id = me.evaluacion_id
+				inner join pregunta as p on p.pregunta_id = ep.pregunta_id
+				where me.matricula_evaluacion_id = ".$itemId;		
+		return $model->execSql($sql, array(),true);
+	}	
 	
-	public function getEvaluacion()
-	{
-		$itemId = $_GET['id'];
-		$model = new BaseModel();		
-		if($itemId > 0){
-			$sql = "select *, evaluacion_id as id from evaluacion where estado=1
-					and evaluacion_id = ?";
-			$result = $model->execSql($sql, array($itemId));
-		} else {
-			$result = (object) array('id'=>0,'nombre'=>'','descripcion'=>'');			
-		}		
-		return $result;
-	}
-	
-	public function saveEvaluacion($item){
+	public function getRespuestas(){
 		$model = new BaseModel();
-		return $model->saveDatos($item,'evaluacion');
+		$sql = "select * FROM respuesta ";
+		return $model->execSql($sql, array(),true);
 	}
+
+	public function getEvaluacion($itemId){
+		$model = new BaseModel();
+		$sql = "select ev.nombre as evaluacion, c.nombre as curso, e.nombre as especialidad, mt.nombre as materia, u.nombres, u.apellidos
+				FROM evaluacion.matricula_evaluacion as me 
+				inner join evaluacion as ev on ev.evaluacion_id =  me.evaluacion_id
+				inner join matricula as m on m.matricula_id = me.matricula_id
+				inner join materia_periodo as mp on mp.materia_periodo_id = m.materia_periodo_id
+				inner join periodo as p on p.periodo_id =  mp.periodo_id
+				inner join materia as mt on mt.materia_id = mp.materia_id
+				inner join curso as c on c.curso_id = mt.curso_id
+				inner join usuario as u on u.usuario_id = mp.docente_id
+				inner join especialidad as e on e.especialidad_id = c.especialidad_id
+				where me.matricula_evaluacion_id = ".$itemId;
+		return $model->execSql($sql, array(),true);
+	}
+
+	public function saveEvaluacion($items){
+		$model = new BaseModel();
+		foreach ($items as $item) {
+			$model->saveDatos($item,'respuesta_evaluacion');
+		}
+	}
+
+	public function updateMatriculaEvaluacion($itemId){
+		$sql = "update matricula_evaluacion set fecha_evaluacion = now() where matricula_evaluacion_id = ?";
+		$model = new BaseModel();
+		$result = $model->execSql($sql, array($itemId),false,true);
+	}
+
+	/////////////////////////////////////////////////
+
+	
+
+
+
+
+	
+	
 	
 	public function delEvaluacion(){
 		$itemId = $_GET['id'];
@@ -56,15 +92,7 @@ class EvaluacionEstudianteModel {
 		return $model->saveDatos($item,'evaluacion_pregunta');
 	}
 	
-	public function getPreguntasVal($evaluacion){
-		$model = new BaseModel();
-		$sql = "select e.pregunta_id as id FROM evaluacion_pregunta e WHERE evaluacion_id=".$evaluacion;
-		return $model->execSql($sql, array(),true);
-	}
 	
-	public function delPreguntaEvaluacion($itemId){
-		$sql = "delete from evaluacion_pregunta where evaluacion_pregunta_id = ?";
-		$model = new BaseModel();
-		$result = $model->execSql($sql, array($itemId),false,true);
-	}
+	
+	
 }

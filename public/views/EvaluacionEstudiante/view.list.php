@@ -31,7 +31,11 @@
     		echo "<td>".$item->curso."</td>"; 		
     		echo "<td>".$item->especialidad."</td>";
     		echo "<td>".$item->fecha_evaluacion."</td>";
-    		echo "<td align='center'><a href='#' class='btn btn-warning btn-sm' data-id='".$item->matricula_evaluacion_id."' data-toggle='modal' data-target='#myModal' title='Evaluar' ><i class='fa fa-pencil'> </i></a>
+    		$disable = "";
+    		if($item->fecha_evaluacion != ''){
+    			$disable = "disabled";
+    		}
+    		echo "<td align='center'><a href='../evaluar/".$item->matricula_evaluacion_id."' class='btn btn-warning btn-sm ".$disable."' title='Evaluar' ><i class='fa fa-pencil'> </i></a>
 					  
   		  		  </td> </tr>";
     	}?>
