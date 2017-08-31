@@ -7,24 +7,27 @@
     	<h3>Evaluación</h3>
 </div>
 <div class="card-block">
+
 	<div class="row">
-		<div class="col-sm-12 text-center">	
-		<?php echo $evaluacion->evaluacion; ?>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-3">	
-			<strong>Materia:</strong> <?php echo $evaluacion->materia; ?>
-		</div>
-		<div class="col-sm-3">	
-			<strong>Docente:</strong> <?php echo $evaluacion->nombres ." ". $evaluacion->apellidos; ?>
-		</div>
-		<div class="col-sm-3">	
-			<strong>Curso:</strong> <?php echo $evaluacion->curso; ?>
-		</div>
-		<div class="col-sm-3">	
-			<strong>Especialidad:</strong> <?php echo $evaluacion->especialidad; ?>
-		</div>
+		<table class="table table-th-block table-bordered">
+		<tr><td rowspan="3"><img src="<?php echo PATH_IMAGES; ?>/san_gabriel.jpg" height="200px"></td><td colspan="3" style="text-align:center"><strong><?php echo $evaluacion->evaluacion; ?></strong></td><td><strong>Fecha:</strong> <?php echo date('Y-m-d'); ?></td></tr>
+		<tr><td><strong>Docente:</strong> <?php echo $evaluacion->nombres ." ". $evaluacion->apellidos; ?></td><td><strong>Materia:</strong> <?php echo $evaluacion->materia; ?></td><td><strong>Curso:</strong> <?php echo $evaluacion->curso; ?></td><td><strong>Especialidad:</strong> <?php echo $evaluacion->especialidad; ?></td></tr>
+		<tr><td colspan="4"><strong>Nota:</strong> Estimado Estudiante del "ITSGA", por medio de la presente queremos obtener su apreciaci&oacute;n sobre el Docente, para ello es necesario que califique del 1 al 4, y le pedimos responder con toda la sinceridad posible.
+		<table align="center" >
+		<tr> <th colspan="4" style="text-align:center">VALORACIÓN</th></tr>
+		<tr>	
+			<?php foreach ($respuestas as $resp) { ?>
+				<td style="text-align:center"><?php echo $resp->nombre; ?></td>
+			<?php } ?>
+		</tr>
+		<tr>	
+			<?php foreach ($respuestas as $resp) { ?>
+				<td style="text-align:center"><?php echo $resp->valor; ?></td>
+			<?php } ?>
+		</tr>
+		</table>
+		</td></tr>
+		</table>
 	</div>	
 <br><br>
 	<div class="row">
@@ -34,10 +37,7 @@
 			<table class="table table-th-block table-bordered">
 				<thead>
 				<tr>
-					<th rowspan="2" style="width: 70%; vertical-align: middle;">PREGUNTAS</th>
-					<th colspan="4" style="text-align:center">VALORACIÓN</th>
-				</tr>
-			<tr>
+				<th style="width: 70%; vertical-align: middle;">PREGUNTAS</th>					
 				<?php foreach ($respuestas as $resp) { ?>
 				<th style="text-align:center"><?php echo $resp->nombre; ?></th>
 				<?php } ?>

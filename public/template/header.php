@@ -33,10 +33,12 @@
         <ul class="nav navbar-nav d-md-down-none">
             <li class="nav-item">
                 <a class="nav-link navbar-toggler sidebar-toggler" href="#">☰</a>
-            </li>
-
-            
+            </li>   
+            <li class="nav-item px-3">
+                <h3>Sistema de Evaluaci&oacute;n Docente</h3>
+            </li>         
         </ul>
+
         <ul class="nav navbar-nav ml-auto">
 
             <li class="nav-item dropdown">
@@ -132,7 +134,7 @@
                 <?php endif; ?>  
                 <?php if($_SESSION['SESSION_USER']->tipo_usuario_id ==3):?>
                     <li class="nav-item">
-                        <a class="nav-link" href="../../EvaluacionEstudiante/listar/"><i class="icon-speedometer"></i> Evaluar </a>
+                        <a class="nav-link" href="../../EvaluacionEstudiante/listar/"><i class="icon-calendar"></i> Evaluar </a>
                     </li>
                 <?php endif; ?>   
                 </ul>
@@ -146,8 +148,7 @@
          <!-- Breadcrumb -->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">Home</li>
-                <li class="breadcrumb-item"><a href="#">Admin</a>
-                </li>
+                <li class="breadcrumb-item">Admin</li>
                 <li class="breadcrumb-item active"><?php echo $title; ?></li>
 
                 <!-- Breadcrumb Menu-->

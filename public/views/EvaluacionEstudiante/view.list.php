@@ -4,7 +4,7 @@
 <!-- Main row -->
 <div class="card">
 <div class="card-header">
-    	<h3>Evaluación Estudiante</h3>
+    	<h3>Materias a Evaluar</h3>
 </div>
 <div class="card-block">
 	<?php if (isset($_SESSION['message'])&& ($_SESSION['message'] != '')):?>
@@ -33,11 +33,13 @@
     		echo "<td>".$item->fecha_evaluacion."</td>";
     		$disable = "";
     		if($item->fecha_evaluacion != ''){
-    			$disable = "disabled";
-    		}
-    		echo "<td align='center'><a href='../evaluar/".$item->matricula_evaluacion_id."' class='btn btn-warning btn-sm ".$disable."' title='Evaluar' ><i class='fa fa-pencil'> </i></a>
+    			echo "<td align='center'>Evaluado";
+    		} else {
+                echo "<td align='center'><a href='../evaluar/".$item->matricula_evaluacion_id."' class='btn btn-warning btn-sm ".$disable."' title='Evaluar' ><i class='fa fa-pencil'> </i></a>";
+            }
+    		
 					  
-  		  		  </td> </tr>";
+  		  	echo "</td> </tr>";
     	}?>
     </tbody>
     </table>

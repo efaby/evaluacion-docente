@@ -5,7 +5,7 @@
 
     <footer class="app-footer">
         copyright © 2017.
-        <span class="float-right">Instituto San Gabriel
+        <span class="float-right">Instituto Tecnológico Superior Particular “San Gabriel”
         </span>
     </footer>
 

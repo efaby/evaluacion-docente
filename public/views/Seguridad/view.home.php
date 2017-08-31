@@ -2,21 +2,14 @@
 <?php include_once PATH_TEMPLATE.'/header.php';?>
 
 <!-- Main row -->
-<div class="row">
-	<div class="col-lg-12">
-    	<h1 class="page-header">Bienvenido <?php echo $_SESSION['SESSION_USER']->nombres; ?></h1>
-   	</div>
+<div class="card">
+<div class="card-header">
+    	<h3 class="page-header">Bienvenido <?php echo $_SESSION['SESSION_USER']->nombres; ?></h3>
 </div>
-<?php if (isset($_SESSION['message'])&& ($_SESSION['message'] != '')):?>
-		<div class="alert alert-success fade in alert-dismissable">
-				<button type="button" class="close" data-dismiss="alert"
-					aria-hidden="true">&times;</button>
-								  <?php echo $_SESSION['message'];$_SESSION['message'] = ''?>
-								</div>
-		<?php endif;?>
-<div class="row">
+<div class="card-block">
+
 <div style="text-align: center;">
-<img src="<?php echo PATH_IMAGES.'/mecanica.jpg'?>" style="width: 80%;  padding-top: 50px;" />
+<img src="<?php echo PATH_IMAGES; ?>/banner_eva5.jpg" style="width: 95%; padding-top: 30px; padding-bottom: 30px;" ></td>
 </div>
 	
 	</div>
