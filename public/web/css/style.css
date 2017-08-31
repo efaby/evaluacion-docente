@@ -12583,10 +12583,10 @@ base-chart.chart {
     padding: 0.5rem 1rem;
     margin-right: 0;
     background-color: #fff;
-    background-image: url("../images/logo.png");
+    background-image: url("../images/logo1.png");
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: 70px auto;
+    background-size: 110px auto;
     border-bottom: 1px solid #E3E8EC; }
   .app-header.navbar .navbar-nav {
     flex-direction: row;
