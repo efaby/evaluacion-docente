@@ -10,6 +10,7 @@
     <meta name="author" content="Lukasz Holeczek">
     <meta name="keyword" content="CoreUI Bootstrap 4 Admin Template">
     <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
+    <link rel="shortcut icon" href="<?php echo PATH_IMAGES; ?>/favicon.png">
 
     <title>Sistema de Evaluaci&oacute;n Docente</title>
 
