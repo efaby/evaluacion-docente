@@ -18,7 +18,7 @@ class SeguridadModel {
 	}
 	
 	public function cambiarContrasena($passwd,$user){
-		$sql = "update usuario set password = md5('".$passwd."') where id = ".$user;
+		$sql = "update usuario set password = md5('".$passwd."') where usuario_id = ".$user;
 		$model =  new BaseModel();
 		return $model->execSql($sql, array($passwd,$user),false,true);
 	}

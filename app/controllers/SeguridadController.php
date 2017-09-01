@@ -58,15 +58,15 @@ class SeguridadController {
 		header("Location: ../../");
 	}
 	
-	public function cambiarContrasena(){
-		require_once PATH_VIEWS."/Seguridad/view.form.php";
+	public function cambio_contrasena(){
+		require_once PATH_VIEWS."/Seguridad/view.change.php";
 	}
 	
 	public function guardarContrasena(){
 		
 		$passwd["p2"] = $_POST['password'];
 		$passwd["p3"] = $_POST['password1'];
-		$user = $_SESSION['SESSION_USER']->id;		
+		$user = $_SESSION['SESSION_USER']->usuario_id;		
 		
 		try {
 			$model = new SeguridadModel();
@@ -76,7 +76,7 @@ class SeguridadController {
 			$_SESSION['message'] = $e->getMessage();
 		}		
 	
-		header("Location: ../cambiarContrasena/");
+		header("Location: ../cambio_contrasena/");
 	}
 	
 	public function error404(){

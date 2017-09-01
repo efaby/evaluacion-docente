@@ -39,7 +39,7 @@
             </li>         
         </ul>
 
-        <ul class="nav navbar-nav ml-auto">
+        <ul class="nav navbar-nav ml-auto" style="padding-right: 20px;">
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -49,10 +49,10 @@
                 <div class="dropdown-menu dropdown-menu-right">
 
                     <div class="dropdown-header text-center">
-                        <strong>Account</strong>
+                        <strong>Cuenta</strong>
                     </div>
-                    <!-- <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock Account</a> -->
-                    <a class="dropdown-item" href="../../Seguridad/cerrarSesion/"><i class="fa fa-lock"></i> Logout</a>
+                    <a class="dropdown-item" href="../../Seguridad/cambio_contrasena/"><i class="fa fa-shield"></i> Cambiar Contrase&ntilde;a</a> 
+                    <a class="dropdown-item" href="../../Seguridad/cerrarSesion/"><i class="fa fa-lock"></i> Cerrar sesi&oacute;n</a>
                 </div>
             </li>
            
@@ -149,7 +149,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">Home</li>
                 <li class="breadcrumb-item">Admin</li>
-                <li class="breadcrumb-item active"><?php echo $title; ?></li>
+                <li class="breadcrumb-item"><?php echo $title; ?></li>
 
                 <!-- Breadcrumb Menu-->
 
