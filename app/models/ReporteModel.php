@@ -1,7 +1,7 @@
 <?php
 require_once(PATH_MODELS."/BaseModel.php");
 
-class EvaluacionEstudianteModel {
+class ReporteModel {
 
 	public function getlistadoEvaluacionesbyEstudiante($estudianteId){		
 		$model = new BaseModel();	

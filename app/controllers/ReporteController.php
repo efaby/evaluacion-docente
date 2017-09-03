@@ -1,14 +1,15 @@
 <?php
-require_once (PATH_MODELS . "/EvaluacionEstudianteModel.php");
+require_once (PATH_MODELS . "/ReporteModel.php");
 
-class EvaluacionEstudianteController {
+class ReporteController {
 	
-	public function listar() {
+	public function docente() {
 		$model = new EvaluacionEstudianteModel();
 		$datos = $model->getlistadoEvaluacionesbyEstudiante($_SESSION['SESSION_USER']->usuario_id);
 		$message = "";
 		require_once PATH_VIEWS."/EvaluacionEstudiante/view.list.php";
 	}
+	///////////////////////////////
 
 	public function evaluar() {
 		$itemId = $_GET['id'];	
