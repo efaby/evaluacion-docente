@@ -34,4 +34,21 @@ class ReporteModel {
 		$sql="SELECT * FROM respuesta where estado =1";
 		return $model->execSql($sql, array(),true);
 	}
+	
+	public function getPreguntas($id){
+		$model = new BaseModel();
+		//	and re.matricula_evaluacion_id = me.matricula_evaluacion_id
+		$sql ="SELECT p.pregunta_id,p.nombre as pregunta_nombre, respuesta_id, count(respuesta_id) as respuesta,
+				null as res1, null as res2,null as res3, null as res4
+				FROM matricula m
+				INNER JOIN matricula_evaluacion me on me.matricula_id = m.matricula_id
+				INNER JOIN evaluacion e on e.evaluacion_id = me.evaluacion_id 
+				INNER JOIN evaluacion_pregunta ep on ep.evaluacion_id = e.evaluacion_id 
+				INNER JOIN pregunta p on ep.pregunta_id = p.pregunta_id
+				INNER JOIN respuesta_evaluacion re on ep.evaluacion_pregunta_id = re.evaluacion_pregunta_id 
+				WHERE m.materia_periodo_id =? 
+				GROUP BY respuesta_id,p.pregunta_id 
+				ORDER BY p.pregunta_id";
+		return $model->execSql($sql, array($id),true);		
+	}
 }

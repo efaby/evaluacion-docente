@@ -26,11 +26,52 @@ class ReporteController {
 		$datos = $model->getRespuestas();
 		return $datos;
 	}
+	
+	public function array_elimina_duplicados($array)
+	{
+		$new = array();
+		$exclude = array("");
+		for ($i = 0; $i<=count($array)-1; $i++) {
+			if (!in_array(trim($array[$i]->pregunta_id) ,$exclude)) { 
+				$new[] = $array[$i]; 
+				$exclude[] = trim($array[$i]->pregunta_id); 
+			}
+		}
+		 
+		return $new;
+	}
+	
+	public function obtenerPreguntas($id){
+		$model = new ReporteModel();
+		$datos = $model->getPreguntas($id);		
+		$array = self::array_elimina_duplicados($datos);
+		foreach ($datos as $dato){		
+			foreach ($array as $a){
+				if($a->pregunta_id == $dato->pregunta_id){
+					if($dato->respuesta_id == 1){
+						$a->res1 = $dato->respuesta;
+					}
+					if($dato->respuesta_id == 2){
+						$a->res2 = $dato->respuesta;
+					}
+					if($dato->respuesta_id == 3){
+						$a->res3 = $dato->respuesta;
+					}
+					if($dato->respuesta_id == 4){
+						$a->res4 = $dato->respuesta;
+					}
+				}
+			}
+		}			
+		return $array;
+	}
+	
 	public function verPdf(){
 		$model = new ReporteModel();
 		$id = $_GET ['id'];
 		$datos_cab = self::obtenerDatosCab($id)[0];
 		$respuestas = self::obtenerRespuestas();
+		$preguntas = self::obtenerPreguntas($id);
 		
 		$html = "<html>
 					<head>
@@ -79,22 +120,62 @@ class ReporteController {
 						<br>
 						<table>
 							<tr>
-								<td rowspan='3'>Preguntas
+								<td rowspan='3' style='text-align:center'><b>Preguntas</b>
 								</td>										
-								<td colspan='4'>Valor del Grado de Acuerdo con las siguientes afirmaciones</td>
+								<td colspan='4' style='text-align:center'><b>Valor del Grado de Acuerdo con las siguientes afirmaciones</b></td>
+								<td rowspan='3' style='text-align:center'><b>Total Alumnos</b>
 							</tr>
 							<tr>";		
 							foreach ($respuestas as $res){
-								$html.="<td>".$res->nombre."</td>";							
+								$html.="<td style='text-align:center'><b>".$res->nombre."</b></td>";							
 							}
 		$html .="	</tr>";
 							foreach ($respuestas as $res){
-								$html.="<td>".$res->valor."</td>";
+								$html.="<td style='text-align:center'><b>".$res->valor."</b></td>";
 							}
-		$html .="	</tr>				
-						</table>";
-		$html .="</body></html>";		
+		$html .="	</tr>	";
+		$total = 0;
+		$total1 = 0;
+		$total2 = 0;
+		$total3 = 0;
+		$total4 = 0;
+							foreach ($preguntas as $preg){
+		$total_preg = $preg->res1+$preg->res2+$preg->res3+$preg->res4;
+		$total += $total_preg;
+		$total1 += $preg->res1;
+		$total2 += $preg->res2;
+		$total3 += $preg->res3;
+		$total4 += $preg->res4;
 		
+		$html .="	<tr><td>".$preg->pregunta_nombre."</td>";								
+		$html .="		<td style='text-align:center'>".$preg->res1."</td>";							
+		$html .="		<td style='text-align:center'>".$preg->res2."</td>";								
+		$html .="		<td style='text-align:center'>".$preg->res3."</td>";							
+		$html .="		<td style='text-align:center'>".$preg->res4."</td>";		
+		$html .="       <td style='text-align:center'>".$total_preg."</td></tr>";
+					}
+		
+		$perc[] = number_format((($total1 *100)/$total),2);
+		$perc[] = number_format((($total2 *100)/$total),2);
+		$perc[] = number_format((($total3 *100)/$total),2);
+		$perc[] = number_format((($total4 *100)/$total),2);
+					
+		$html .="<tr><td style='text-align:center'><b>TOTAL</b></td>
+					 <td style='text-align:center'>".$total1."</td>
+					 <td style='text-align:center'>".$total2."</td>
+					 <td style='text-align:center'>".$total3."</td>
+					 <td style='text-align:center'>".$total4."</td>
+					 <td style='text-align:center'>".$total."</td>
+				</tr>
+				<tr>
+				   	<td></td>
+					<td style='text-align:center'>".$perc[0]."</td>
+					<td style='text-align:center'>".$perc[1]."</td>
+					<td style='text-align:center'>".$perc[2]."</td>
+					<td style='text-align:center'>".$perc[3]."</td>
+					<td style='text-align:center'>100</td>
+				</tr>
+			</table></body></html>";
 		$options = new Options();
 		$options->set('isHtml5ParserEnabled', true);
 		$dompdf = new Dompdf($options);
@@ -103,8 +184,7 @@ class ReporteController {
 		$dompdf->render();
 		$canvas = $dompdf->get_canvas();
 		// $font = FontMetrics::getFont("helvetica", "bold");
-		$canvas->page_text(550, 750, "Pág. {PAGE_NUM}/{PAGE_COUNT}", $font, 6, array(0,0,0)); //header
-		$canvas->page_text(270, 770, "Copyright © 2017", $font, 6, array(0,0,0)); //footer
+		$canvas->page_text(550, 750, "{PAGE_NUM}", $font, 6, array(0,0,0)); //header		
 		$dompdf->stream('general', array("Attachment"=>false));
 		
 	}
