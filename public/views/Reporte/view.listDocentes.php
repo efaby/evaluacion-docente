@@ -4,7 +4,7 @@
 <!-- Main row -->
 <div class="card">
 <div class="card-header">
-    	<h3>Docentes</h3>
+    	<h3>Listado de Reportes por Docente</h3>
 </div>
 <div class="card-block">
 	<table class="table table-striped" id="dataTables-example" >
