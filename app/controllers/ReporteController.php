@@ -4,6 +4,8 @@ use Dompdf\Dompdf;
 require_once (PATH_MODELS . "/ReporteModel.php");
 require_once (PATH_HELPERS."/dompdf/autoload.inc.php");
 require_once (PATH_HELPERS."/dompdf/src/FontMetrics.php");
+require_once (PATH_HELPERS."/jpgraph/jpgraph.php");
+require_once (PATH_HELPERS."/jpgraph/jpgraph_pie.php");
 
 class ReporteController {
 	
@@ -175,7 +177,11 @@ class ReporteController {
 					<td style='text-align:center'>".$perc[3]."</td>
 					<td style='text-align:center'>100</td>
 				</tr>
-			</table></body></html>";
+			</table><br>";
+		
+		$html.= self::grafico($perc);
+		$html.="</body></html>";
+		
 		$options = new Options();
 		$options->set('isHtml5ParserEnabled', true);
 		$dompdf = new Dompdf($options);
@@ -187,5 +193,35 @@ class ReporteController {
 		$canvas->page_text(550, 750, "{PAGE_NUM}", $font, 6, array(0,0,0)); //header		
 		$dompdf->stream('general', array("Attachment"=>false));
 		
+	}
+	
+	public function grafico($datos){
+		//$datos = array(40,30,15,15);
+		$leyenda = array("Nunca","En Desacuerdo","Deacuerdo","Totalmente Deacuerdo");
+		
+		$grafico = new PieGraph(550,400);
+		$grafico->SetShadow();
+		
+		$grafico->title->Set("Gestion de Docentes");
+		$grafico->title->SetFont(FF_FONT1,FS_BOLD);
+		
+		$p1 = new PiePlot($datos);
+		$p1->SetLabelPos(0.7);
+		$p1->SetLegends($leyenda);
+		//$p1->ExplodeAll();
+		$p1->SetCenter(1);
+		
+		$grafico->legend->SetAbsPos(5,250,'right','top');
+		$grafico->Add($p1);
+		//$grafico->legend->SetPos(0.85, 0.3,’center’,’right’);
+		$grafico->legend->SetColumns(1);
+		$grafico->Stroke();
+		
+/*		DEFINE("DEFAULT_GFORMAT","auto");
+		$graph->img->SetImgFormat("png");
+		if(file_exists("Reports/reports-display.png")) unlink("Reports/reports-display.png");
+		$graph->Stroke("Reports/reports-display.png");*/
+		
+		return $grafico;
 	}
 }
