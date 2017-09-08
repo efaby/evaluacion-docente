@@ -311,10 +311,11 @@ class ReporteController {
 		$p1 = new PiePlot($datos);
 		$p1->SetLabelPos(0.7);
 		$p1->SetLegends($leyenda);
-		//$p1->ExplodeAll();
 		$p1->SetCenter(1);
 		
 		$grafico->legend->SetAbsPos(1,50,'right','top');
+		$grafico->legend->SetFillColor('#dff0d8');
+		
 		$grafico->Add($p1);
 		//$grafico->legend->SetPos(0.85, 0.3,’center’,’right’);
 		
