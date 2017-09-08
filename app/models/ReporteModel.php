@@ -5,10 +5,11 @@ class ReporteModel {
 
 	public function getlistadoMateriaPeriodo($id){
 		$model = new BaseModel();
-		$sql = "SELECT mp.materia_periodo_id as id, m.nombre
+		$sql = "SELECT mp.materia_periodo_id as id, m.nombre, concat(u.nombres,' ',u.apellidos) as docente
 				FROM materia_periodo mp 
 				INNER JOIN periodo p on p.periodo_id = mp.periodo_id
 				INNER JOIN materia m on m.materia_id = mp.materia_id
+				INNER JOIN usuario u on u.usuario_id = mp.docente_id
 				WHERE p.estado=1 and docente_id=?";
 		return $model->execSql($sql, array($id),true);
 	}	
