@@ -2,6 +2,7 @@
 use Dompdf\Options;
 use Dompdf\Dompdf;
 require_once (PATH_MODELS . "/ReporteModel.php");
+require_once (PATH_MODELS . "/MateriaDocenteModel.php");
 require_once (PATH_HELPERS."/dompdf/autoload.inc.php");
 require_once (PATH_HELPERS."/dompdf/src/FontMetrics.php");
 require_once (PATH_HELPERS."/jpgraph/jpgraph.php");
@@ -12,6 +13,9 @@ class ReporteController {
 	public function listar(){
 		$model = new ReporteModel();
 		$id = $_SESSION['SESSION_USER']->usuario_id;
+		if($_SESSION['SESSION_USER']->tipo_usuario_id ==1) {
+			$id = $_GET['id'];
+		}		
 		$datos = $model->getlistadoMateriaPeriodo($id);
 		$message = "";
 		require_once PATH_VIEWS."/Reporte/view.list.php";
@@ -224,4 +228,14 @@ class ReporteController {
 		
 		return $grafico;
 	}
+
+
+	public function docentes() {
+		$model = new MateriaDocenteModel();
+		$datos = $model->getlistadoDocentes();
+		$message = "";
+		require_once PATH_VIEWS."/Reporte/view.listDocentes.php";
+	}
+
+
 }

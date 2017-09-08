@@ -18,13 +18,17 @@ class PreguntaModel {
 					and pregunta_id = ?";
 			$result = $model->execSql($sql, array($itemId));
 		} else {
-			$result = (object) array('id'=>0,'nombre'=>'','descripcion'=>'');			
+			$result = (object) array('id'=>0,'nombre'=>'','descripcion'=>'', 'unica' => 0);			
 		}		
 		return $result;
 	}
 	
 	public function savePregunta($item){
 		$model = new BaseModel();
+		if($item['unica'] == 1){
+			$sql = "update pregunta set unica = 0 where pregunta_id > 0";
+			$model->execSql($sql, array(),false,true);
+		}
 		return $model->saveDatos($item,'pregunta');
 	}
 	

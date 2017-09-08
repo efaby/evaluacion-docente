@@ -9,6 +9,10 @@
 			name='descripcion' class='form-control'
 			value="<?php echo $item->descripcion; ?>" id="descripcion">
 	</div>
+	<div class="form-group col-sm-12">
+		<label class="control-label">Pregunta con Gr&aacute;fico Unico</label> 
+		<input type="checkbox" name="unica" value="1" <?php echo ($item->unica)? 'checked':'';  ?> >
+	</div>
 	<div class="form-group">
 		<input type='hidden' name='id' class='form-control' value="<?php echo $item->id; ?>">		
 		<button type="submit" class="btn btn-success boton" id="boton">Guardar</button>

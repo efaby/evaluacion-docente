@@ -118,10 +118,7 @@
                         <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-book-open"></i>Reportes</a>
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
-                                <a class="nav-link tab-link" href="../../Reporte/listar/" target="_top"><i class="icon-book-open"></i>Reporte 1</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link tab-link" href="../../Reporte/listar/" target="_top"><i class="icon-book-open "></i>Reporte 2</a>
+                                <a class="nav-link tab-link" href="../../Reporte/docentes/" target="_top"><i class="icon-book-open"></i>Reporte Docentes</a>
                             </li>
                             
                         </ul>

@@ -21,7 +21,7 @@ class PreguntaController {
 		$item ['id'] = $_POST ['id'];
 		$item ['nombre'] = $_POST ['nombre'];
 		$item ['descripcion'] = $_POST ['descripcion'];
-	
+		$item ['unica'] = $_POST ['unica'] ? $_POST ['unica'] : 0;	
 		$model = new PreguntaModel();
 		try {
 			$datos = $model->savePregunta($item);
