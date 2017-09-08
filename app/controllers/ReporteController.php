@@ -99,10 +99,10 @@ class ReporteController {
 					<body>
 						<table width= 100% border=0 >
 							<tr>
-								<td style='text-left' rowspan=2>
-									<img src='".PATH_IMAGE."/san_gabriel.jpg' style='height: 50px; margin-bottom: 5px;'>
+								<td style='text-align:left' rowspan=2>
+									<img src='".PATH_IMAGE."/san_gabriel.jpg' style='height: 80px; margin-bottom: 5px;'>
 								</td>
-								<td style='font-size:20px;text-ñeft' colspan='5'>
+								<td style='font-size:20px;text-align:left' colspan='5'>
 									<b>INSTITUTO TECNOLÓGICO SUPERIOR SAN GABRIEL</b>
 								</td>										
 							</tr>					
@@ -120,7 +120,7 @@ class ReporteController {
 							<tr>
 								<td width='60px'><b>Docente:</b></td><td style='text-align:left'>".$datos_cab->docente_nombre." ".$datos_cab->docente_apellido."</td>
 								<td width='60px'><b>Curso:</b></td><td style='text-align:left'>".$datos_cab->curso_nombre."</td>								
-								<td width='150px'><b>Fecha de Evaluación:</b></td><td style='text-align:left'>".$datos_cab->curso_nombre."</td>
+								<td width='150px'><b>Fecha de Evaluación:</b></td><td style='text-align:left'>".$preguntas[0]->fecha_evaluacion."</td>
 							</tr>
 						</table>
 						<br>
@@ -182,8 +182,6 @@ class ReporteController {
 					<td style='text-align:center'>".$perc[3]."</td>
 					<td style='text-align:center'>100</td>
 				</tr>";
-		self::grafico($perc);
-		
 		$total1 = 0;
 		$total1a = 0;
 		$total2b = 0;
@@ -221,12 +219,71 @@ class ReporteController {
 					<td style='text-align:center'>".$perc1[3]."</td>
 					<td style='text-align:center'>100</td>
 				</tr>";
-		self::grafico($perc);
-		
 		$html .="</table>";
-		self::grafico($perc);
+		self::grafico($perc,1);
+		self::grafico($perc1,2);
 		
-		$html.="<br><img src=".PATH_IMAGE."/graficas/imagen.png>
+		$html.="<br>
+				<br>
+				<div style='page-break-after:always;'></div>		
+					<table width= 100% border=0>
+						<tr>
+							<td style='text-align:left:width:10%'>
+								<img src='".PATH_IMAGE."/san_gabriel.jpg' style='height: 80px; margin-bottom: 5px;'>
+							<td style='text-align:center'>			
+								<span style='text-align:center;font-size:20px'><b>Análisis e Interpretación de Resultados</b></span>
+							</td>										
+						</tr>
+					</table>
+					<table width= 100% border=0 >
+						<tr>
+							<td align='center'>
+										<span style='text-align:center;font-size:15px'><b>Gestión del Docente</b></span><br>
+							</td>
+						</tr>			
+						<tr>
+							<td align='justify'>
+										Entre la población estudiantil encuestada se encontraron los siguiente datos: Por un "
+										.$perc[3]."% que está totalmente deacuerdo con la gestión del docente, un "
+										.$perc[2]."% que está deacuerdo, un "
+										.$perc[1]."% que está en desacuerdo y un "										
+										.$perc[0]."% que está totalmente desacuerdo.
+							</td>
+						</tr>
+						<tr>
+							<td align='center'>
+								<img src=".PATH_IMAGE."/graficas/imagen.png>
+							</td>
+						</tr>
+						<tr>
+							<td align='center'>
+										<span style='text-align:center;font-size:15px'><b>Gestión del Docente</b></span><br>
+							</td>
+						</tr>			
+						<tr>
+							<td align='justify'>
+										Entre la población estudiantil encuestada se encontraron los siguiente datos: Por ";
+						if($perc1[3] >0){
+							$html.=	" un ".$perc1[3]."% que está totalmente deacuerdo que el docente nunca falto a clases";
+						}
+						if($perc1[2] >0){
+							$html.= " un ".$perc1[2]."% que esta deacuerdo que el docente falto a clases";
+						}
+						if($perc1[1] >0){
+							$html.= " un ".$perc1[1]."% que está en desacuerdo que el docente falto a clases";
+						}
+						if($perc1[0] >0){
+							$html.= " un ".$perc1[1]."% que el docente nunca asistió a clases.";
+						}
+																				
+					$html.="</td>
+						</tr>
+						<tr>
+							<td align='center'>								
+								<img src=".PATH_IMAGE."/graficas/imagen1.png>
+							</td>
+						</tr>
+					</table>	
 				</body></html>";
 		
 		$options = new Options();
@@ -240,14 +297,11 @@ class ReporteController {
 		$dompdf->stream('general', array("Attachment"=>false));		
 	}
 	
-	public function grafico($datos){
+	public function grafico($datos,$imagen){
 		$leyenda = array("Nunca","En Desacuerdo","Deacuerdo","Totalmente Deacuerdo");
 		
-		$grafico = new PieGraph(550,400);
+		$grafico = new PieGraph(550,300);
 		$grafico->SetShadow();
-		
-		$grafico->title->Set("Gestion de Docentes");
-		$grafico->title->SetFont(FF_FONT1,FS_BOLD);
 		
 		$p1 = new PiePlot($datos);
 		$p1->SetLabelPos(0.7);
@@ -255,14 +309,19 @@ class ReporteController {
 		//$p1->ExplodeAll();
 		$p1->SetCenter(1);
 		
-		$grafico->legend->SetAbsPos(5,250,'right','top');
+		$grafico->legend->SetAbsPos(1,50,'right','top');
 		$grafico->Add($p1);
 		//$grafico->legend->SetPos(0.85, 0.3,’center’,’right’);
 		
 		$grafico->legend->SetColumns(1);
 		$grafico->img->SetImgFormat("png");
-		if(file_exists(PATH_IMAGE."/graficas/imagen.png")) unlink(PATH_IMAGE."/graficas/imagen.png");
-		$grafico->Stroke(PATH_IMAGE."/graficas/imagen.png");
+		if($imagen ==1){
+			if(file_exists(PATH_IMAGE."/graficas/imagen.png")) unlink(PATH_IMAGE."/graficas/imagen.png");
+			$grafico->Stroke(PATH_IMAGE."/graficas/imagen.png");
+		}else{
+			if(file_exists(PATH_IMAGE."/graficas/imagen1.png")) unlink(PATH_IMAGE."/graficas/imagen1.png");
+			$grafico->Stroke(PATH_IMAGE."/graficas/imagen1.png");
+		}
 		return $grafico;
 	}
 

@@ -38,7 +38,7 @@ class ReporteModel {
 	public function getPreguntas($id){
 		$model = new BaseModel();
 		$sql ="SELECT p.pregunta_id,p.nombre as pregunta_nombre, respuesta_id, count(respuesta_id) as respuesta,
-				null as res1, null as res2,null as res3, null as res4, p.unica
+				null as res1, null as res2,null as res3, null as res4, p.unica, DATE_FORMAT(me.fecha_evaluacion, '%d-%m-%Y') as fecha_evaluacion
 				FROM 
 					matricula m
 		        INNER JOIN
