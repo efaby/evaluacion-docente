@@ -4,7 +4,7 @@
 <!-- Main row -->
 <div class="card">
 <div class="card-header">
-    	<h3>Materias</h3>
+    	<h3>Reporte de Materias del Docente <?php echo $_SESSION['SESSION_USER']->nombres." ".$_SESSION['SESSION_USER']->apellidos ?></h3>
 </div>
 <div class="card-block">
 	<?php if (isset($_SESSION['message'])&& ($_SESSION['message'] != '')):?>

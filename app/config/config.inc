@@ -14,6 +14,7 @@
 	define('PATH_TEMPLATE', PATH_ROOT."/public/template");
 	define('PATH_HELPERS', PATH_ROOT."/lib");
 	define('PATH_FILES', PATH_ROOT."/public/web/files/");
+	define('PATH_IMAGE', PATH_ROOT."/public/web/images/");
 	
 	
 	define('PUBLIC_URLS', serialize(array('Seguridadlogin','Seguridadvalidar','Seguridaderror404','Seguridaderror403','Seguridaderror500')));

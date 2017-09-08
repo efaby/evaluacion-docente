@@ -100,7 +100,7 @@ class ReporteController {
 						<table width= 100% border=0 >
 							<tr>
 								<td style='text-left' rowspan=2>
-									<img src='".PATH_IMAGES."/san_gabriel.jpg' style='height: 50px; margin-bottom: 5px;'>
+									<img src='".PATH_IMAGE."/san_gabriel.jpg' style='height: 50px; margin-bottom: 5px;'>
 								</td>
 								<td style='font-size:20px;text-ñeft' colspan='5'>
 									<b>INSTITUTO TECNOLÓGICO SUPERIOR SAN GABRIEL</b>
@@ -181,10 +181,11 @@ class ReporteController {
 					<td style='text-align:center'>".$perc[3]."</td>
 					<td style='text-align:center'>100</td>
 				</tr>
-			</table><br>";
+			</table><br>";		
+		self::grafico($perc);
 		
-		//$html.= self::grafico($perc);
-		$html.="</body></html>";
+		$html.="<br><img src=".PATH_IMAGE."/graficas/imagen.png>
+				</body></html>";
 		
 		$options = new Options();
 		$options->set('isHtml5ParserEnabled', true);
@@ -193,14 +194,11 @@ class ReporteController {
 		
 		$dompdf->render();
 		$canvas = $dompdf->get_canvas();
-		// $font = FontMetrics::getFont("helvetica", "bold");
 		$canvas->page_text(550, 750, "{PAGE_NUM}", $font, 6, array(0,0,0)); //header		
-		$dompdf->stream('general', array("Attachment"=>false));
-		
+		$dompdf->stream('general', array("Attachment"=>false));		
 	}
 	
 	public function grafico($datos){
-		//$datos = array(40,30,15,15);
 		$leyenda = array("Nunca","En Desacuerdo","Deacuerdo","Totalmente Deacuerdo");
 		
 		$grafico = new PieGraph(550,400);
@@ -218,17 +216,13 @@ class ReporteController {
 		$grafico->legend->SetAbsPos(5,250,'right','top');
 		$grafico->Add($p1);
 		//$grafico->legend->SetPos(0.85, 0.3,’center’,’right’);
+		
 		$grafico->legend->SetColumns(1);
-		$grafico->Stroke();
-		
-/*		DEFINE("DEFAULT_GFORMAT","auto");
-		$graph->img->SetImgFormat("png");
-		if(file_exists("Reports/reports-display.png")) unlink("Reports/reports-display.png");
-		$graph->Stroke("Reports/reports-display.png");*/
-		
+		$grafico->img->SetImgFormat("png");
+		if(file_exists(PATH_IMAGE."/graficas/imagen.png")) unlink(PATH_IMAGE."/graficas/imagen.png");
+		$grafico->Stroke(PATH_IMAGE."/graficas/imagen.png");
 		return $grafico;
 	}
-
 
 	public function docentes() {
 		$model = new MateriaDocenteModel();
@@ -236,6 +230,4 @@ class ReporteController {
 		$message = "";
 		require_once PATH_VIEWS."/Reporte/view.listDocentes.php";
 	}
-
-
 }
