@@ -146,6 +146,7 @@ class ReporteController {
 		$total3 = 0;
 		$total4 = 0;
 							foreach ($preguntas as $preg){
+								if($preg->unica == 0){
 		$total_preg = $preg->res1+$preg->res2+$preg->res3+$preg->res4;
 		$total += $total_preg;
 		$total1 += $preg->res1;
@@ -160,7 +161,7 @@ class ReporteController {
 		$html .="		<td style='text-align:center'>".$preg->res4."</td>";		
 		$html .="       <td style='text-align:center'>".$total_preg."</td></tr>";
 					}
-		
+				}
 		$perc[] = number_format((($total1 *100)/$total),2);
 		$perc[] = number_format((($total2 *100)/$total),2);
 		$perc[] = number_format((($total3 *100)/$total),2);
@@ -180,8 +181,48 @@ class ReporteController {
 					<td style='text-align:center'>".$perc[2]."</td>
 					<td style='text-align:center'>".$perc[3]."</td>
 					<td style='text-align:center'>100</td>
-				</tr>
-			</table><br>";		
+				</tr>";
+		self::grafico($perc);
+		
+		$total1 = 0;
+		$total1a = 0;
+		$total2b = 0;
+		$total3c = 0;
+		$total4d = 0;
+		$html .="<tr><td colspan='6'><br><br></td></tr>";
+		foreach ($preguntas as $preg){
+			if($preg->unica == 1){
+				$total_preg1 = $preg->res1+$preg->res2+$preg->res3+$preg->res4;
+				$total1 += $total_preg;
+				$total1a += $preg->res1;
+				$total2b += $preg->res2;
+				$total3c += $preg->res3;
+				$total4d += $preg->res4;
+		
+				$html .="	<tr><td>".$preg->pregunta_nombre."</td>";
+				$html .="		<td style='text-align:center'>".$preg->res1."</td>";
+				$html .="		<td style='text-align:center'>".$preg->res2."</td>";
+				$html .="		<td style='text-align:center'>".$preg->res3."</td>";
+				$html .="		<td style='text-align:center'>".$preg->res4."</td>";
+				$html .="       <td style='text-align:center'>".$total_preg1."</td></tr>";
+			}
+		}
+		$perc1[] = number_format((($total1a *100)/$total1),2);
+		$perc1[] = number_format((($total2b *100)/$total1),2);
+		$perc1[] = number_format((($total3c *100)/$total1),2);
+		$perc1[] = number_format((($total4d *100)/$total1),2);
+		
+		$html .="<tr>
+				   	<td></td>
+					<td style='text-align:center'>".$perc1[0]."</td>
+					<td style='text-align:center'>".$perc1[1]."</td>
+					<td style='text-align:center'>".$perc1[2]."</td>
+					<td style='text-align:center'>".$perc1[3]."</td>
+					<td style='text-align:center'>100</td>
+				</tr>";
+		self::grafico($perc);
+		
+		$html .="</table>";
 		self::grafico($perc);
 		
 		$html.="<br><img src=".PATH_IMAGE."/graficas/imagen.png>
