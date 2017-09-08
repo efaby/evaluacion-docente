@@ -207,6 +207,7 @@ class ReporteController {
 				$html .="       <td style='text-align:center'>".$total_preg1."</td></tr>";
 			}
 		}
+		
 		$perc1[] = number_format((($total1a *100)/$total1),2);
 		$perc1[] = number_format((($total2b *100)/$total1),2);
 		$perc1[] = number_format((($total3c *100)/$total1),2);
