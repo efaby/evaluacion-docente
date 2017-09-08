@@ -179,7 +179,7 @@ class ReporteController {
 				</tr>
 			</table><br>";
 		
-		$html.= self::grafico($perc);
+		//$html.= self::grafico($perc);
 		$html.="</body></html>";
 		
 		$options = new Options();

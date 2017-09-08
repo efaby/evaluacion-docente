@@ -46,6 +46,7 @@ class ReporteModel {
 				INNER JOIN evaluacion_pregunta ep on ep.evaluacion_id = e.evaluacion_id 
 				INNER JOIN pregunta p on ep.pregunta_id = p.pregunta_id
 				INNER JOIN respuesta_evaluacion re on ep.evaluacion_pregunta_id = re.evaluacion_pregunta_id 
+				and re.matricula_evaluacion_id = me.matricula_evaluacion_id
 				WHERE m.materia_periodo_id =? 
 				GROUP BY respuesta_id,p.pregunta_id 
 				ORDER BY p.pregunta_id";
