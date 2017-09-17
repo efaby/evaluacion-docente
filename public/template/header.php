@@ -103,7 +103,7 @@
                         </ul>
                     </li>
                     <li class="nav-item nav-dropdown">
-                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-book-open"></i>Evaluci&oacute;n</a>
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-book-open"></i>Evaluaci&oacute;n</a>
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
                                 <a class="nav-link tab-link" href="../../Evaluacion/listar/" target="_top"><i class="icon-book-open"></i>Evaluaciones</a>
