@@ -131,4 +131,22 @@ class MatriculaController {
 		}
 		echo"<table>";		
 	}
+
+	// Admimnistrativos
+
+	public function listarAdministrativos() {
+		$model = new MatriculaModel();
+		$datos = $model->getlistadoAdministrativos();
+		$message = "";
+		require_once PATH_VIEWS."/Matricula/view.listAdministrativos.php";
+	}
+
+	public function listarDocentes(){
+		$model = new MatriculaModel();
+		$administrativo = $model->getAdministrativoById();
+		$periodo = $model->getPeriodoActivo();
+		$items = $model->getDocentes();
+		$message = "";
+		require_once PATH_VIEWS."/Matricula/view.listDocentes.php";
+	}
 }

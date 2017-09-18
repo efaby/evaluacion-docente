@@ -88,4 +88,38 @@ class MatriculaModel {
 				where mp.estado=1 and periodo_id=".$periodo." and  m.usuario_id=".$estudiante;
 		return $model->execSql($sql, array(),true);
 	}
+
+	public function getlistadoAdministrativos(){		
+		$model = new BaseModel();	
+		$sql = "select *, usuario_id as id
+				from usuario
+				where tipo_usuario_id=4";		
+		return $model->execSql($sql, array(),true);
+	}	
+
+	public function getAdministrativoById(){
+		$model = new BaseModel();
+		$itemId = isset($_POST['id'])?$_POST['id']:$_GET['id'];
+		$sql = "select *, usuario_id as id
+				from usuario where tipo_usuario_id=4 and usuario_id=".$itemId;
+		return $model->execSql($sql, array(),true)[0];
+	}
+
+	public function getDocentes()
+	{ // defnir tabla ddocentes
+		$item = $_GET['id'];
+		/*
+		$model = new BaseModel();		
+		if($item > 0){
+			$sql = "select distinct(mp.materia_id) as id,mp.materia_periodo_id,ma.matricula_id,
+					m.nombre as materia_nombre, c.nombre as curso_nombre
+					from matricula as ma
+					inner join  materia_periodo as mp on ma.materia_periodo_id = mp.materia_periodo_id
+					inner join materia as m ON m.materia_id = mp.materia_id
+					inner join curso as c ON c.curso_id = m.curso_id
+					where ma.usuario_id=".$item;
+			$result = $model->execSql($sql, array(), true);
+		}		
+		return $result; */
+	}
 }

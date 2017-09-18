@@ -100,6 +100,9 @@
                             <li class="nav-item">
                                 <a class="nav-link tab-link" href="../../Matricula/listar/"><i class="icon-notebook "></i> Estudiantes</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-link" href="../../Matricula/listarAdministrativos/"><i class="icon-notebook "></i> Administrativos</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item nav-dropdown">
