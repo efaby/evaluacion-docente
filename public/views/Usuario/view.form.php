@@ -2,19 +2,35 @@
 <div class="row rowForm">
 	<div class="form-group  col-sm-6">
 		<label class="control-label">Tipo Usuario</label>
-		<select class='form-control' name="tipo_usuario_id">
+		<select class='form-control' name="tipo_usuario_id" id="tipo_usuario_id">
 			<option value="" >Seleccione</option>
 		<?php foreach ($tipos as $dato) { ?>
 			<option value="<?php echo $dato->id;?>"  <?php if($item->tipo_usuario_id==$dato->id):echo "selected"; endif;?>><?php echo $dato->nombre;?></option>
 		<?php }?>
 		</select>
 	</div>
+	<div class="form-group  col-sm-6">
+		<label class="control-label" id="ldocente" style="<?php echo $disabled; ?>">&Aacute;rea</label>
+		<select class='form-control' name="especialidad_id" id="sdocente" style="<?php echo $disabled; ?>">
+			<option value="" >Seleccione</option>
+		<?php foreach ($especialidades as $dato) { ?>
+			<option value="<?php echo $dato->id;?>"  <?php if($item->especialidad_id==$dato->id):echo "selected"; endif;?>><?php echo $dato->nombre;?></option>
+		<?php }?>
+		</select>
+	</div>
+</div>
+<div class="row rowForm">
 	<div class="form-group col-sm-6">
-		<label class="control-label">Cedúla </label> <input type='text'
+		<label class="control-label">C&eacute;dula </label> <input type='text'
 			name='identificacion' class='form-control'
 			value="<?php echo $item->identificacion; ?>" id="identificacion">
-	</div>	
-</div>
+	</div>
+	<div class="form-group col-sm-6">
+		<label class="control-label">Email</label> <input type='text'
+			name='email' class='form-control'
+			value="<?php echo $item->email; ?>" id="email">
+	</div>
+</div>	
 <div class="row rowForm">
 	<div class="form-group col-sm-6">
 		<label class="control-label">Nombres</label> <input type='text'
@@ -46,13 +62,7 @@
 			value="<?php echo $item->direccion; ?>" id="direccion">
 	</div>
 </div>
-<div class="row rowForm">
-	<div class="form-group col-sm-12">
-		<label class="control-label">Email</label> <input type='text'
-			name='email' class='form-control'
-			value="<?php echo $item->email; ?>" id="email">
-	</div>
-</div>			
+		
 <div class="row rowForm">
 	<div class="form-group col-sm-6">
 		<label class="control-label">Contraseña</label>
@@ -177,6 +187,15 @@ $(document).ready(function() {
 					}
 				}
 			},
+
+			especialidad_id: {
+				enabled: <?php echo ($disabled === "" )? "true":"false"; ?>,
+				validators: {
+					notEmpty: {
+						message: 'Seleccione una Especialidad'
+					}
+				}
+			},
 			
 			password: {
 				message: 'La Contraseña no es válida',
@@ -252,6 +271,22 @@ $(document).ready(function() {
 		}
 	});
 });
+
+
+$( "#tipo_usuario_id" ).change(function() {
+  if( $(this).val() == 2) {
+  	$("#ldocente").show();
+  	$("#sdocente").show();
+  	$('#frmUsuario').formValidation('enableFieldValidators', 'especialidad_id', true);
+  } else {
+  	$("#ldocente").hide();
+  	$("#sdocente").hide();
+  	$('#frmUsuario').formValidation('enableFieldValidators', 'especialidad_id', false);
+  }
+});
+
+
+
 </script>
 <style>
 .boton {

@@ -25,7 +25,7 @@ class UsuarioModel {
 			$result->password = $result->password1 = $this->pattern;
 			$result->identificacion = $result->cedula;
 		} else {
-			$result = (object) array('id'=>0,'password'=>'', 'password1'=>'','identificacion' =>'','nombres'=>'','apellidos'=>'','tipo_usuario_id'=>0,'email'=>'','direccion'=>'','telefono'=>'','celular'=>'');			
+			$result = (object) array('id'=>0,'password'=>'', 'password1'=>'','identificacion' =>'','nombres'=>'','apellidos'=>'','tipo_usuario_id'=>0,'email'=>'','direccion'=>'','telefono'=>'','celular'=>'', 'especialidad_id' => 0);			
 		}
 		
 		return $result;

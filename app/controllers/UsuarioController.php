@@ -15,7 +15,12 @@ class UsuarioController {
 	public function editar(){
 		$model = new UsuarioModel();
 		$item = $model->getUsuario();	
-		$tipos = $model->getCatalogo('tipo_usuario');		
+		$tipos = $model->getCatalogo('tipo_usuario');	
+		$especialidades = $model->getCatalogo('especialidad', ' where estado = 1');	
+		$disabled = "display: none;";
+		if($item->tipo_usuario_id == 2) {
+			$disabled = "";
+		}
 		$message = "";
 		require_once PATH_VIEWS."/Usuario/view.form.php";
 	}
@@ -31,6 +36,10 @@ class UsuarioController {
 		$usuario ['direccion'] = $_POST ['direccion'];
 		$usuario ['telefono'] = $_POST ['telefono'];
 		$usuario ['celular'] = $_POST ['celular'];
+
+		if($usuario ['tipo_usuario_id'] == 2) {
+			$usuario ['especialidad_id'] = $_POST ['especialidad_id'];
+		}
 		
 		$model = new UsuarioModel();
 		try {
