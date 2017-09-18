@@ -17,21 +17,21 @@
 		<table class="table table-striped">
 			<thead>		
 				<tr>
-					<th>Código</th>
-					<th>Curso</th>
-					<th>Materia</th>
-					<th>Opción</th>
+					<th>Nombres</th>
+					<th>Apellidos</th>
+					<th>Area</th>
 				<tr>
 			</thead>
     		<tbody>
 		    		<?php 
 						if(count($items)>0){
 							foreach ($items as $item){
-							$id = $item->matricula_id.'-'.$estudiante->id;
+							$id = $item->evaluacion_docente_id;
 								?>							
-					<tr><td><?php echo $item->id;?></td>
-						<td><?php echo $item->materia_nombre;?></td>
-						<td><?php echo $item->curso_nombre;?></td>
+					<tr><td><?php echo $id;?></td>
+						<td><?php echo $item->nombres;?></td>
+						<td><?php echo $item->apellidos;?></td>
+						<td><?php echo $item->area;?></td>
 						<td><?php echo "<a href='javascript:if(confirm(\"Est\u00e1 seguro que desea eliminar el elemento seleccionado?\")){redirect(\"$id\");}' class='btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash'></i></a>"?>
 						</td>
 					<?php 	}

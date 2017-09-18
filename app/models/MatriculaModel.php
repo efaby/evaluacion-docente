@@ -108,18 +108,14 @@ class MatriculaModel {
 	public function getDocentes()
 	{ // defnir tabla ddocentes
 		$item = $_GET['id'];
-		/*
 		$model = new BaseModel();		
 		if($item > 0){
-			$sql = "select distinct(mp.materia_id) as id,mp.materia_periodo_id,ma.matricula_id,
-					m.nombre as materia_nombre, c.nombre as curso_nombre
-					from matricula as ma
-					inner join  materia_periodo as mp on ma.materia_periodo_id = mp.materia_periodo_id
-					inner join materia as m ON m.materia_id = mp.materia_id
-					inner join curso as c ON c.curso_id = m.curso_id
-					where ma.usuario_id=".$item;
+			$sql = "select de.docente_evaluacion_id, u.nombres, u.apellidos, e.nombre as area from usuario as u 
+				inner join docente_evaluacion as de on de.docente_id = u.usuario_id 
+				inner join especialidad as e on e.especialidad_id = u.especialidad_id
+				where de.administrativo_id=".$item;
 			$result = $model->execSql($sql, array(), true);
 		}		
-		return $result; */
+		return $result; 
 	}
 }
