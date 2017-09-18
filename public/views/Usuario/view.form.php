@@ -9,7 +9,7 @@
 		<?php }?>
 		</select>
 	</div>
-	<div class="form-group  col-sm-6">
+	<div class="form-group  col-sm-6" id="ddocente" >
 		<label class="control-label" id="ldocente" style="<?php echo $disabled; ?>">&Aacute;rea</label>
 		<select class='form-control' name="especialidad_id" id="sdocente" style="<?php echo $disabled; ?>">
 			<option value="" >Seleccione</option>
@@ -281,6 +281,7 @@ $( "#tipo_usuario_id" ).change(function() {
   } else {
   	$("#ldocente").hide();
   	$("#sdocente").hide();
+  	$("#ddocente .help-block").hide();
   	$('#frmUsuario').formValidation('enableFieldValidators', 'especialidad_id', false);
   }
 });
