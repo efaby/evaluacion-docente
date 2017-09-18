@@ -27,6 +27,7 @@
 		});
 	});
 	
+	
 	function redirect1(id){
 		var url = '../eliminarPreguntaEval/' + id;
 		location.href = url;

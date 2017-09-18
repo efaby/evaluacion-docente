@@ -21,13 +21,13 @@
 	</div>
 	<br>
 	<div class="form-group col-sm-12">
-		<table class="table table-striped" id="dataTables-example">
+		<table class="table table-striped" id="dataTables-example">		
 			<thead>		
 				<tr>
 					<th>Código</th>
 					<th>Pregunta</th>
 					<th></th>					
-				<tr>
+				</tr>
 			</thead>
     		<tbody>
 		    		<?php 

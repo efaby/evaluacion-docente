@@ -88,7 +88,7 @@ class MatriculaModel {
 				where mp.estado=1 and periodo_id=".$periodo." and  m.usuario_id=".$estudiante;
 		return $model->execSql($sql, array(),true);
 	}
-
+	
 	public function getlistadoAdministrativos(){		
 		$model = new BaseModel();	
 		$sql = "select *, usuario_id as id
@@ -117,5 +117,34 @@ class MatriculaModel {
 			$result = $model->execSql($sql, array(), true);
 		}		
 		return $result; 
+	}
+	
+	public function getDocentesPeriodo(){
+		$model = new BaseModel();
+		$sql = "SELECT distinct(docente_id) as id, concat(nombres,' ',apellidos) as nombre
+				FROM materia_periodo mp
+				INNER JOIN usuario d ON d.usuario_id = mp.docente_id
+				WHERE mp.estado = 1";
+		return $model->execSql($sql, array(),true);
+	}
+	
+	public function saveMatriculDocente($item){
+		$model = new BaseModel();
+		return $model->saveDatos($item,'docente_evaluacion');
+	}
+	
+	public function getDocentesValidas($administrador, $periodo){
+		$model = new BaseModel();
+		$sql = "SELECT distinct(docente_id) as id 
+				FROM evaluacion.docente_evaluacion
+				WHERE administrativo_id =".$administrador." and periodo_id =".$periodo;				
+		return $model->execSql($sql, array(),true);
+	}
+	
+	
+	public function delDocente($itemId){
+		$sql = "delete from docente_evaluacion where docente_evaluacion_id = ?";
+		$model = new BaseModel();
+		$result = $model->execSql($sql, array($itemId),false,true);	
 	}
 }

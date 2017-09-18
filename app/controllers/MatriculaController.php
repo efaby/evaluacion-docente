@@ -149,4 +149,60 @@ class MatriculaController {
 		$message = "";
 		require_once PATH_VIEWS."/Matricula/view.listDocentes.php";
 	}
+	
+	public function editarDocentes(){
+		$model = new MatriculaModel();
+		$docentes = $model->getDocentesPeriodo();
+		$modelEvaluacion = new EvaluacionModel();		
+		$evaluaciones = $modelEvaluacion->getlistadoEvaluaciones();
+		$admin_id = $_GET['id'];
+		$message = "";
+		require_once PATH_VIEWS."/Matricula/view.listdoc.php";
+	}
+	
+	public function guardarDocentes() {
+		$model = new MatriculaModel();
+		$docentes_periodo = $_POST ['docente_id'];
+		$item ['administrativo_id'] = $_POST ['admin_id'];
+		$item ['evaluacion_id'] = $_POST['evaluacion_id'];
+		$periodo_id = $model->getPeriodoActivo()->periodo_id;	
+		$item['periodo_id'] = $periodo_id;
+		$docentes_validos = $this->validarDocentes($item ['administrativo_id'], $periodo_id,$docentes_periodo);
+		try {
+			foreach ($docentes_validos as $dato){
+				$item['docente_id'] = $dato;
+				$model->saveMatriculDocente($item);
+			}			
+			$_SESSION ['message'] = "Datos almacenados correctamente.";
+		} catch ( Exception $e ) {
+			$_SESSION ['message'] = $e->getMessage ();
+		}
+		header ( "Location: ../listarDocentes/".$item ['administrativo_id']);
+	}
+	
+	public function validarDocentes($administrativo, $periodo,$docentes_periodo){
+		$model = new MatriculaModel();
+		$docentes_matricula = [];
+		$array = $model->getDocentesValidas($administrativo, $periodo);
+		foreach ($array as $doc){
+			$docentes_matricula[] = $doc->id;
+		}
+		$mat_matricula = array_diff($docentes_periodo, $docentes_matricula );
+		return $mat_matricula;
+	}
+	
+	public function eliminarDocente() {
+		$model = new MatriculaModel();
+		try {
+			$item = $_GET['id'];
+			$arrayval = explode('-', $item);
+			$datos = $model->delDocente($arrayval[0]);
+			$_SESSION ['message'] = "Datos eliminados correctamente.";
+				
+		} catch ( Exception $e ) {
+			$_SESSION ['message'] =  "Existen datos relacionados.";
+			//$e->getMessage ();
+		}
+		header ( "Location: ../listarDocentes/".$arrayval[1] );
+	}
 }

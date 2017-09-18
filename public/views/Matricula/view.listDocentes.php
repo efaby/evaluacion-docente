@@ -14,46 +14,47 @@
 	</div>
 	<br>
 	<div class="form-group col-sm-12">
-		<table class="table table-striped">
+		<table class="table table-striped" id="dataTables-example">
 			<thead>		
 				<tr>
+					<th>Código</th>
 					<th>Nombres</th>
 					<th>Apellidos</th>
-					<th>Area</th>
-				<tr>
+					<th>Área</th>
+					<th></th>
+				</tr>
 			</thead>
     		<tbody>
 		    		<?php 
 						if(count($items)>0){
 							foreach ($items as $item){
-							$id = $item->evaluacion_docente_id;
+							$id = $item->docente_evaluacion_id. '-'.$administrativo->id;
 								?>							
-					<tr><td><?php echo $id;?></td>
+					<tr><td><?php echo $item->docente_evaluacion_id;?></td>
 						<td><?php echo $item->nombres;?></td>
 						<td><?php echo $item->apellidos;?></td>
 						<td><?php echo $item->area;?></td>
-						<td><?php echo "<a href='javascript:if(confirm(\"Est\u00e1 seguro que desea eliminar el elemento seleccionado?\")){redirect(\"$id\");}' class='btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash'></i></a>"?>
+						<td><?php echo "<a href='javascript:if(confirm(\"Est\u00e1 seguro que desea eliminar el elemento seleccionado?\")){redirect2(\"$id\");}' class='btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash'></i></a>"?>
 						</td>
 					<?php 	}
 						}else{?>
-					<tr><td colspan="4" align="center">No existe Docentes asignadoos al Adminitrativo</td></tr>
+					<tr><td colspan="5" align="center">No existe Docentes asignados al Administrativo</td></tr>
 					<?php }?>
 			</tbody>		
 		</table>		
 	</div>	
 </form>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+<div class="modal modal2 fade" id="myModal" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true" >
 	<div class="modal-dialog" >
 		<div class="modal-content">
 			<div class="modal-header">				
-				<h4 class="modal-title">Materias</h4>
+				<h4 class="modal-title">Docentes</h4>
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                  </button>
 			</div>			
 			<div class="modal-body"></div>
-
 		</div>
 	</div>
 </div>
@@ -65,10 +66,22 @@
 <script src="<?php echo PATH_JS; ?>/table.js"></script>
 <script src="<?php echo PATH_JS; ?>/formValidation.js"></script>
 <script src="<?php echo PATH_JS; ?>/bootstrap.js"></script>
-<script src="<?php echo PATH_JS; ?>/currentList.js"></script>
 <link href="<?php echo PATH_CSS; ?>/bootstrapValidator.min.css" rel="stylesheet">
 
 <script type="text/javascript">
+$(document).on('show.bs.modal', '.modal2', function (event) {
+	 var button = $(event.relatedTarget) // Button that triggered the modal
+	 var id = button.data('id') 
+	$('.modal-body').load('../editarDocentes/' + id  ,function(result){	    
+	});
+});
+
+function redirect2(id){
+	var url = '../eliminarDocente/' + id;
+	location.href = url;
+}
+
+
 $(document).ready(function() {
     $('#frmItem').formValidation({
         message: 'This value is not valid',
