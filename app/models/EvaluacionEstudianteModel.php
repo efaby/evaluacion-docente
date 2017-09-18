@@ -19,7 +19,7 @@ class EvaluacionEstudianteModel {
 	public function getlistadoPreguntasEvaluacion($itemId){	
 
 		$model = new BaseModel();	
-		$sql = "SELECT  p.*, ep.evaluacion_pregunta_id FROM evaluacion.matricula_evaluacion as me 
+		$sql = "SELECT  p.*, ep.evaluacion_pregunta_id FROM matricula_evaluacion as me 
 				inner join evaluacion_pregunta as ep on ep.evaluacion_id = me.evaluacion_id
 				inner join pregunta as p on p.pregunta_id = ep.pregunta_id
 				where me.matricula_evaluacion_id = ".$itemId;		
@@ -28,7 +28,7 @@ class EvaluacionEstudianteModel {
 	
 	public function getRespuestas(){
 		$model = new BaseModel();
-		$sql = "select * FROM respuesta ";
+		$sql = "select * FROM respuesta where respuesta_id <= 4";
 		return $model->execSql($sql, array(),true);
 	}
 

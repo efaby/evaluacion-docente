@@ -136,6 +136,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../../EvaluacionEstudiante/listar/"><i class="icon-calendar"></i> Evaluar </a>
                     </li>
+                <?php endif; ?> 
+                <?php if($_SESSION['SESSION_USER']->tipo_usuario_id ==4):?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../EvaluacionDocente/listar/"><i class="icon-calendar"></i> Evaluar </a>
+                    </li>
                 <?php endif; ?>   
                 </ul>
 
