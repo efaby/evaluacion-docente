@@ -4,7 +4,7 @@
 <!-- Main row -->
 <div class="card">
 <div class="card-header">
-    	<h3>Listado de Docente evaluados por Estudiantes</h3>
+    	<h3>Listado de Docente evaluados por Administrativos</h3>
 </div>
 <div class="card-block">
 	<table class="table table-striped" id="dataTables-example" >
@@ -22,7 +22,7 @@
     		echo "<td>".$item->nombres."</td>";
     		echo "<td>".$item->apellidos."</td>";
     		echo "<td align='center'>
-						<a class='btn btn-warning btn-sm' href='../listar/".$item->id."' title='Materias'>
+						<a class='btn btn-warning btn-sm' href='../listarAdminByDocente/".$item->id."' title='Materias'>
 							<i class='fa fa-pencil'></i>
 						</a>					  
 		 		</td></tr>";

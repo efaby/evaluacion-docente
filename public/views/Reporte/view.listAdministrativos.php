@@ -4,7 +4,7 @@
 <!-- Main row -->
 <div class="card">
 <div class="card-header">
-    	<h3>Listado de Docente evaluados por Estudiantes</h3>
+    	<h3>Listado de Administrativos del Docente </h3>
 </div>
 <div class="card-block">
 	<table class="table table-striped" id="dataTables-example" >
@@ -20,12 +20,13 @@
     	<?php foreach ($datos as $item) {
     		echo "<tr><td>".$item->id."</td>";
     		echo "<td>".$item->nombres."</td>";
-    		echo "<td>".$item->apellidos."</td>";
+    		echo "<td>".$item->apellidos."</td>";    		
     		echo "<td align='center'>
-						<a class='btn btn-warning btn-sm' href='../listar/".$item->id."' title='Materias'>
-							<i class='fa fa-pencil'></i>
-						</a>					  
-		 		</td></tr>";
+					<span class=ti-download></span><span class=icon-name>
+						<a href='../verPdfAdmin/".$item->id."' target=_blank>Descargar
+						</a>		
+					</span>
+				   </td></tr>";
     	}?>
     </tbody>
     </table>

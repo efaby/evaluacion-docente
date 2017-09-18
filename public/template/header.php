@@ -123,7 +123,9 @@
                             <li class="nav-item">
                                 <a class="nav-link tab-link" href="../../Reporte/docentes/" target="_top"><i class="icon-book-open"></i>Reporte Docentes</a>
                             </li>
-                            
+                            <li class="nav-item">
+                                <a class="nav-link tab-link" href="../../Reporte/docentesAdmin/" target="_top"><i class="icon-book-open"></i>Reporte</a>
+                            </li>
                         </ul>
                     </li>
                 <?php endif; ?>

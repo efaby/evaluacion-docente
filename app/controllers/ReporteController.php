@@ -295,11 +295,7 @@ class ReporteController {
 			$canvas = $dompdf->get_canvas();
 			$canvas->page_text(550, 750, "{PAGE_NUM}", $font, 6, array(0,0,0)); //header		
 			$dompdf->stream('general', array("Attachment"=>false));		
-		}
-		else{
-			$_SESSION ['message'] = "No existen datos registrados.";
-			header ( "Location: ../listar/" );
-		}
+		}		
 	}
 	
 	public function grafico($datos,$imagen){
@@ -336,5 +332,176 @@ class ReporteController {
 		$datos = $model->getlistadoDocentes();
 		$message = "";
 		require_once PATH_VIEWS."/Reporte/view.listDocentes.php";
+	}
+	
+	//Administrativo
+	public function docentesAdmin() {
+		$model = new MateriaDocenteModel();
+		$datos = $model->getlistadoDocentes();
+		$message = "";
+		require_once PATH_VIEWS."/Reporte/view.listDocAdmin.php";
+	}
+	
+	public function listarAdminByDocente(){
+		$model = new ReporteModel();
+		$id = $_GET['id'];
+		$datos = $model->getlistadoAdminByDocente($id);
+		$message = "";
+		require_once PATH_VIEWS."/Reporte/view.listAdministrativos.php";
+	}
+	
+	public function verPdfAdmin(){
+		$model = new ReporteModel();
+		$id = $_GET ['id'];
+		$datos_cab = self::obtenerDatosCabAdmin($id)[0];
+		$respuestas = $model->getRespuestasAdmin();
+	//	$preguntas = self::obtenerPreguntas($id);
+		//if(count($preguntas) >0){
+			$html = "<html>
+						<head>
+							<link href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'/>
+							<style>
+									body {
+									margin: 20px 20px 20px 50px;
+									}
+									table{
+									border-collapse: collapse; width: 100%;
+									}
+					
+									td{
+									border:1px solid #ccc; padding:1px;
+									font-size:9pt;
+									}
+							</style>
+						</head>
+						<body>
+							<table width= 100% border=0 >
+								<tr>
+									<td style='text-align:left' rowspan=2>
+										<img src='".PATH_IMAGE."/san_gabriel.jpg' style='height: 80px; margin-bottom: 5px;'>
+									</td>
+									<td style='font-size:20px;text-align:left' colspan='5'>
+										<b>INSTITUTO TECNOLÓGICO SUPERIOR SAN GABRIEL</b>
+									</td>
+								</tr>
+								<tr>
+									<td style='font-size:14px;text-align:center' colspan='6'><b>Evaluación Docentes ".$datos_cab->periodo_nombre."</b></td>
+								</tr>
+							</table>
+							<br>
+							<table border=0>
+									<tr>
+									<td width='60px'><b>Área:</b></td><td style='text-align:left'>".$datos_cab->espe_nombre."</td>
+									<td width='60px'><b>Docente:</b></td style='text-align:left'><td style='text-align:left'>".$datos_cab->docente_nombre." ".$datos_cab->docente_apellido."</td>
+									<td width='150px'><b>Fecha de Evaluación:</b></td><td style='text-align:left'>".$datos_cab->fecha_evaluacion."</td>
+								</tr>								
+							</table>
+							<br>
+							<table>
+								<tr>
+									<td style='text-align:center'><b>Detalle</b></td>";
+									foreach ($respuestas as $res){
+										$html.="<td style='text-align:center'><b>".$res->nombre."</b></td>";
+									}									
+			$html .="	</tr>	";
+			/*$total = 0;
+			$total1 = 0;
+			$total2 = 0;
+			$total3 = 0;
+			$total4 = 0;
+			foreach ($preguntas as $preg){
+				if($preg->unica == 0){
+					$total_preg = $preg->res1+$preg->res2+$preg->res3+$preg->res4;
+					$total += $total_preg;
+					$total1 += $preg->res1;
+					$total2 += $preg->res2;
+					$total3 += $preg->res3;
+					$total4 += $preg->res4;
+						
+					$html .="	<tr><td>".$preg->pregunta_nombre."</td>";
+					$html .="		<td style='text-align:center'>".$preg->res1."</td>";
+					$html .="		<td style='text-align:center'>".$preg->res2."</td>";
+					$html .="		<td style='text-align:center'>".$preg->res3."</td>";
+					$html .="		<td style='text-align:center'>".$preg->res4."</td>";
+					$html .="       <td style='text-align:center'>".$total_preg."</td></tr>";
+				}
+			}
+			$perc[] = number_format((($total1 *100)/$total),2);
+			$perc[] = number_format((($total2 *100)/$total),2);
+			$perc[] = number_format((($total3 *100)/$total),2);
+			$perc[] = number_format((($total4 *100)/$total),2);
+	
+			$html .="<tr><td style='text-align:center'><b>TOTAL</b></td>
+						 <td style='text-align:center'>".$total1."</td>
+						 <td style='text-align:center'>".$total2."</td>
+						 <td style='text-align:center'>".$total3."</td>
+						 <td style='text-align:center'>".$total4."</td>
+						 <td style='text-align:center'>".$total."</td>
+					</tr>
+					<tr>
+					   	<td></td>
+						<td style='text-align:center'>".$perc[0]."</td>
+						<td style='text-align:center'>".$perc[1]."</td>
+						<td style='text-align:center'>".$perc[2]."</td>
+						<td style='text-align:center'>".$perc[3]."</td>
+						<td style='text-align:center'>100</td>
+					</tr>";
+			$total1 = 0;
+			$total1a = 0;
+			$total2b = 0;
+			$total3c = 0;
+			$total4d = 0;
+			$html .="<tr><td colspan='6'><br><br></td></tr>";
+			foreach ($preguntas as $preg){
+				if($preg->unica == 1){
+					$total_preg1 = $preg->res1+$preg->res2+$preg->res3+$preg->res4;
+					$total1 += $total_preg;
+					$total1a += $preg->res1;
+					$total2b += $preg->res2;
+					$total3c += $preg->res3;
+					$total4d += $preg->res4;
+						
+					$html .="	<tr><td>".$preg->pregunta_nombre."</td>";
+					$html .="		<td style='text-align:center'>".$preg->res1."</td>";
+					$html .="		<td style='text-align:center'>".$preg->res2."</td>";
+					$html .="		<td style='text-align:center'>".$preg->res3."</td>";
+					$html .="		<td style='text-align:center'>".$preg->res4."</td>";
+					$html .="       <td style='text-align:center'>".$total_preg1."</td></tr>";
+				}
+			}
+				
+			$perc1[] = number_format((($total1a *100)/$total1),2);
+			$perc1[] = number_format((($total2b *100)/$total1),2);
+			$perc1[] = number_format((($total3c *100)/$total1),2);
+			$perc1[] = number_format((($total4d *100)/$total1),2);
+				
+			$html .="<tr>
+					   	<td></td>
+						<td style='text-align:center'>".$perc1[0]."</td>
+						<td style='text-align:center'>".$perc1[1]."</td>
+						<td style='text-align:center'>".$perc1[2]."</td>
+						<td style='text-align:center'>".$perc1[3]."</td>
+						<td style='text-align:center'>100</td>
+					</tr>";
+			$html .="</table>";*/
+			$html .="			</body></html>";
+																			
+																		$options = new Options();
+																		$options->set('isHtml5ParserEnabled', true);
+																		$dompdf = new Dompdf($options);
+																		$dompdf->load_html($html);
+																			
+																		$dompdf->render();
+																		$canvas = $dompdf->get_canvas();
+																		$canvas->page_text(550, 750, "{PAGE_NUM}", $font, 6, array(0,0,0)); //header
+																		$dompdf->stream('general', array("Attachment"=>false));
+		/*}		
+		*/
+	}
+	
+	public function obtenerDatosCabAdmin($id){
+		$model = new ReporteModel();
+		$datos = $model->getDatosCabeceraAdmin($id);
+		return $datos;
 	}
 }

@@ -32,7 +32,7 @@ class ReporteModel {
 	
 	public function getRespuestas(){
 		$model = new BaseModel();
-		$sql="SELECT * FROM respuesta where estado =1";
+		$sql="SELECT * FROM respuesta where estado =1 and respuesta_id <5";
 		return $model->execSql($sql, array(),true);
 	}
 	
@@ -54,5 +54,33 @@ class ReporteModel {
 				GROUP BY respuesta_id, p.pregunta_id 
 				ORDER BY p.pregunta_id";
 		return $model->execSql($sql, array($id),true);		
+	}
+	
+	// Administrativo
+	public function getlistadoAdminByDocente($id){
+		$model = new BaseModel();
+		$sql ="SELECT distinct(administrativo_id) as id, nombres,apellidos
+				FROM docente_evaluacion de
+				INNER JOIN usuario u ON administrativo_id = u.usuario_id
+				WHERE docente_id=?";
+		return $model->execSql($sql, array($id),true);
+	}
+	
+	public function getRespuestasAdmin(){
+		$model = new BaseModel();
+		$sql="SELECT * FROM respuesta where estado =1 and respuesta_id >4";
+		return $model->execSql($sql, array(),true);
+	}
+	
+	public function getDatosCabeceraAdmin($id){
+		$model = new BaseModel();
+		$sql ="SELECT p.nombre as periodo_nombre, d.nombres as docente_nombre, d.apellidos as docente_apellido,
+				e.nombre as espe_nombre,fecha_evaluacion
+				FROM docente_evaluacion de
+				INNER JOIN periodo p on p.periodo_id = de.periodo_id
+				INNER JOIN usuario d on d.usuario_id = de.docente_id
+				INNER JOIN especialidad e on e.especialidad_id = d.especialidad_id
+				WHERE administrativo_id=?";
+		return $model->execSql($sql, array($id),true);
 	}
 }
