@@ -5,12 +5,12 @@ class ReporteModel {
 
 	public function getlistadoMateriaPeriodo($id){
 		$model = new BaseModel();
-		$sql = "SELECT mp.materia_periodo_id as id, m.nombre, concat(u.nombres,' ',u.apellidos) as docente
+		$sql = "SELECT mp.materia_periodo_id as id, m.nombre, concat(u.nombres,' ',u.apellidos) as docente, p.nombre as periodo
 				FROM materia_periodo mp 
 				INNER JOIN periodo p on p.periodo_id = mp.periodo_id
 				INNER JOIN materia m on m.materia_id = mp.materia_id
 				INNER JOIN usuario u on u.usuario_id = mp.docente_id
-				WHERE p.estado=1 and docente_id=?";
+				WHERE docente_id=?";
 		return $model->execSql($sql, array($id),true);
 	}	
 	
@@ -39,7 +39,7 @@ class ReporteModel {
 	public function getPreguntas($id){
 		$model = new BaseModel();
 		$sql ="SELECT p.pregunta_id,p.nombre as pregunta_nombre, respuesta_id, count(respuesta_id) as respuesta,
-				null as res1, null as res2,null as res3, null as res4, p.unica, DATE_FORMAT(me.fecha_evaluacion, '%d-%m-%Y') as fecha_evaluacion
+				null as res1, null as res2,null as res3, null as res4, p.unica, ANY_VALUE(DATE_FORMAT(me.fecha_evaluacion, '%d-%m-%Y')) as fecha_evaluacion
 				FROM 
 					matricula m
 		        INNER JOIN
@@ -59,9 +59,10 @@ class ReporteModel {
 	// Administrativo
 	public function getlistadoAdminByDocente($id){
 		$model = new BaseModel();
-		$sql ="SELECT distinct(administrativo_id) as id, nombres,apellidos
+		$sql ="SELECT distinct(administrativo_id) as id, nombres,apellidos, p.nombre as periodo
 				FROM docente_evaluacion de
 				INNER JOIN usuario u ON administrativo_id = u.usuario_id
+				inner join periodo as p on p.periodo_id = de.periodo_id
 				WHERE docente_id=?";
 		return $model->execSql($sql, array($id),true);
 	}
@@ -88,7 +89,7 @@ class ReporteModel {
 		$model = new BaseModel();
 		$sql ="SELECT p.pregunta_id,  p.nombre as pregunta_nombre, respuesta_id,
 			    count(respuesta_id) as respuesta, null as res1, null as res2,    
-			    DATE_FORMAT(de.fecha_evaluacion, '%d-%m-%Y') as fecha_evaluacion
+			    ANY_VALUE(DATE_FORMAT(de.fecha_evaluacion, '%d-%m-%Y')) as fecha_evaluacion
 				FROM docente_evaluacion de
 			    INNER JOIN respuesta_evaluacion re ON re.docente_evaluacion_id = de.docente_evaluacion_id
 			    INNER JOIN evaluacion_pregunta ep ON ep.evaluacion_pregunta_id = re.evaluacion_pregunta_id
@@ -96,6 +97,12 @@ class ReporteModel {
 			WHERE de.administrativo_id = ?
 			GROUP BY respuesta_id , p.pregunta_id
 			ORDER BY p.pregunta_id";
+		return $model->execSql($sql, array($id),true);
+	}
+
+	public function getUsuario($id) {
+		$model = new BaseModel();
+		$sql = "select * from usuario where usuario_id=?";
 		return $model->execSql($sql, array($id),true);
 	}
 }

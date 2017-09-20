@@ -21,6 +21,7 @@
 	    	<th>Materia</th>
 	    	<th>Curso</th>	    
 	    	<th>Especialidad</th>
+            <th>Per&iacute;odo</th>
 	    	<th>Fecha Evaluación</th>
 		    <th style="text-align: center; width: 20%">Acciones</th>
 	    </tr>
@@ -30,7 +31,8 @@
     		echo "<tr><td>".$item->nombre."</td>";
     		echo "<td>".$item->curso."</td>"; 		
     		echo "<td>".$item->especialidad."</td>";
-    		echo "<td>".$item->fecha_evaluacion."</td>";
+    		echo "<td>".$item->periodo."</td>";
+            echo "<td>".$item->fecha_evaluacion."</td>";
     		$disable = "";
     		if($item->fecha_evaluacion != ''){
     			echo "<td align='center'>Evaluado";

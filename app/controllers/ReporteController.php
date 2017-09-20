@@ -75,7 +75,7 @@ class ReporteController {
 	public function verPdf(){
 		$model = new ReporteModel();
 		$id = $_GET ['id'];
-		$datos_cab = self::obtenerDatosCab($id)[0];
+		$datos_cab = self::obtenerDatosCab($id)[0];		
 		$respuestas = self::obtenerRespuestas();
 		$preguntas = self::obtenerPreguntas($id);
 		if(count($preguntas) >0){		
@@ -220,6 +220,8 @@ class ReporteController {
 						<td style='text-align:center'>100</td>
 					</tr>";
 			$html .="</table>";
+
+
 			self::grafico($perc,1);
 			self::grafico($perc1,2);
 			
@@ -285,17 +287,20 @@ class ReporteController {
 							</tr>
 						</table>	
 					</body></html>";
-			
+
 			$options = new Options();
 			$options->set('isHtml5ParserEnabled', true);
+
 			$dompdf = new Dompdf($options);
 			$dompdf->load_html($html);
-			
+
 			$dompdf->render();
 			$canvas = $dompdf->get_canvas();
 			$canvas->page_text(550, 750, "{PAGE_NUM}", $font, 6, array(0,0,0)); //header		
 			$dompdf->stream('general', array("Attachment"=>false));		
-		}		
+		} else {
+			echo "No exiten datos para generar el reporte Solicitado!.";
+		}	
 	}
 	
 	public function grafico($datos,$imagen){
@@ -344,7 +349,12 @@ class ReporteController {
 	
 	public function listarAdminByDocente(){
 		$model = new ReporteModel();
-		$id = $_GET['id'];
+		$id = $_SESSION['SESSION_USER']->usuario_id;
+		if($_SESSION['SESSION_USER']->tipo_usuario_id ==1) {
+			$id = $_GET['id'];
+		}
+		$usuario = $model->getUsuario($id)[0];
+		
 		$datos = $model->getlistadoAdminByDocente($id);
 		$message = "";
 		require_once PATH_VIEWS."/Reporte/view.listAdministrativos.php";
@@ -466,7 +476,7 @@ class ReporteController {
 						</tr> 		
 						<tr>
 						 	<td align='center'>Resultado de Evaluación</td>	
-						 	<td align='center'>".$total_preg."</td>	
+						 	<td align='center'>".$total1."</td>	
 						</tr> 		
 					</table>
 					<br>

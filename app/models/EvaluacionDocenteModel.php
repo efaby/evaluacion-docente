@@ -5,10 +5,13 @@ class EvaluacionDocenteModel {
 
 	public function getlistadoDocentesAEvaluar($adminId){		
 		$model = new BaseModel();	
-		$sql = "select de.docente_evaluacion_id, u.nombres, u.apellidos, e.nombre as area, de.fecha_evaluacion from usuario as u 
+		$sql = "select de.docente_evaluacion_id, u.nombres, u.apellidos, e.nombre as area, de.fecha_evaluacion , p.nombre as periodo
+				from usuario as u 
 				inner join docente_evaluacion as de on de.docente_id = u.usuario_id 
 				inner join especialidad as e on e.especialidad_id = u.especialidad_id
-				where de.administrativo_id= ".$adminId;		
+				inner join periodo as p on p.periodo_id = de.periodo_id
+				where de.administrativo_id= ".$adminId. " 
+				order by de.docente_evaluacion_id desc";		
 		return $model->execSql($sql, array(),true);
 	}	
 

@@ -16,11 +16,14 @@ class MatriculaModel {
 		$model = new BaseModel();		
 		if($item > 0){
 			$sql = "select distinct(mp.materia_id) as id,mp.materia_periodo_id,ma.matricula_id,
-					m.nombre as materia_nombre, c.nombre as curso_nombre
+					m.nombre as materia_nombre, c.nombre as curso_nombre, e.nombre as evaluacion, p.nombre as periodo
 					from matricula as ma
 					inner join  materia_periodo as mp on ma.materia_periodo_id = mp.materia_periodo_id
 					inner join materia as m ON m.materia_id = mp.materia_id
 					inner join curso as c ON c.curso_id = m.curso_id
+					inner join matricula_evaluacion as me on me.matricula_id =  ma.matricula_id
+					inner join evaluacion as e on e.evaluacion_id = me.evaluacion_id
+					inner join periodo as p on p.periodo_id = mp.periodo_id
 					where ma.usuario_id=".$item;
 			$result = $model->execSql($sql, array(), true);
 		}		
@@ -110,10 +113,13 @@ class MatriculaModel {
 		$item = $_GET['id'];
 		$model = new BaseModel();		
 		if($item > 0){
-			$sql = "select de.docente_evaluacion_id, u.nombres, u.apellidos, e.nombre as area from usuario as u 
+			$sql = "select de.docente_evaluacion_id, u.nombres, u.apellidos, e.nombre as area , ev.nombre as evaluacion
+				from usuario as u 
 				inner join docente_evaluacion as de on de.docente_id = u.usuario_id 
 				inner join especialidad as e on e.especialidad_id = u.especialidad_id
-				where de.administrativo_id=".$item;
+				inner join periodo as p on p.periodo_id = de.periodo_id
+				inner join evaluacion as ev on ev.evaluacion_id = de.evaluacion_id
+				where p.estado = 1 and de.administrativo_id=".$item;
 			$result = $model->execSql($sql, array(), true);
 		}		
 		return $result; 
@@ -147,4 +153,13 @@ class MatriculaModel {
 		$model = new BaseModel();
 		$result = $model->execSql($sql, array($itemId),false,true);	
 	}
+
+	public function getlistadoEvaluaciones(){		
+		$model = new BaseModel();	
+		$sql = "select distinct(e.evaluacion_id) as id, e.* from evaluacion as e 
+			inner join evaluacion_pregunta as ep on e.evaluacion_id = ep.evaluacion_id
+			where e.estado=1";		
+		return $model->execSql($sql, array(),true);
+	}	
+	
 }

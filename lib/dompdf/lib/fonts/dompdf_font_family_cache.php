@@ -77,7 +77,10 @@
     'italic' => $fontDir . '\DejaVuSerif-Italic',
     'normal' => $fontDir . '\DejaVuSerif',
   ),
+  'glyphicons halflings' => array(
+    'normal' => $fontDir . '\fd438c276d122d36ac95ebe32d812add',
+  ),
   'fontawesome' => array(
-    'normal' => $fontDir . '\f979c8b3356b5f4a69a47d726de3fa7e',
+    'normal' => $fontDir . '/f979c8b3356b5f4a69a47d726de3fa7e',
   ),
 ) ?>

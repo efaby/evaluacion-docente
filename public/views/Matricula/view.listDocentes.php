@@ -21,6 +21,7 @@
 					<th>Nombres</th>
 					<th>Apellidos</th>
 					<th>Área</th>
+					<th>Evaluaci&oacute;n</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -34,6 +35,7 @@
 						<td><?php echo $item->nombres;?></td>
 						<td><?php echo $item->apellidos;?></td>
 						<td><?php echo $item->area;?></td>
+						<td><?php echo $item->evaluacion;?></td>
 						<td><?php echo "<a href='javascript:if(confirm(\"Est\u00e1 seguro que desea eliminar el elemento seleccionado?\")){redirect2(\"$id\");}' class='btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash'></i></a>"?>
 						</td>
 					<?php 	}

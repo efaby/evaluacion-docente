@@ -26,8 +26,7 @@ class MatriculaController {
 		$estudiante = $model->getEstudianteById();
 		$modelCurso = new CursoModel();
 		$secciones = $modelCurso->getSecciones();
-		$modelEvaluacion = new EvaluacionModel();
-		$evaluaciones = $modelEvaluacion->getlistadoEvaluaciones();
+		$evaluaciones = $model->getlistadoEvaluaciones();
 		$message = "";
 		require_once PATH_VIEWS."/Matricula/view.form.php";
 	}
@@ -152,9 +151,8 @@ class MatriculaController {
 	
 	public function editarDocentes(){
 		$model = new MatriculaModel();
-		$docentes = $model->getDocentesPeriodo();
-		$modelEvaluacion = new EvaluacionModel();		
-		$evaluaciones = $modelEvaluacion->getlistadoEvaluaciones();
+		$docentes = $model->getDocentesPeriodo();		
+		$evaluaciones = $model->getlistadoEvaluaciones();
 		$admin_id = $_GET['id'];
 		$message = "";
 		require_once PATH_VIEWS."/Matricula/view.listdoc.php";

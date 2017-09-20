@@ -18,7 +18,8 @@
     <thead>
 	    <tr>
 	    	<th>Código</th>
-	    	<th>Nombre</th>	    
+	    	<th>Nombre</th>	
+	    	<th>Per&iacute;odo</th>	    
 	    	<th style="text-align: center; width: 20%">Acciones</th>
 	    </tr>
     </thead>
@@ -26,6 +27,7 @@
     	<?php foreach ($datos as $item) {
     		echo "<tr><td>".$item->id."</td>";
     		echo "<td>".$item->nombre."</td>";
+    		echo "<td>".$item->periodo."</td>";
     		echo "<td align='center'>
 					<span class=ti-download></span><span class=icon-name>
 						<a href='../verPdf/".$item->id."' target=_blank>Descargar

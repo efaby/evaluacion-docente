@@ -5,14 +5,16 @@ class EvaluacionEstudianteModel {
 
 	public function getlistadoEvaluacionesbyEstudiante($estudianteId){		
 		$model = new BaseModel();	
-		$sql = "SELECT mt.*, me.fecha_evaluacion, me.matricula_evaluacion_id, c.nombre as curso, e.nombre as especialidad FROM evaluacion.matricula  as m
+		$sql = "SELECT mt.*, me.fecha_evaluacion, me.matricula_evaluacion_id, c.nombre as curso, e.nombre as especialidad, p.nombre as periodo 
+				FROM matricula  as m
 				inner join matricula_evaluacion as me on me.matricula_id = m.matricula_id
 				inner join materia_periodo as mp on mp.materia_periodo_id = m.materia_periodo_id
 				inner join periodo as p on p.periodo_id =  mp.periodo_id
 				inner join materia as mt on mt.materia_id = mp.materia_id
 				inner join curso as c on c.curso_id = mt.curso_id
 				inner join especialidad as e on e.especialidad_id = c.especialidad_id
-				where p.estado = 1 and m.usuario_id = ".$estudianteId;		
+				where m.usuario_id = ".$estudianteId ." 
+				order by m.matricula_id desc";		
 		return $model->execSql($sql, array(),true);
 	}	
 

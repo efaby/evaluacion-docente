@@ -101,7 +101,7 @@
                                 <a class="nav-link tab-link" href="../../Matricula/listar/"><i class="icon-notebook "></i> Estudiantes</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link tab-link" href="../../Matricula/listarAdministrativos/"><i class="icon-notebook "></i> Administrativos</a>
+                                <a class="nav-link tab-link" href="../../Matricula/listarAdministrativos/"><i class="icon-notebook "></i> Directivos</a>
                             </li>
                         </ul>
                     </li>
@@ -121,18 +121,27 @@
                         <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-book-open"></i>Reportes</a>
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
-                                <a class="nav-link tab-link" href="../../Reporte/docentes/" target="_top"><i class="icon-book-open"></i>Reporte Docentes</a>
+                                <a class="nav-link tab-link" href="../../Reporte/docentes/" target="_top"><i class="icon-book-open"></i>Reporte Estudiantes</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link tab-link" href="../../Reporte/docentesAdmin/" target="_top"><i class="icon-book-open"></i>Reporte</a>
+                                <a class="nav-link tab-link" href="../../Reporte/docentesAdmin/" target="_top"><i class="icon-book-open"></i>Reporte Directivos</a>
                             </li>
                         </ul>
                     </li>
                 <?php endif; ?>
                 <?php if($_SESSION['SESSION_USER']->tipo_usuario_id ==2):?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../Reporte/listar/"><i class="icon-speedometer"></i> Mis Evaluaciones </a>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-book-open"></i>Mis Evaluaciones</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link tab-link" href="../../Reporte/listar/" target="_top"><i class="icon-book-open"></i>Reporte Estudiantes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-link" href="../../Reporte/listarAdminByDocente/" target="_top"><i class="icon-book-open"></i>Reporte Directivos</a>
+                            </li>
+                        </ul>
                     </li>
+
                 <?php endif; ?>  
                 <?php if($_SESSION['SESSION_USER']->tipo_usuario_id ==3):?>
                     <li class="nav-item">

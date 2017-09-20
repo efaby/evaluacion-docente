@@ -20,6 +20,7 @@
 					<th>Código</th>
 					<th>Curso</th>
 					<th>Materia</th>
+					<th>Evaluaci&oacute;n</th>
 					<th>Opción</th>
 				<tr>
 			</thead>
@@ -32,6 +33,7 @@
 					<tr><td><?php echo $item->id;?></td>
 						<td><?php echo $item->materia_nombre;?></td>
 						<td><?php echo $item->curso_nombre;?></td>
+						<td><?php echo $item->evaluacion;?></td>
 						<td><?php echo "<a href='javascript:if(confirm(\"Est\u00e1 seguro que desea eliminar el elemento seleccionado?\")){redirect(\"$id\");}' class='btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash'></i></a>"?>
 						</td>
 					<?php 	}
