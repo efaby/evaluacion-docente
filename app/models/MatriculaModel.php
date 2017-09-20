@@ -15,7 +15,7 @@ class MatriculaModel {
 		$item = $_GET['id'];
 		$model = new BaseModel();		
 		if($item > 0){
-			$sql = "select distinct(mp.materia_id) as id,mp.materia_periodo_id,ma.matricula_id,
+			$sql = "select distinct(mp.materia_id) as id,mp.materia_periodo_id,ma.matricula_id,me.fecha_evaluacion,
 					m.nombre as materia_nombre, c.nombre as curso_nombre, e.nombre as evaluacion, p.nombre as periodo
 					from matricula as ma
 					inner join  materia_periodo as mp on ma.materia_periodo_id = mp.materia_periodo_id
