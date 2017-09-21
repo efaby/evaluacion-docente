@@ -40,7 +40,7 @@
 						</td>
 					<?php 	}
 						}else{?>
-					<tr><td colspan="5" align="center">No existe Docentes asignados al Administrativo</td></tr>
+					<tr><td colspan="6" align="center">No existe Docentes asignados al Administrativo</td></tr>
 					<?php }?>
 			</tbody>		
 		</table>		

@@ -39,7 +39,7 @@ class ReporteModel {
 	public function getPreguntas($id){
 		$model = new BaseModel();
 		$sql ="SELECT p.pregunta_id,p.nombre as pregunta_nombre, respuesta_id, count(respuesta_id) as respuesta,
-				null as res1, null as res2,null as res3, null as res4, p.unica, ANY_VALUE(DATE_FORMAT(me.fecha_evaluacion, '%d-%m-%Y')) as fecha_evaluacion
+				null as res1, null as res2,null as res3, null as res4, p.unica, DATE_FORMAT(me.fecha_evaluacion, '%d-%m-%Y') as fecha_evaluacion
 				FROM 
 					matricula m
 		        INNER JOIN
@@ -89,7 +89,7 @@ class ReporteModel {
 		$model = new BaseModel();
 		$sql ="SELECT p.pregunta_id,  p.nombre as pregunta_nombre, respuesta_id,
 			    count(respuesta_id) as respuesta, null as res1, null as res2,    
-			    ANY_VALUE(DATE_FORMAT(de.fecha_evaluacion, '%d-%m-%Y')) as fecha_evaluacion
+			    DATE_FORMAT(de.fecha_evaluacion, '%d-%m-%Y') as fecha_evaluacion
 				FROM docente_evaluacion de
 			    INNER JOIN respuesta_evaluacion re ON re.docente_evaluacion_id = de.docente_evaluacion_id
 			    INNER JOIN evaluacion_pregunta ep ON ep.evaluacion_pregunta_id = re.evaluacion_pregunta_id
