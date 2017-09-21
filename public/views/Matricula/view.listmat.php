@@ -40,7 +40,7 @@
 						</td>
 					<?php 	}
 						}else{?>
-					<tr><td colspan="4" align="center">No existe Materias asignadas al estudiante</td></tr>
+					<tr><td colspan="5" align="center">No existe Materias asignadas al estudiante</td></tr>
 					<?php }?>
 			</tbody>		
 		</table>		
