@@ -87,6 +87,7 @@ class ReporteModel {
 	
 	public function getPreguntasAdmin($id){
 		$model = new BaseModel();
+		$id = explode('-', $id);
 		$sql ="SELECT p.pregunta_id,  p.nombre as pregunta_nombre, respuesta_id,
 			    count(respuesta_id) as respuesta, null as res1, null as res2,    
 			    DATE_FORMAT(de.fecha_evaluacion, '%d-%m-%Y') as fecha_evaluacion
@@ -94,10 +95,10 @@ class ReporteModel {
 			    INNER JOIN respuesta_evaluacion re ON re.docente_evaluacion_id = de.docente_evaluacion_id
 			    INNER JOIN evaluacion_pregunta ep ON ep.evaluacion_pregunta_id = re.evaluacion_pregunta_id
 			    INNER JOIN pregunta p ON ep.pregunta_id = p.pregunta_id
-			WHERE de.administrativo_id = ?
+			WHERE de.administrativo_id = ? and de.docente_id =?
 			GROUP BY respuesta_id , p.pregunta_id
 			ORDER BY p.pregunta_id";
-		return $model->execSql($sql, array($id),true);
+		return $model->execSql($sql, array($id[0], $id[1]),true);
 	}
 
 	public function getUsuario($id) {

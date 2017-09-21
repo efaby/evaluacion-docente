@@ -19,13 +19,14 @@
     </thead>
     <tbody>
     	<?php foreach ($datos as $item) {
+    		$id = $item->id.'-'.$usuario->usuario_id;
     		echo "<tr><td>".$item->id."</td>";
     		echo "<td>".$item->nombres."</td>";
     		echo "<td>".$item->apellidos."</td>"; 
     		echo "<td>".$item->periodo."</td>";    		
     		echo "<td align='center'>
 					<span class=ti-download></span><span class=icon-name>
-						<a href='../verPdfAdmin/".$item->id."' target=_blank>Descargar
+						<a href='../verPdfAdmin/".$id."' target=_blank>Descargar
 						</a>		
 					</span>
 				   </td></tr>";
