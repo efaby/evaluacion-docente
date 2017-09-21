@@ -5,8 +5,10 @@ class CursoModel {
 
 	public function getlistadoCurso(){		
 		$model = new BaseModel();	
-		$sql = "select curso.*, curso.curso_id as id,especialidad.nombre as especialidad from curso		
+		$sql = "select curso.*, curso.curso_id as id,especialidad.nombre as especialidad, seccion.nombre as seccion 
+				from curso		
 				inner join especialidad on curso.especialidad_id = especialidad.especialidad_id
+				inner join seccion on seccion.seccion_id = especialidad.seccion_id
 				where curso.estado = 1";		
 		return $model->execSql($sql, array(),true);
 	}	
