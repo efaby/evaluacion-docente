@@ -515,8 +515,9 @@ class ReporteController {
 	}
 	
 	public function obtenerDatosCabAdmin($id){
+		$id_array = explode('-', $id);
 		$model = new ReporteModel();
-		$datos = $model->getDatosCabeceraAdmin($id);
+		$datos = $model->getDatosCabeceraAdmin($id_array[1]);
 		return $datos;
 	}
 }

@@ -116,7 +116,7 @@ class MatriculaModel {
 			$sql = "select de.docente_evaluacion_id, u.nombres, u.apellidos, e.nombre as area , ev.nombre as evaluacion
 				from usuario as u 
 				inner join docente_evaluacion as de on de.docente_id = u.usuario_id 
-				inner join especialidad as e on e.especialidad_id = u.especialidad_id
+				inner join area as e on e.area_id = u.especialidad_id
 				inner join periodo as p on p.periodo_id = de.periodo_id
 				inner join evaluacion as ev on ev.evaluacion_id = de.evaluacion_id
 				where p.estado = 1 and de.administrativo_id=".$item;

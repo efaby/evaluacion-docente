@@ -80,8 +80,8 @@ class ReporteModel {
 				FROM docente_evaluacion de
 				INNER JOIN periodo p on p.periodo_id = de.periodo_id
 				INNER JOIN usuario d on d.usuario_id = de.docente_id
-				INNER JOIN especialidad e on e.especialidad_id = d.especialidad_id
-				WHERE administrativo_id=?";
+				INNER JOIN area e on e.area_id = d.especialidad_id
+				WHERE de.docente_id =?";
 		return $model->execSql($sql, array($id),true);
 	}
 	

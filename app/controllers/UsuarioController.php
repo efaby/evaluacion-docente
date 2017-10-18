@@ -16,7 +16,7 @@ class UsuarioController {
 		$model = new UsuarioModel();
 		$item = $model->getUsuario();	
 		$tipos = $model->getCatalogo('tipo_usuario');	
-		$especialidades = $model->getCatalogo('especialidad', ' where estado = 1');	
+		$especialidades = $model->getCatalogo('area', ' where estado = 1');	
 		$disabled = "display: none;";
 		if($item->tipo_usuario_id == 2) {
 			$disabled = "";
