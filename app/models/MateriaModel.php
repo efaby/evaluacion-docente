@@ -30,9 +30,9 @@ class MateriaModel {
 		return $result;
 	}
 	
-	public function getCursos(){
+	public function getCursos($id){
 		$model = new BaseModel();
-		$sql = "select *,curso_id as id from curso where estado=1";
+		$sql = "select *,curso_id as id from curso where estado=1 and especialidad_id=".$id;
 		return $model->execSql($sql, array(),true);
 	}
 	
