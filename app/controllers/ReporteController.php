@@ -259,7 +259,7 @@ class ReporteController {
 							</tr>
 							<tr>
 								<td align='center'>
-											<span style='text-align:center;font-size:15px'><b>Gestión del Docente</b></span><br>
+											<span style='text-align:center;font-size:15px'><b>Asistencia del Docente</b></span><br>
 								</td>
 							</tr>			
 							<tr>

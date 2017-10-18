@@ -163,7 +163,7 @@ class MatriculaController {
 		$docentes_periodo = $_POST ['docente_id'];
 		$item ['administrativo_id'] = $_POST ['admin_id'];
 		$item ['evaluacion_id'] = $_POST['evaluacion_id'];
-		$periodo_id = $model->getPeriodoActivo()->periodo_id;	
+		$periodo_id = $model->getPeriodoActivo()->periodo_id;
 		$item['periodo_id'] = $periodo_id;
 		$docentes_validos = $this->validarDocentes($item ['administrativo_id'], $periodo_id,$docentes_periodo);
 		try {
