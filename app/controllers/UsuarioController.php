@@ -56,7 +56,7 @@ class UsuarioController {
 		$model = new UsuarioModel();
 		try {
 			$usuario = $_GET['id'];
-			$id_sesion = $_SESSION['SESSION_USER']->id;
+			$id_sesion = $_SESSION['SESSION_USER']->usuario_id;
 			if($usuario <> $id_sesion){
 				$datos = $model->delUsuario();
 				$_SESSION ['message'] = "Datos eliminados correctamente.";
