@@ -13,7 +13,7 @@ class EvaluacionEstudianteModel {
 				inner join materia as mt on mt.materia_id = mp.materia_id
 				inner join curso as c on c.curso_id = mt.curso_id
 				inner join especialidad as e on e.especialidad_id = c.especialidad_id
-				where m.usuario_id = ".$estudianteId ." 
+				where p.estado=1 and m.usuario_id = ".$estudianteId ." 
 				order by m.matricula_id desc";		
 		return $model->execSql($sql, array(),true);
 	}	
@@ -46,7 +46,7 @@ class EvaluacionEstudianteModel {
 				inner join curso as c on c.curso_id = mt.curso_id
 				inner join usuario as u on u.usuario_id = mp.docente_id
 				inner join especialidad as e on e.especialidad_id = c.especialidad_id
-				where me.matricula_evaluacion_id = ".$itemId;
+				where p.estado=1 and me.matricula_evaluacion_id = ".$itemId;
 		return $model->execSql($sql, array(),true);
 	}
 

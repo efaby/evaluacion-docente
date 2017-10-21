@@ -36,8 +36,7 @@ class MatriculaController {
 		$materias_periodo = $_POST ['materia_id'];
 		$item ['usuario_id'] = $_POST ['estudiante_id'];		
 		$item['fecha_registro'] = date("Y-m-d");
-		$periodo_id = $model->getPeriodoActivo()->periodo_id;
-		
+		$periodo_id = $model->getPeriodoActivo()->periodo_id;		
 		$matricula['evaluacion_id'] = $_POST ['evaluacion_id'];
 		
 		$model = new MatriculaModel();

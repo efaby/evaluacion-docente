@@ -24,13 +24,14 @@ class MatriculaModel {
 					inner join matricula_evaluacion as me on me.matricula_id =  ma.matricula_id
 					inner join evaluacion as e on e.evaluacion_id = me.evaluacion_id
 					inner join periodo as p on p.periodo_id = mp.periodo_id
-					where ma.usuario_id=".$item;
+					where p.estado =1 and ma.usuario_id=".$item;
 			$result = $model->execSql($sql, array(), true);
 		}		
 		return $result;
 	}
 	
 	public function saveMateriaEstudiante($item){
+		
 		$model = new BaseModel();
 		return $model->saveDatos($item,'matricula');
 	}
@@ -79,7 +80,8 @@ class MatriculaModel {
 		$sql = "select distinct(materia_periodo_id) as id, m.nombre,m.materia_id
 				from materia_periodo as mp
         		inner join materia m ON m.materia_id = mp.materia_id
-				where mp.estado=1 and m.curso_id=".$id;
+				inner join periodo p ON p.periodo_id = mp.periodo_id
+				where p.estado=1 and m.curso_id=".$id;
 		return $model->execSql($sql, array(),true);
 	}	
 	
@@ -88,7 +90,8 @@ class MatriculaModel {
 		$sql = "select m.materia_periodo_id as id 
 				from materia_periodo mp
 				inner join matricula m on m.materia_periodo_id=mp.materia_periodo_id
-				where mp.estado=1 and periodo_id=".$periodo." and  m.usuario_id=".$estudiante;
+				inner join periodo p ON p.periodo_id = mp.periodo_id
+				where p.estado=1 and p.periodo_id=".$periodo." and  m.usuario_id=".$estudiante;
 		return $model->execSql($sql, array(),true);
 	}
 	
@@ -131,7 +134,7 @@ class MatriculaModel {
 				FROM materia_periodo mp
 				inner join periodo as p on p.periodo_id = mp.periodo_id and p.estado = 1
 				INNER JOIN usuario d ON d.usuario_id = mp.docente_id and d.estado =  1
-				WHERE mp.estado = 1";
+				WHERE p.estado=1 and mp.estado = 1";
 		return $model->execSql($sql, array(),true);
 	}
 	
