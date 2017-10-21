@@ -23,13 +23,21 @@
     		echo "<tr><td>".$item->id."</td>";
     		echo "<td>".$item->nombres."</td>";
     		echo "<td>".$item->apellidos."</td>"; 
-    		echo "<td>".$item->periodo."</td>";    		
-    		echo "<td align='center'>
-					<span class=ti-download></span><span class=icon-name>
-						<a href='../verPdfAdmin/".$id."' target=_blank>Descargar
-						</a>		
-					</span>
-				   </td></tr>";
+    		echo "<td>".$item->periodo."</td>"; 
+            if ($item->fecha_evaluacion) {
+                echo "<td align='center'>
+                    <span class=ti-download></span><span class=icon-name>
+                        <a href='../verPdfAdmin/".$id."' target=_blank>Descargar
+                        </a>        
+                    </span>
+                   </td></tr>";
+            } else {
+                echo "<td align='center'>
+                    No Evaluado        
+                    </span>
+                   </td></tr>";
+            }		
+    		
     	}?>
     </tbody>
     </table>

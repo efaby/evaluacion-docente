@@ -22,7 +22,7 @@
 					<th>Apellidos</th>
 					<th>Área</th>
 					<th>Evaluaci&oacute;n</th>
-					<th></th>
+					<th>Accion</th>
 				</tr>
 			</thead>
     		<tbody>
@@ -31,17 +31,17 @@
 							foreach ($items as $item){
 							$id = $item->docente_evaluacion_id. '-'.$administrativo->id;
 								?>							
-					<tr><td><?php echo $item->docente_evaluacion_id;?></td>
-						<td><?php echo $item->nombres;?></td>
-						<td><?php echo $item->apellidos;?></td>
-						<td><?php echo $item->area;?></td>
-						<td><?php echo $item->evaluacion;?></td>
-						<td><?php echo "<a href='javascript:if(confirm(\"Est\u00e1 seguro que desea eliminar el elemento seleccionado?\")){redirect2(\"$id\");}' class='btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash'></i></a>"?>
-						</td>
+							<tr>
+								<td><?php echo $item->docente_evaluacion_id;?></td>
+								<td><?php echo $item->nombres;?></td>
+								<td><?php echo $item->apellidos;?></td>
+								<td><?php echo $item->area;?></td>
+								<td><?php echo $item->evaluacion;?></td>
+								<td><?php echo "<a href='javascript:if(confirm(\"Est\u00e1 seguro que desea eliminar el elemento seleccionado?\")){redirect2(\"$id\");}' class='btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash'></i></a>"; ?>
+								</td>
+							</tr>
 					<?php 	}
-						}else{?>
-					<tr><td colspan="6" align="center">No existe Docentes asignados al Administrativo</td></tr>
-					<?php }?>
+						 }?>
 			</tbody>		
 		</table>		
 	</div>	

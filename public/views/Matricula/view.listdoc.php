@@ -23,3 +23,26 @@
 		<button type="button" class="btn btn-default boton" id="boton" data-dismiss="modal">Cancelar</button>
 	</div>	
 </form>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#frmDocentes').formValidation({
+        message: 'This value is not valid',
+    	fields: {			
+	        	'docente_id[]':{
+	    			validators: {                    
+	                        notEmpty: {
+	                       	message: 'Seleccione al menos un docente.'
+	                         }
+	                    }
+	        	},
+	        	evaluacion_id: {
+	                validators: {
+		                    notEmpty: {
+		                        message: 'Seleccione una Evaluación.'
+		                    }
+	                	}
+	        	},
+		}
+	}); 
+});

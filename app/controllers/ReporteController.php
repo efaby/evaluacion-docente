@@ -385,7 +385,7 @@ class ReporteController {
 		$datos_cab = self::obtenerDatosCabAdmin($id)[0];
 		$respuestas = $model->getRespuestasAdmin();
 		$preguntas = self::obtenerPreguntasAdmin($id);
-		
+
 		//if(count($preguntas) >0){
 			$html = "<html>
 						<head>
@@ -437,6 +437,7 @@ class ReporteController {
 			$total = 0;
 			$total1 = 0;
 			$total2 = 0;
+			$total_preg = 0;
 			foreach ($preguntas as $preg){
 					$total_preg = ($preg->res1 > $preg->res2)?$preg->res1:$preg->res2;
 					$total += $total_preg;
@@ -503,7 +504,7 @@ class ReporteController {
 						</tr>		
 					</table>		
 				    </body></html>";
-			
+
 			$options = new Options();
 			$options->set('isHtml5ParserEnabled', true);
 			$dompdf = new Dompdf($options);

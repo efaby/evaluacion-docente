@@ -129,7 +129,8 @@ class MatriculaModel {
 		$model = new BaseModel();
 		$sql = "SELECT distinct(docente_id) as id, concat(nombres,' ',apellidos) as nombre
 				FROM materia_periodo mp
-				INNER JOIN usuario d ON d.usuario_id = mp.docente_id
+				inner join periodo as p on p.periodo_id = mp.periodo_id and p.estado = 1
+				INNER JOIN usuario d ON d.usuario_id = mp.docente_id and d.estado =  1
 				WHERE mp.estado = 1";
 		return $model->execSql($sql, array(),true);
 	}

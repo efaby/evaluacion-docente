@@ -59,7 +59,7 @@ class ReporteModel {
 	// Administrativo
 	public function getlistadoAdminByDocente($id){
 		$model = new BaseModel();
-		$sql ="SELECT distinct(administrativo_id) as id, nombres,apellidos, p.nombre as periodo
+		$sql ="SELECT distinct(administrativo_id) as id, nombres,apellidos, p.nombre as periodo, de.fecha_evaluacion
 				FROM docente_evaluacion de
 				INNER JOIN usuario u ON administrativo_id = u.usuario_id
 				inner join periodo as p on p.periodo_id = de.periodo_id
@@ -89,8 +89,7 @@ class ReporteModel {
 		$model = new BaseModel();
 		$id = explode('-', $id);
 		$sql ="SELECT p.pregunta_id,  p.nombre as pregunta_nombre, respuesta_id,
-			    count(respuesta_id) as respuesta, null as res1, null as res2,    
-			    DATE_FORMAT(de.fecha_evaluacion, '%d-%m-%Y') as fecha_evaluacion
+			    count(respuesta_id) as respuesta, null as res1, null as res2
 				FROM docente_evaluacion de
 			    INNER JOIN respuesta_evaluacion re ON re.docente_evaluacion_id = de.docente_evaluacion_id
 			    INNER JOIN evaluacion_pregunta ep ON ep.evaluacion_pregunta_id = re.evaluacion_pregunta_id
