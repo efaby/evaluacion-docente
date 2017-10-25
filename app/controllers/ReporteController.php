@@ -275,7 +275,7 @@ class ReporteController {
 								$html.= " un ".$perc1[1]."% que está en desacuerdo que el docente falto a clases";
 							}
 							if($perc1[0] >0){
-								$html.= " un ".$perc1[1]."% que el docente nunca asistió a clases.";
+								$html.= " un ".$perc1[1]."% que el docente nunca falto a clases.";
 							}
 																					
 						$html.="</td>

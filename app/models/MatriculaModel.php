@@ -6,7 +6,7 @@ class MatriculaModel {
 		$model = new BaseModel();	
 		$sql = "select *, usuario_id as id
 				from usuario
-				where tipo_usuario_id=3";		
+				where estado=1 and tipo_usuario_id=3";		
 		return $model->execSql($sql, array(),true);
 	}	
 	
