@@ -100,7 +100,7 @@ class MatriculaModel {
 		$model = new BaseModel();	
 		$sql = "select *, usuario_id as id
 				from usuario
-				where tipo_usuario_id=4";		
+				where tipo_usuario_id=4 and estado = 1";		
 		return $model->execSql($sql, array(),true);
 	}	
 
