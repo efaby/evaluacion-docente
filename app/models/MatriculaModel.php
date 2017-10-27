@@ -19,12 +19,13 @@ class MatriculaModel {
 					m.nombre as materia_nombre, c.nombre as curso_nombre, e.nombre as evaluacion, p.nombre as periodo
 					from matricula as ma
 					inner join  materia_periodo as mp on ma.materia_periodo_id = mp.materia_periodo_id
+					inner join  usuario as u on u.usuario_id = mp.docente_id
 					inner join materia as m ON m.materia_id = mp.materia_id
 					inner join curso as c ON c.curso_id = m.curso_id
 					inner join matricula_evaluacion as me on me.matricula_id =  ma.matricula_id
 					inner join evaluacion as e on e.evaluacion_id = me.evaluacion_id
 					inner join periodo as p on p.periodo_id = mp.periodo_id
-					where p.estado =1 and ma.usuario_id=".$item;
+					where p.estado =1 and u.estado=1 and ma.usuario_id=".$item;
 			$result = $model->execSql($sql, array(), true);
 		}		
 		return $result;
