@@ -79,9 +79,10 @@ class MatriculaModel {
 		$model = new BaseModel();
 		$sql = "select distinct(materia_periodo_id) as id, m.nombre,m.materia_id
 				from materia_periodo as mp
+				inner join  usuario as u on u.usuario_id = mp.docente_id
         		inner join materia m ON m.materia_id = mp.materia_id
 				inner join periodo p ON p.periodo_id = mp.periodo_id
-				where p.estado=1 and m.curso_id=".$id;
+				where p.estado=1 and u.estado=1 and m.curso_id=".$id;
 		return $model->execSql($sql, array(),true);
 	}	
 	
