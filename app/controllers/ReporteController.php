@@ -78,6 +78,7 @@ class ReporteController {
 		$datos_cab = self::obtenerDatosCab($id)[0];		
 		$respuestas = self::obtenerRespuestas();
 		$preguntas = self::obtenerPreguntas($id);
+		
 		if(count($preguntas) >0){		
 			$html = "<html>
 						<head>
@@ -205,11 +206,26 @@ class ReporteController {
 					$html .="       <td style='text-align:center'>".$total_preg1."</td></tr>";
 				}
 			}
-			
-			$perc1[] = number_format((($total1a *100)/$total1),2);
-			$perc1[] = number_format((($total2b *100)/$total1),2);
-			$perc1[] = number_format((($total3c *100)/$total1),2);
-			$perc1[] = number_format((($total4d *100)/$total1),2);
+			if($total1a >0){
+				$perc1[] = number_format((($total1a *100)/$total1),2);
+			}else{
+				$perc1[] = 0;
+			}
+			if($total2b >0){
+				$perc1[] = number_format((($total2b *100)/$total1),2);
+			}else{
+				$perc1[] = 0;
+			}
+			if($total3c >0){			
+				$perc1[] = number_format((($total3c *100)/$total1),2);
+			}else{
+				$perc1[] = 0;
+			}
+			if($total4d >0){
+				$perc1[] = number_format((($total4d *100)/$total1),2);
+			}else{
+				$perc1[] = 0;
+			}				
 			
 			$html .="<tr>
 					   	<td></td>
@@ -221,9 +237,16 @@ class ReporteController {
 					</tr>";
 			$html .="</table>";
 
-
 			self::grafico($perc,1);
-			self::grafico($perc1,2);
+			$a=0;
+			foreach ($perc1 as $value) {
+				if($value >0){
+					$a++;
+				}
+			}
+			if($a >0){
+				self::grafico($perc1,2);
+			}			
 			
 			$html.="<br>
 					<br>
