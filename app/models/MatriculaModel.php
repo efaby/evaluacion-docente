@@ -148,7 +148,7 @@ class MatriculaModel {
 	public function getDocentesValidas($administrador, $periodo){
 		$model = new BaseModel();
 		$sql = "SELECT distinct(docente_id) as id 
-				FROM evaluacion.docente_evaluacion
+				FROM docente_evaluacion
 				WHERE administrativo_id =".$administrador." and periodo_id =".$periodo;		
 		return $model->execSql($sql, array(),true);
 	}
