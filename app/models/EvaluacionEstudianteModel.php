@@ -37,7 +37,7 @@ class EvaluacionEstudianteModel {
 	public function getEvaluacion($itemId){
 		$model = new BaseModel();
 		$sql = "select ev.nombre as evaluacion, c.nombre as curso, e.nombre as especialidad, mt.nombre as materia, u.nombres, u.apellidos
-				FROM evaluacion.matricula_evaluacion as me 
+				FROM matricula_evaluacion as me 
 				inner join evaluacion as ev on ev.evaluacion_id =  me.evaluacion_id
 				inner join matricula as m on m.matricula_id = me.matricula_id
 				inner join materia_periodo as mp on mp.materia_periodo_id = m.materia_periodo_id
